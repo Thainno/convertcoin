@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@layer components{
+  .test {
+    @apply w-full h-20 bg-black;
+  }
+  .test2 {
+    @apply w-full h-40 bg-black;
+  }
+}
