@@ -7,13 +7,13 @@ import Values from "@/components/sections/Values";
 
 export default function Home() {
   return (
-    <>
+    <main>
       <Converter />
       <Values />
       <Content />
       <Banks />
       <Brokers />
       <Airlines />
-    </>
+    </main>
   );
 }

@@ -2,6 +2,7 @@ import Image from "next/image";
 import bgHeader from "@/assets/images/bg-header.svg";
 import logo from "@/assets/images/logo.svg";
 import "@/styles/components/layout/header.css";
+import NavHeader from "../common/NavHeader";
 
 export default function Header() {
   return (
@@ -14,16 +15,7 @@ export default function Header() {
       />
       <div className="header-content">
         <Image src={logo} width={150} alt="Logo Convert Coin" />
-        <nav className="nav-header">
-          <ul className="flex flex-row gap-25">
-            <li>
-              <a className="cursor-pointer">Sobre nós</a>
-            </li>
-            <li>
-              <a className="cursor-pointer">Apoie o projeto</a>
-            </li>
-          </ul>
-        </nav>
+        <NavHeader />
       </div>
     </header>
   );
