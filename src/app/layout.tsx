@@ -5,7 +5,8 @@ import Header from "@/components/layout/Header";
 
 export const metadata: Metadata = {
   title: "Convert Coin",
-  description: "O melhor conversor de moedas de Montanha e região!",
+  description:
+    "Conversor de moedas online gratuito e fácil de usar. Converta dólar para real, euro para libra e muito mais com taxas de câmbio atualizadas em tempo real. Suporta mais de 150 moedas internacionais. Ideal para viagens, negócios e investimentos.",
 };
 
 export default function RootLayout({
