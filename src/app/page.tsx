@@ -1,3 +1,5 @@
+import Converter from "@/components/sections/Converter";
+
 export default function Home() {
-  return <h1>Hello world!</h1>;
+  return <Converter />;
 }

@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@layer components {
+    .cards{
+        @apply flex flex-row items-center justify-center gap-40 w-full h-full 
+    }
+}
