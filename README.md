@@ -4,7 +4,7 @@
 
 > Palavras separadas por hífens(-):
 
-- Arquivos
+- Classes
 - Imagens
 
 ### Camel Case:
@@ -13,3 +13,4 @@
 
 - Variáveis
 - Componentes
+- Arquivos

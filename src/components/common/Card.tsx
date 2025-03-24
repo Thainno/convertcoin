@@ -1,26 +1,43 @@
-import Image from "next/image";
-import testSymbol from "@/assets/images/ico-coin-1.svg";
+import Image, { StaticImageData } from "next/image";
 
-export default function Card() {
+interface CardProps {
+  imagePosition: "left" | "right";
+  imageSrc: string | StaticImageData;
+  currencyName: string;
+  currencySymbol: string;
+}
+
+export default function Card({
+  imagePosition,
+  imageSrc,
+  currencyName,
+  currencySymbol,
+}: CardProps) {
   return (
     <div className="w-160 h-80 rounded-4xl relative top-16 bg-[#f9f9f9] shadow-xl">
-      <div className="flex flex-row items-center p-8 gap-10">
+      <div
+        className={`flex ${
+          imagePosition === "left" ? "flex-row" : "flex-row-reverse"
+        } items-center p-8 gap-10`}
+      >
         <Image
-          src={testSymbol}
+          src={imageSrc}
           width={110}
           height={110}
           alt="Símbolo da moeda tal"
           className="rounded-full"
         />
-        <h2 className="text-3xl">USD - Dolar americano</h2>
+        <h2 className="text-3xl">{currencyName}</h2>
       </div>
       <div className="p-8 w-full h-36 relative">
-        <label className="text-4xl absolute left-14 top-10">R$</label>
+        <label className="text-4xl absolute left-14 top-10">
+          {currencySymbol}
+        </label>
         <input
           type="number"
           id="value"
           name="value"
-          value="20.00"
+          defaultValue="0.00"
           className="w-full h-16 rounded-4xl px-8 text-right text-4xl bg-[#fff] shadow-sm"
         ></input>
       </div>
