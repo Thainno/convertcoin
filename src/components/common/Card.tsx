@@ -14,7 +14,7 @@ export default function Card({
   currencySymbol,
 }: CardProps) {
   return (
-    <div className="w-160 h-80 rounded-4xl relative top-16 bg-[#f9f9f9] shadow-xl">
+    <div className="w-160 h-80 rounded-4xl bg-[#f9f9f9] shadow-xl">
       <div
         className={`flex ${
           imagePosition === "left" ? "flex-row" : "flex-row-reverse"

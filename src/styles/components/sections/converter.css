@@ -1,7 +1,0 @@
-@import "tailwindcss";
-
-@layer components {
-  .converter {
-    @apply flex flex-col items-center h-[100vh] min-h-160 -mt-60;
-  }
-}
