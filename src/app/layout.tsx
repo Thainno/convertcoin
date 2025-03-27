@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { fira } from "@/assets/fonts/fonts";
 import "@/styles/globals.css";
+
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 
@@ -13,7 +15,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={fira.className}>
       <body className="theme-dark ">
         <Header />
         {children}
