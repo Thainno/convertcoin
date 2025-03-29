@@ -11,7 +11,7 @@ export default function Header() {
         <ul className="flex flex-row gap-16">
           <li>
             <a
-              className="hover:underline z-20"
+              className="relative custon-link z-20"
               href="###"
               rel="author" //Validar
             >
@@ -20,7 +20,7 @@ export default function Header() {
           </li>
           <li>
             <a
-              className="hover:underline z-20"
+              className="relative custon-link z-20"
               href="###"
               rel="author" //Validar
             >
@@ -29,7 +29,7 @@ export default function Header() {
           </li>
           <li>
             <a
-              className="hover:underline z-20"
+              className="relative custon-link z-20"
               href="###"
               rel="author" //Validar
             >
@@ -38,7 +38,7 @@ export default function Header() {
           </li>
         </ul>
         <div className="flex flex-row items-center gap-10">
-          <a>Entrar</a>
+          <a className="relative custon-link">Entrar</a>
           <a className="w-32 h-12 flex justify-center items-center rounded-xl bg-green-700 ">
             Registrar
           </a>

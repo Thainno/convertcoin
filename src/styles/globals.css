@@ -3,3 +3,28 @@
 a {
   cursor: pointer;
 }
+
+.custon-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  height: 2px;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+.custon-link:hover::after {
+  animation: expandBorder 0.5s forwards;
+}
+
+@keyframes expandBorder {
+  0% {
+    left: 50%;
+    width: 0;
+  }
+  100% {
+    left: 0;
+    width: 100%;
+  }
+}
