@@ -16,7 +16,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={fira.className}>
-      <body className="theme-dark ">
+      <body>
         <Header />
         {children}
         <Footer />
