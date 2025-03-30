@@ -1,4 +1,5 @@
 import Image, { StaticImageData } from "next/image";
+import downArrow from "@/assets/images/down-arrow.svg";
 
 interface CardProps {
   imagePosition: "left" | "right";
@@ -14,16 +15,23 @@ export default function Card({
   currencySymbol,
 }: CardProps) {
   return (
-    <div className="w-160 h-80 rounded-4xl bg-[#f9f9f9] shadow-xl">
+    <div className="w-160 h-80 rounded-4xl bg-[#f9f9f9] shadow-xl flex flex-col justify-center">
       <div
         className={`flex ${
           imagePosition === "left" ? "flex-row" : "flex-row-reverse"
-        } items-center p-8 gap-10`}
+        } items-center p-8 gap-4`}
       >
         <Image
+          src={downArrow}
+          width={30}
+          height={30}
+          alt="Campo de seleção de moedas"
+          className="cursor-pointer"
+        />
+        <Image
           src={imageSrc}
-          width={110}
-          height={110}
+          width={90}
+          height={90}
           alt="Símbolo da moeda tal"
           className="rounded-full"
         />
