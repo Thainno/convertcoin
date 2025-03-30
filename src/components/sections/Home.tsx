@@ -16,7 +16,7 @@ export default function Converter() {
           currencyName="USD - Dólar Americano"
           currencySymbol="U$"
         />
-        <div className="flex flex-col">
+        <div className="flex flex-col cursor-pointer">
           <Image
             className="shadow-2xl rounded-full"
             src={arrowLeft}

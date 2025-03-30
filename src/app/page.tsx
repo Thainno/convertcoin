@@ -2,7 +2,7 @@ import Airlines from "@/components/sections/Airlines";
 import Banks from "@/components/sections/Banks";
 import Brokers from "@/components/sections/Brokers";
 import Content from "@/components/sections/Content";
-import Converter from "@/components/sections/Converter";
+import Converter from "@/components/sections/Home";
 import Values from "@/components/sections/Values";
 
 export default function Home() {
