@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -26,11 +26,9 @@ export default function Card({
   onCurrencyChange,
   onValueChange,
   rates,
-  baseCurrency,
 }: CardProps) {
   const [showDropdown, setShowDropdown] = useState(false);
   const availableCurrencies = rates ? Object.keys(rates) : ["USD", "BRL"];
-  const [currencyName, setCurrencyName] = useState(currency);
 
   // Mapeamento de nomes completos das moedas
   const currencyNames: Record<string, string> = {
@@ -51,7 +49,7 @@ export default function Card({
     // Adicione outros símbolos conforme necessário
   };
 
-  const test = getCountryFlagUrl(currency)
+  const test = getCountryFlagUrl(currency);
 
   return (
     <div className="w-160 h-80 rounded-4xl bg-[#f9f9f9] shadow-xl flex flex-col justify-center">
@@ -121,8 +119,8 @@ export default function Card({
         <input
           type="number"
           value={value}
-          onChange={(e)=> onValueChange(e.target.value)}
-          min={0.00}
+          onChange={(e) => onValueChange(e.target.value)}
+          min={0.0}
           step={1.0}
           className="w-full h-16 rounded-4xl px-8 text-right text-4xl bg-[#fff] shadow-sm "
         ></input>
