@@ -1,20 +1,59 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import { fetchCurrencyRates } from "@/hooks/coinValue";
 
 import Card from "../common/Card";
-import coin1 from "@/assets/images/ico-coin-1.svg";
-import coin2 from "@/assets/images/ico-coin-2.svg";
 import arrowLeft from "@/assets/images/arrow-left.svg";
 import arrowRight from "@/assets/images/arrow-right.svg";
 
 export default function Converter() {
+  const [leftCurrency, setLeftCurrency] = useState("USD");
+  const [rightCurrency, setRightCurrency] = useState("BRL");
+  const [leftValue, setLeftValue] = useState("1.00");
+  const [rightValue, setRightValue] = useState("");
+  const [rates, setRates] = useState<Record<string, number> | null>(null);
+
+  useEffect(() => {
+    const loadRates = async () => {
+      const data = await fetchCurrencyRates(leftCurrency);
+      setRates(data.rates);
+
+      if (data.rates[rightCurrency]) {
+        const convertedValue =
+          parseFloat(leftValue) * data.rates[rightCurrency];
+        setRightValue(convertedValue.toFixed(2));
+      }
+    };
+    loadRates();
+  }, [leftCurrency]);
+
+  useEffect(() => {
+    if (rates && leftValue && rates[rightCurrency]) {
+      const convertedValue = parseFloat(rightValue) / rates[rightCurrency];
+      setLeftValue(convertedValue.toFixed(2));
+    }
+  }, [rightValue]);
+
+  useEffect(() => {
+    if (rates && rightCurrency && rates[rightCurrency] && leftValue) {
+      const convertedValue = parseFloat(leftValue) * rates[rightCurrency];
+      setRightValue(convertedValue.toFixed(2));
+    }
+  }, [leftValue, rightCurrency, rates]);
+
   return (
     <section className="flex flex-col items-center h-[100vh] min-h-160 -mt-25">
       <div className="flex flex-row items-center justify-center gap-30 w-full h-full relative top-4">
         <Card
+          currency={leftCurrency}
+          value={leftValue}
+          onCurrencyChange={setLeftCurrency}
+          onValueChange={setLeftValue}
+          rates={rates}
+          baseCurrency={leftCurrency}
           imagePosition="left"
-          imageSrc={coin1}
-          currencyName="USD"
-          currencySymbol="U$"
         />
         <div className="flex flex-col cursor-pointer">
           <Image
@@ -33,10 +72,13 @@ export default function Converter() {
           />
         </div>
         <Card
+          currency={rightCurrency}
+          value={rightValue}
+          onCurrencyChange={setRightCurrency}
+          onValueChange={setRightValue}
+          rates={rates}
+          baseCurrency={rightCurrency}
           imagePosition="right"
-          imageSrc={coin2}
-          currencyName="BRL"
-          currencySymbol="R$"
         />
       </div>
       <span className="text-xl">
