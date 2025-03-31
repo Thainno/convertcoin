@@ -13,7 +13,7 @@ export default function Header() {
         <ul className="flex flex-row gap-16">
           <li>
             <a
-              className="relative custon-link z-20"
+              className="relative custon-link z-20 p-1"
               href="###"
               rel="author" //Validar
             >
@@ -22,7 +22,7 @@ export default function Header() {
           </li>
           <li>
             <a
-              className="relative custon-link z-20"
+              className="relative custon-link z-20 p-1"
               href="###"
               rel="author" //Validar
             >
@@ -31,7 +31,7 @@ export default function Header() {
           </li>
           <li>
             <a
-              className="relative custon-link z-20"
+              className="relative custon-link z-20 p-1"
               href="###"
               rel="author" //Validar
             >
@@ -39,8 +39,8 @@ export default function Header() {
             </a>
           </li>
         </ul>
-        <div className="flex flex-row items-center gap-10">
-          <a className="relative custon-link">Entrar</a>
+        <div className="flex flex-row items-center gap-10 ">
+          <a className="relative custon-link p-1">Entrar</a>
           <a className="w-32 h-12 flex justify-center items-center rounded-xl bg-green-700 ">
             Registrar
           </a>

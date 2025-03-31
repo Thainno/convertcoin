@@ -13,7 +13,7 @@ export default function Converter() {
         <Card
           imagePosition="left"
           imageSrc={coin1}
-          currencyName="USD - Dólar Americano"
+          currencyName="USD"
           currencySymbol="U$"
         />
         <div className="flex flex-col cursor-pointer">
@@ -35,7 +35,7 @@ export default function Converter() {
         <Card
           imagePosition="right"
           imageSrc={coin2}
-          currencyName="BRL - Real Brasileiro"
+          currencyName="BRL"
           currencySymbol="R$"
         />
       </div>
