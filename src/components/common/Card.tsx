@@ -50,23 +50,23 @@ export default function Card({
 
   const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
-    
+
     // Permite: números, ponto, vírgula, backspace, delete
-    const isValid = /^[0-9]*[,.]?[0-9]*$/.test(inputValue) || inputValue === '';
-    
+    const isValid = /^[0-9]*[,]?[0-9]*$/.test(inputValue) || inputValue === "";
+
     if (isValid) {
       // Substitui vírgula por ponto para cálculo
-      const normalizedValue = inputValue.replace(',', '.');
+      const normalizedValue = inputValue.replace(",", ".");
       onValueChange(normalizedValue);
     }
   };
 
   // Formata o valor para exibição (mantém como digitado quando ativo, formata quando inativo)
-  const displayValue = isActive 
-    ? value 
-    : value === '' 
-      ? '' 
-      : parseFloat(value).toFixed(2);
+  const displayValue = isActive
+    ? value.replace(".", ",")
+    : value === ""
+    ? ""
+    : parseFloat(value).toFixed(2).replace(".", ",");
 
   return (
     <div className="w-160 h-80 rounded-4xl bg-[#f9f9f9] shadow-xl flex flex-col justify-center">

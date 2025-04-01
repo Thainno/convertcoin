@@ -30,18 +30,34 @@ export default function Converter() {
   }, [leftCurrency]);
 
   useEffect(() => {
-    if (activeInput !== "right" && rates && rightCurrency && rates[rightCurrency] && leftValue) {
-      const convertedValue = parseFloat(leftValue) * rates[rightCurrency];
-      setRightValue(isNaN(convertedValue) ? "" : convertedValue.toFixed(2));
+    if (activeInput === "left") {
+      if (leftValue === "") {
+        // Se o input esquerdo foi limpo, limpa o direito também
+        setRightValue("");
+      } else if (rates && rightCurrency && rates[rightCurrency]) {
+        const numValue = parseFloat(leftValue);
+        if (!isNaN(numValue)) {
+          const convertedValue = numValue * rates[rightCurrency];
+          setRightValue(convertedValue.toFixed(2));
+        }
+      }
     }
   }, [leftValue, rightCurrency, rates, activeInput]);
 
   useEffect(() => {
-    if (activeInput !== "left" && rates && leftValue && rates[rightCurrency]) {
-      const convertedValue = parseFloat(rightValue) / rates[rightCurrency];
-      setLeftValue(isNaN(convertedValue) ? "" : convertedValue.toFixed(2));
+    if (activeInput === "right") {
+      if (rightValue === "") {
+        // Se o input direito foi limpo, limpa o esquerdo também
+        setLeftValue("");
+      } else if (rates && rates[rightCurrency]) {
+        const numValue = parseFloat(rightValue);
+        if (!isNaN(numValue)) {
+          const convertedValue = numValue / rates[rightCurrency];
+          setLeftValue(convertedValue.toFixed(2));
+        }
+      }
     }
-  }, [rightValue, activeInput]);
+  }, [rightValue, activeInput, rates, rightCurrency]);
 
   const handleLeftValueChange = (value: string) => {
     setLeftValue(value);
