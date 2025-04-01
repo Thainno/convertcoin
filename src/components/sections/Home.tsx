@@ -14,6 +14,7 @@ export default function Converter() {
   const [leftValue, setLeftValue] = useState("1.00");
   const [rightValue, setRightValue] = useState("");
   const [rates, setRates] = useState<Record<string, number> | null>(null);
+  const [activeInput, setActiveInput] = useState<"left" | "right" | null>(null);
 
   useEffect(() => {
     const loadRates = async () => {
@@ -21,8 +22,7 @@ export default function Converter() {
       setRates(data.rates);
 
       if (data.rates[rightCurrency]) {
-        const convertedValue =
-          parseFloat(leftValue) * data.rates[rightCurrency];
+        const convertedValue = parseFloat(leftValue) * data.rates[rightCurrency];
         setRightValue(convertedValue.toFixed(2));
       }
     };
@@ -30,18 +30,28 @@ export default function Converter() {
   }, [leftCurrency]);
 
   useEffect(() => {
-    if (rates && rightCurrency && rates[rightCurrency] && leftValue) {
+    if (activeInput !== "right" && rates && rightCurrency && rates[rightCurrency] && leftValue) {
       const convertedValue = parseFloat(leftValue) * rates[rightCurrency];
-      setRightValue(convertedValue.toFixed(2));
+      setRightValue(isNaN(convertedValue) ? "" : convertedValue.toFixed(2));
     }
-  }, [leftValue, rightCurrency, rates]);
+  }, [leftValue, rightCurrency, rates, activeInput]);
 
   useEffect(() => {
-    if (rates && leftValue && rates[rightCurrency]) {
+    if (activeInput !== "left" && rates && leftValue && rates[rightCurrency]) {
       const convertedValue = parseFloat(rightValue) / rates[rightCurrency];
-      setLeftValue(convertedValue.toFixed(2));
+      setLeftValue(isNaN(convertedValue) ? "" : convertedValue.toFixed(2));
     }
-  }, [rightValue]);
+  }, [rightValue, activeInput]);
+
+  const handleLeftValueChange = (value: string) => {
+    setLeftValue(value);
+    setActiveInput("left");
+  };
+
+  const handleRightValueChange = (value: string) => {
+    setRightValue(value);
+    setActiveInput("right");
+  };
 
   return (
     <section className="flex flex-col items-center h-[100vh] min-h-160 -mt-25">
@@ -50,10 +60,11 @@ export default function Converter() {
           currency={leftCurrency}
           value={leftValue}
           onCurrencyChange={setLeftCurrency}
-          onValueChange={setLeftValue}
+          onValueChange={handleLeftValueChange}
           rates={rates}
           baseCurrency={leftCurrency}
           imagePosition="left"
+          isActive={activeInput === "left"}
         />
         <div className="flex flex-col cursor-pointer">
           <Image
@@ -75,10 +86,11 @@ export default function Converter() {
           currency={rightCurrency}
           value={rightValue}
           onCurrencyChange={setRightCurrency}
-          onValueChange={setRightValue}
+          onValueChange={handleRightValueChange}
           rates={rates}
           baseCurrency={rightCurrency}
           imagePosition="right"
+          isActive={activeInput === "right"}
         />
       </div>
       <span className="text-xl">

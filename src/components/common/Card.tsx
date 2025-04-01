@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import { getCountryFlagUrl } from "@/hooks/coinValue";
 
@@ -8,36 +8,34 @@ import downArrow from "@/assets/images/down-arrow.svg";
 
 interface CardProps {
   imagePosition: "left" | "right";
-  // currencySymbol: string;
-
   currency: string;
   value: string;
   onCurrencyChange: (currency: string) => void;
   onValueChange: (value: string) => void;
   rates: Record<string, number> | null;
   baseCurrency: string;
+  isActive: boolean; // Novo prop para indicar qual card está sendo editado
 }
 
 export default function Card({
   imagePosition,
-
   currency,
   value,
   onCurrencyChange,
   onValueChange,
   rates,
+  isActive,
 }: CardProps) {
   const [showDropdown, setShowDropdown] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
   const availableCurrencies = rates ? Object.keys(rates) : ["USD", "BRL"];
 
-  // Mapeamento de nomes completos das moedas
   const currencyNames: Record<string, string> = {
     USD: "Dólar Americano",
     BRL: "Real Brasileiro",
     EUR: "Euro",
     GBP: "Libra Esterlina",
     JPY: "Iene Japonês",
-    // Adicione outras moedas conforme necessário
   };
 
   const currencySymbols: Record<string, string> = {
@@ -46,10 +44,29 @@ export default function Card({
     EUR: "€",
     GBP: "£",
     JPY: "¥",
-    // Adicione outros símbolos conforme necessário
   };
 
   const test = getCountryFlagUrl(currency);
+
+  const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value;
+    
+    // Permite: números, ponto, vírgula, backspace, delete
+    const isValid = /^[0-9]*[,.]?[0-9]*$/.test(inputValue) || inputValue === '';
+    
+    if (isValid) {
+      // Substitui vírgula por ponto para cálculo
+      const normalizedValue = inputValue.replace(',', '.');
+      onValueChange(normalizedValue);
+    }
+  };
+
+  // Formata o valor para exibição (mantém como digitado quando ativo, formata quando inativo)
+  const displayValue = isActive 
+    ? value 
+    : value === '' 
+      ? '' 
+      : parseFloat(value).toFixed(2);
 
   return (
     <div className="w-160 h-80 rounded-4xl bg-[#f9f9f9] shadow-xl flex flex-col justify-center">
@@ -117,13 +134,14 @@ export default function Card({
           {currencySymbols[currency] || currency}
         </label>
         <input
-          type="number"
+          ref={inputRef}
+          type="text" // Alterado para text para melhor controle
           inputMode="decimal"
           autoComplete="off"
-          value={value}
-          onChange={(e) => onValueChange(e.target.value)}
-          className="w-full h-16 rounded-4xl px-8 text-right text-4xl bg-[#fff] shadow-sm "
-        ></input>
+          value={displayValue}
+          onChange={handleValueChange}
+          className="w-full h-16 rounded-4xl px-8 text-right text-4xl bg-[#fff] shadow-sm"
+        />
       </div>
     </div>
   );
