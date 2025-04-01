@@ -118,10 +118,10 @@ export default function Card({
         </label>
         <input
           type="number"
+          inputMode="decimal"
+          autoComplete="off"
           value={value}
           onChange={(e) => onValueChange(e.target.value)}
-          min={0.0}
-          step={1.0}
           className="w-full h-16 rounded-4xl px-8 text-right text-4xl bg-[#fff] shadow-sm "
         ></input>
       </div>

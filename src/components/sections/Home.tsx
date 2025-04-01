@@ -30,18 +30,18 @@ export default function Converter() {
   }, [leftCurrency]);
 
   useEffect(() => {
-    if (rates && leftValue && rates[rightCurrency]) {
-      const convertedValue = parseFloat(rightValue) / rates[rightCurrency];
-      setLeftValue(convertedValue.toFixed(2));
-    }
-  }, [rightValue]);
-
-  useEffect(() => {
     if (rates && rightCurrency && rates[rightCurrency] && leftValue) {
       const convertedValue = parseFloat(leftValue) * rates[rightCurrency];
       setRightValue(convertedValue.toFixed(2));
     }
   }, [leftValue, rightCurrency, rates]);
+
+  useEffect(() => {
+    if (rates && leftValue && rates[rightCurrency]) {
+      const convertedValue = parseFloat(rightValue) / rates[rightCurrency];
+      setLeftValue(convertedValue.toFixed(2));
+    }
+  }, [rightValue]);
 
   return (
     <section className="flex flex-col items-center h-[100vh] min-h-160 -mt-25">
