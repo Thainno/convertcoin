@@ -1,8 +1,9 @@
-"use client";
-
 import { useState, useRef } from "react";
 import Image from "next/image";
 import { getCountryFlagUrl } from "@/hooks/coinValue";
+
+import { useCurrencyData } from "@/hooks/useCurrencyData";
+import { useCurrencyInput } from "@/hooks/useCurrencyInput";
 
 import downArrow from "@/assets/images/down-arrow.svg";
 
@@ -30,43 +31,14 @@ export default function Card({
   const inputRef = useRef<HTMLInputElement>(null);
   const availableCurrencies = rates ? Object.keys(rates) : ["USD", "BRL"];
 
-  const currencyNames: Record<string, string> = {
-    USD: "Dólar Americano",
-    BRL: "Real Brasileiro",
-    EUR: "Euro",
-    GBP: "Libra Esterlina",
-    JPY: "Iene Japonês",
-  };
+  const flag = getCountryFlagUrl(currency);
 
-  const currencySymbols: Record<string, string> = {
-    USD: "$",
-    BRL: "R$",
-    EUR: "€",
-    GBP: "£",
-    JPY: "¥",
-  };
-
-  const test = getCountryFlagUrl(currency);
-
-  const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = e.target.value;
-
-    // Permite: números, ponto, vírgula, backspace, delete
-    const isValid = /^[0-9]*[,]?[0-9]*$/.test(inputValue) || inputValue === "";
-
-    if (isValid) {
-      // Substitui vírgula por ponto para cálculo
-      const normalizedValue = inputValue.replace(",", ".");
-      onValueChange(normalizedValue);
-    }
-  };
-
-  // Formata o valor para exibição (mantém como digitado quando ativo, formata quando inativo)
-  const displayValue = isActive
-    ? value.replace(".", ",")
-    : value === ""
-    ? ""
-    : parseFloat(value).toFixed(2).replace(".", ",");
+  const { currencyNames, currencySymbols } = useCurrencyData();
+  const { handleValueChange, displayValue } = useCurrencyInput(
+    onValueChange,
+    isActive,
+    value
+  );
 
   return (
     <div className="w-160 h-80 rounded-4xl bg-[#f9f9f9] shadow-xl flex flex-col justify-center">
@@ -77,7 +49,7 @@ export default function Card({
         onClick={() => setShowDropdown(!showDropdown)}
       >
         <Image
-          src={test}
+          src={flag}
           width={90}
           height={90}
           alt={`Símbolo da moeda ${currency}`}
