@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { fetchCurrencyRates } from "@/services/API/currencyValue";
 
-import Card from "../common/Card";
+import Card from "../ui/Card";
 import arrowLeft from "@/assets/images/arrow-left.svg";
 import arrowRight from "@/assets/images/arrow-right.svg";
 
