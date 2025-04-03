@@ -48,22 +48,3 @@ export const getCountryFlagUrl = (currencyCode: string): string => {
 
   return `https://flagcdn.com/48x36/${countryCode.toLowerCase()}.png`;
 };
-
-// const currencySymbols: Record<string, string> = {
-//   USD: '$',
-//   BRL: 'R$',
-//   EUR: '€',
-//   GBP: '£',
-//   JPY: '¥',
-//   // Adicione outros símbolos conforme necessário
-// };
-
-// // Mapeamento de nomes completos das moedas
-// const currencyNames: Record<string, string> = {
-//   USD: "Dólar Americano",
-//   BRL: "Real Brasileiro",
-//   EUR: "Euro",
-//   GBP: "Libra Esterlina",
-//   JPY: "Iene Japonês",
-//   // Adicione outras moedas conforme necessário
-// };

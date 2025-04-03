@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { fetchCurrencyRates } from "@/hooks/coinValue";
+import { fetchCurrencyRates } from "@/services/API/currencyValue";
 
 import Card from "../common/Card";
 import arrowLeft from "@/assets/images/arrow-left.svg";
@@ -22,7 +22,8 @@ export default function Converter() {
       setRates(data.rates);
 
       if (data.rates[rightCurrency]) {
-        const convertedValue = parseFloat(leftValue) * data.rates[rightCurrency];
+        const convertedValue =
+          parseFloat(leftValue) * data.rates[rightCurrency];
         setRightValue(convertedValue.toFixed(2));
       }
     };

@@ -1,9 +1,9 @@
 import { useState, useRef } from "react";
 import Image from "next/image";
-import { getCountryFlagUrl } from "@/hooks/coinValue";
+import { getCountryFlagUrl } from "@/services/API/currencyValue";
 
-import { useCurrencyData } from "@/hooks/useCurrencyData";
-import { useCurrencyInput } from "@/hooks/useCurrencyInput";
+import { currencyData } from "@/lib/constants/currencies";
+import { useCurrencyInput } from "@/lib/utils/currencyFormat";
 
 import downArrow from "@/assets/images/down-arrow.svg";
 
@@ -15,7 +15,7 @@ interface CardProps {
   onValueChange: (value: string) => void;
   rates: Record<string, number> | null;
   baseCurrency: string;
-  isActive: boolean; // Novo prop para indicar qual card está sendo editado
+  isActive: boolean;
 }
 
 export default function Card({
@@ -33,7 +33,6 @@ export default function Card({
 
   const flag = getCountryFlagUrl(currency);
 
-  const { currencyNames, currencySymbols } = useCurrencyData();
   const { handleValueChange, displayValue } = useCurrencyInput(
     onValueChange,
     isActive,
@@ -56,7 +55,7 @@ export default function Card({
           className="rounded-full cursor-pointer"
         />
         <h2 className="text-3xl w-4/5">
-          {currencyNames[currency] || currency}
+          {currencyData.currencies[currency]?.name || currency}
         </h2>
         <Image
           src={downArrow}
@@ -72,42 +71,45 @@ export default function Card({
               imagePosition === "left" ? "left-20" : "right-20"
             } w-64 bg-white rounded-2xl shadow-xl overflow-hidden`}
           >
-            {availableCurrencies.map((curr) => (
-              <div
-                key={curr}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onCurrencyChange(curr);
-                  setShowDropdown(false);
-                }}
-                className="flex items-center px-6 hover:bg-gray-100 cursor-pointer"
-              >
-                <Image
-                  src={getCountryFlagUrl(curr)}
-                  alt="curr"
-                  width={40}
-                  height={30}
-                  className="rounded-full mr-4"
-                />
-                <div>
-                  <div className="font-medium">{curr}</div>
-                  <div className="text-sm text-gray-500">
-                    {currencyNames[curr] || curr}
+            {availableCurrencies.map((curr) => {
+              const currencyInfo = currencyData.currencies[curr];
+              return (
+                <div
+                  key={curr}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onCurrencyChange(curr);
+                    setShowDropdown(false);
+                  }}
+                  className="flex items-center px-6 hover:bg-gray-100 cursor-pointer"
+                >
+                  <Image
+                    src={getCountryFlagUrl(currencyInfo?.codCountry || curr)}
+                    alt={curr}
+                    width={40}
+                    height={30}
+                    className="rounded-full mr-4"
+                  />
+                  <div>
+                    <div className="font-medium">{curr}</div>
+                    <div className="text-sm text-gray-500">
+                      {currencyInfo?.name || curr}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>
 
       <div className="p-8 w-full h-36 relative">
         <label className="text-4xl absolute left-14 top-10">
-          {currencySymbols[currency] || currency}
+          {currencyData.currencies[currency]?.symbol || currency}
         </label>
         <input
           ref={inputRef}
-          type="text" // Alterado para text para melhor controle
+          type="text"
           inputMode="decimal"
           autoComplete="off"
           value={displayValue}
