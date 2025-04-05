@@ -2,8 +2,8 @@ import { useState, useRef } from "react";
 import Image from "next/image";
 import { getCountryFlagUrl } from "@/services/API/currencyValue";
 
-import { currencyData } from "@/lib/constants/currencies";
-import { useCurrencyInput } from "@/lib/utils/currencyFormat";
+import { currencyData } from "@/lib/constants/currenciesData";
+import { useCurrencyInput } from "@/lib/utils/inputCurrencyValueFormat";
 
 import downArrow from "@/assets/images/down-arrow.svg";
 

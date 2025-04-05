@@ -1,4 +1,4 @@
-import { currencyData } from "../lib/constants/currencies";
+import { currencyData } from "../lib/constants/currenciesData";
 
 export const useCurrencyData = () => {
   const transformedData: Record<string, [string, string]> = {};
