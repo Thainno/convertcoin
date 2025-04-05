@@ -1,11 +1,11 @@
-import { useState, useRef } from "react";
-import Image from "next/image";
+import { useState } from "react";
 import { getCountryFlagUrl } from "@/services/API/currencyValue";
-
 import { currencyData } from "@/lib/constants/currenciesData";
 import { useCurrencyInput } from "@/lib/utils/inputCurrencyValueFormat";
 
+import Image from "next/image";
 import downArrow from "@/assets/images/down-arrow.svg";
+import Input from "../common/Input";
 
 interface CardProps {
   imagePosition: "left" | "right";
@@ -28,9 +28,7 @@ export default function Card({
   isActive,
 }: CardProps) {
   const [showDropdown, setShowDropdown] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
   const availableCurrencies = rates ? Object.keys(rates) : ["USD", "BRL"];
-
   const flag = getCountryFlagUrl(currency);
 
   const { handleValueChange, displayValue } = useCurrencyInput(
@@ -107,14 +105,12 @@ export default function Card({
         <label className="text-4xl absolute left-14 top-10">
           {currencyData.currencies[currency]?.symbol || currency}
         </label>
-        <input
-          ref={inputRef}
+        <Input
           type="text"
           inputMode="decimal"
           autoComplete="off"
           value={displayValue}
           onChange={handleValueChange}
-          className="w-full h-16 rounded-4xl px-8 text-right text-4xl bg-[#fff] shadow-sm"
         />
       </div>
     </div>
