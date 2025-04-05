@@ -5,6 +5,8 @@ interface InputProps {
   autoComplete?: string;
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder?: string;
+  className?: string;
 }
 
 export default function Input({
@@ -14,6 +16,8 @@ export default function Input({
   autoComplete,
   value,
   onChange,
+  placeholder,
+  className,
 }: InputProps) {
   return (
     <input
@@ -23,7 +27,8 @@ export default function Input({
       autoComplete={autoComplete}
       value={value}
       onChange={onChange}
-      className="w-full h-16 rounded-4xl px-8 text-right text-4xl bg-[#fff] shadow-sm"
+      placeholder={placeholder}
+      className={`rounded-4xl text-4xl bg-[#fff] shadow-sm ${className || ""}`}
     />
   );
 }

@@ -44,12 +44,11 @@ export default function Card({
   );
 
   return (
-    <div className="w-160 h-80 rounded-4xl bg-[#f9f9f9] shadow-xl flex flex-col justify-center">
+    <div className="relative w-160 h-80 rounded-4xl bg-[#f9f9f9] shadow-xl flex flex-col justify-center">
       <div
         className={`flex ${
           imagePosition === "left" ? "flex-row" : "flex-row-reverse text-right"
         } items-center p-8 gap-4`}
-        onClick={toggleDropdown}
       >
         {/*Bandeira da moeda*/}
         <Image
@@ -72,6 +71,7 @@ export default function Card({
           height={30}
           alt="Selecionar moeda"
           className="cursor-pointer"
+          onClick={toggleDropdown}
         />
 
         {/* Renderizar o dropdown*/}

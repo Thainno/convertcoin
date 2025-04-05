@@ -51,7 +51,6 @@ export const getCountryFlagUrl = (currencyCode: string): string => {
 
   // Padrão de fallback para moedas não mapeadas (mostra bandeira genérica)
   const countryCode = countryMap[currencyCode] || "br"; // 'br' para Brasil como fallback
-  console.log(countryMap[currencyCode]);
 
   return `https://flagcdn.com/48x36/${countryCode}.png`;
 };
