@@ -1,21 +1,21 @@
-import { useState } from "react";
 import { getCountryFlagUrl } from "@/services/API/currencyValue";
 import { currencyData } from "@/lib/constants/currenciesData";
-import { useCurrencyInput } from "@/lib/utils/inputCurrencyValueFormat";
+import { useCurrencyInput } from "@/hooks/useCurrencyInput";
+import { useDropdown } from "@/hooks/useDropdown";
 
 import Image from "next/image";
 import downArrow from "@/assets/images/down-arrow.svg";
 import Input from "../common/Input";
+import CurrencyDropdown from "../common/CurrencyDropdown";
 
 interface CardProps {
   imagePosition: "left" | "right";
-  currency: string;
-  value: string;
-  onCurrencyChange: (currency: string) => void;
-  onValueChange: (value: string) => void;
-  rates: Record<string, number> | null;
-  baseCurrency: string;
-  isActive: boolean;
+  currency: string; //Moeda atual selecionada (ex: USD)
+  value: string; //Valor digitado no input
+  onCurrencyChange: (currency: string) => void; //Callback para trocar a moeda
+  onValueChange: (value: string) => void; //Callback para trocar o valor
+  rates: Record<string, number> | null; //Lista de moedas disponíveis (usada para montar o dropdown)
+  isActive: boolean; //Define se este card está ativo para entrada de valor
 }
 
 export default function Card({
@@ -27,10 +27,16 @@ export default function Card({
   rates,
   isActive,
 }: CardProps) {
-  const [showDropdown, setShowDropdown] = useState(false);
+  //Hook para controle do dropdown
+  const { showDropdown, toggleDropdown, closeDropdown } = useDropdown();
+
+  //Define quais moedas estão disponíveis para lis
   const availableCurrencies = rates ? Object.keys(rates) : ["USD", "BRL"];
+
+  //Busca a imagem através de uma API para representar a moeda escolhida
   const flag = getCountryFlagUrl(currency);
 
+  //Hook que formata e controla a entrada de valor no input
   const { handleValueChange, displayValue } = useCurrencyInput(
     onValueChange,
     isActive,
@@ -43,8 +49,9 @@ export default function Card({
         className={`flex ${
           imagePosition === "left" ? "flex-row" : "flex-row-reverse text-right"
         } items-center p-8 gap-4`}
-        onClick={() => setShowDropdown(!showDropdown)}
+        onClick={toggleDropdown}
       >
+        {/*Bandeira da moeda*/}
         <Image
           src={flag}
           width={90}
@@ -52,9 +59,13 @@ export default function Card({
           alt={`Símbolo da moeda ${currency}`}
           className="rounded-full cursor-pointer"
         />
+
+        {/*Nome da moeda*/}
         <h2 className="text-3xl w-4/5">
           {currencyData.currencies[currency]?.name || currency}
         </h2>
+
+        {/*Ícone da seta para abrir ou fechar o dropdown*/}
         <Image
           src={downArrow}
           width={30}
@@ -63,44 +74,18 @@ export default function Card({
           className="cursor-pointer"
         />
 
+        {/* Renderizar o dropdown*/}
         {showDropdown && (
-          <div
-            className={`absolute z-10 mt-40 ${
-              imagePosition === "left" ? "left-20" : "right-20"
-            } w-64 bg-white rounded-2xl shadow-xl overflow-hidden`}
-          >
-            {availableCurrencies.map((curr) => {
-              const currencyInfo = currencyData.currencies[curr];
-              return (
-                <div
-                  key={curr}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onCurrencyChange(curr);
-                    setShowDropdown(false);
-                  }}
-                  className="flex items-center px-6 hover:bg-gray-100 cursor-pointer"
-                >
-                  <Image
-                    src={getCountryFlagUrl(currencyInfo?.codCountry || curr)}
-                    alt={curr}
-                    width={40}
-                    height={30}
-                    className="rounded-full mr-4"
-                  />
-                  <div>
-                    <div className="font-medium">{curr}</div>
-                    <div className="text-sm text-gray-500">
-                      {currencyInfo?.name || curr}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+          <CurrencyDropdown
+            currencies={availableCurrencies} //Lista de moedas
+            imagePosition={imagePosition} //Direção do elemento (esquerda ou direita)
+            onSelectCurrency={onCurrencyChange} //Alterar a moeda
+            closeDropdown={closeDropdown} //Fecha o dropdown após selecionar alguma moeda
+          />
         )}
       </div>
 
+      {/*Input que recebe o valor a ser convertido */}
       <div className="p-8 w-full h-36 relative">
         <label className="text-4xl absolute left-14 top-10">
           {currencyData.currencies[currency]?.symbol || currency}
@@ -109,8 +94,8 @@ export default function Card({
           type="text"
           inputMode="decimal"
           autoComplete="off"
-          value={displayValue}
-          onChange={handleValueChange}
+          value={displayValue} //Valor formatado pelo hook 'useCurrencyInput'
+          onChange={handleValueChange} //Função que trata a mudanças dos valores
         />
       </div>
     </div>

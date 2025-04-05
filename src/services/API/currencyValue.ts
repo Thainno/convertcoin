@@ -1,11 +1,17 @@
+//Buscar as taxas de câmbio mais recentes de uma moeda base utilizando a API pública Frankfurter (https://www.frankfurter.app/)
 export const fetchCurrencyRates = async (baseCurrency: string = "USD") => {
+  //Faz a requisição para a API usando fetch. A moeda base padrão é "USD" caso nenhuma seja passada.
   const response = await fetch(
     `https://api.frankfurter.app/latest?from=${baseCurrency}`
   );
-  if (!response.ok) throw new Error("Falha ao buscar valores!");
+
+  //Verifica se a resposta da API foi bem-sucedida.
+  //Caso não, lança um erro para ser tratado pelo componente que chamou essa função
+  if (!response.ok) throw new Error("Failed to fetch values!");
   return response.json();
 };
 
+//Função utilitária que retorna a URL da bandeira do país correspondente a um código de moeda (como "USD", "BRL", etc.)
 export const getCountryFlagUrl = (currencyCode: string): string => {
   const countryMap: Record<string, string> = {
     AUD: "au", // Austrália
@@ -44,7 +50,8 @@ export const getCountryFlagUrl = (currencyCode: string): string => {
   };
 
   // Padrão de fallback para moedas não mapeadas (mostra bandeira genérica)
-  const countryCode = countryMap[currencyCode] || "un"; // 'un' para Nações Unidas como fallback
+  const countryCode = countryMap[currencyCode] || "br"; // 'br' para Brasil como fallback
+  console.log(countryMap[currencyCode]);
 
-  return `https://flagcdn.com/48x36/${countryCode.toLowerCase()}.png`;
+  return `https://flagcdn.com/48x36/${countryCode}.png`;
 };

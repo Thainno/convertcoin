@@ -1,7 +1,7 @@
 interface InputProps {
-  inputRef?: React.Ref<HTMLInputElement>;
+  inputRef?: React.Ref<HTMLInputElement>; //Usada para focar ou manipular o input diretamente se necessário
   type: string;
-  inputMode?: React.HTMLAttributes<HTMLInputElement>["inputMode"];
+  inputMode?: React.HTMLAttributes<HTMLInputElement>["inputMode"]; //Define o modo de entrada no teclado (ex: "numeric", "decimal", "text")
   autoComplete?: string;
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
