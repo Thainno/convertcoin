@@ -111,6 +111,7 @@ export default function Card({
           value={displayValue} //Valor formatado pelo hook 'useCurrencyInput'
           onChange={handleValueChange} //Função que trata a mudanças dos valores
           className="w-full h-16 text-end px-8 outline-none"
+          maxLength={20}
         />
       </div>
     </div>

@@ -7,6 +7,7 @@ interface InputProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   className?: string;
+  maxLength?: number;
 }
 
 export default function Input({
@@ -18,6 +19,7 @@ export default function Input({
   onChange,
   placeholder,
   className,
+  maxLength,
 }: InputProps) {
   return (
     <input
@@ -29,6 +31,7 @@ export default function Input({
       onChange={onChange}
       placeholder={placeholder}
       className={`rounded-4xl text-4xl bg-[#fff] shadow-sm ${className || ""}`}
+      maxLength={maxLength}
     />
   );
 }

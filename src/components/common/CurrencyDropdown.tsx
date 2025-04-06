@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useMemo } from "react";
 import Image from "next/image";
 import { currencyData } from "@/lib/constants/currenciesData";
 import { getCountryFlagUrl } from "@/services/API/currencyValue";
@@ -18,6 +21,16 @@ export default function CurrencyDropdown({
   onSelectCurrency,
   closeDropdown,
 }: CurrencyDropdownProps) {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredCurrencies = useMemo(() => {
+    const term = searchTerm.toLowerCase();
+    return currencies.filter((code) => {
+      const name = currencyData?.currencies[code]?.name?.toLowerCase() || "";
+      return code.toLowerCase().includes(term) || name.includes(term);
+    });
+  }, [searchTerm, currencies]);
+
   return (
     <div>
       <div
@@ -31,6 +44,7 @@ export default function CurrencyDropdown({
           inputMode={"search"}
           autoComplete={"off"}
           placeholder="Pesquisar moeda..."
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
         <div className="w-2/12 h-10 bg-[#6DA67A] rounded-r-4xl absolute flex items-center justify-center right-4 shadow-sm">
           <Image
@@ -42,13 +56,14 @@ export default function CurrencyDropdown({
           />
         </div>
       </div>
+
       <div
         className={`absolute z-10 w-80 h-80 top-46 overflow-y-scroll ${
           imagePosition === "left" ? "right-4" : "left-4"
         } w-64 bg-white rounded-b-2xl shadow-xl overflow-hidden`}
       >
         {/*Percorre e renderiza cada moeda na lista*/}
-        {currencies.map((curr) => {
+        {filteredCurrencies.map((curr) => {
           const currencyInfo = currencyData?.currencies[curr];
 
           return (
@@ -79,6 +94,11 @@ export default function CurrencyDropdown({
             </div>
           );
         })}
+        {filteredCurrencies.length === 0 && (
+          <div className="text-center p-4 text-gray-500">
+            Nenhuma moeda encontrada
+          </div>
+        )}
       </div>
     </div>
   );
