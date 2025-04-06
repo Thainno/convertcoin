@@ -87,7 +87,7 @@ export default function Card({
 
       {/*Input que recebe o valor a ser convertido */}
       <div className="p-8 w-full h-36 relative">
-        <label className="text-4xl absolute left-14 top-10">
+        <label className="w-24 h-16 flex items-center justify-center text-4xl absolute left-8 top-8 rounded-l-4xl bg-white">
           {currencyData.currencies[currency]?.symbol || currency}
         </label>
         <Input
@@ -96,6 +96,7 @@ export default function Card({
           autoComplete="off"
           value={displayValue} //Valor formatado pelo hook 'useCurrencyInput'
           onChange={handleValueChange} //Função que trata a mudanças dos valores
+          className="w-full h-16 text-end px-8 outline-none"
         />
       </div>
     </div>
