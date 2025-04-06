@@ -1,117 +1,99 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
-import { fetchCurrencyRates } from "@/services/API/currencyValue";
 
 import Card from "../ui/Card";
 import arrowLeft from "@/assets/images/arrow-left.svg";
 import arrowRight from "@/assets/images/arrow-right.svg";
 
+import { useCurrencyConverter } from "@/hooks/useCurrencyConverter";
+import { swapCurrencies } from "@/lib/utils/swapUtils";
+
 export default function Converter() {
-  const [leftCurrency, setLeftCurrency] = useState("USD");
-  const [rightCurrency, setRightCurrency] = useState("BRL");
-  const [leftValue, setLeftValue] = useState("1.00");
-  const [rightValue, setRightValue] = useState("");
-  const [rates, setRates] = useState<Record<string, number> | null>(null);
-  const [activeInput, setActiveInput] = useState<"left" | "right" | null>(null);
+  const state = useCurrencyConverter(); // Agora vem tudo agrupado!
+  const [isSwapping, setIsSwapping] = useState(false);
 
-  useEffect(() => {
-    const loadRates = async () => {
-      const data = await fetchCurrencyRates(leftCurrency);
-      setRates(data.rates);
-
-      if (data.rates[rightCurrency]) {
-        const convertedValue =
-          parseFloat(leftValue) * data.rates[rightCurrency];
-        setRightValue(convertedValue.toFixed(2));
-      }
-    };
-    loadRates();
-  }, [leftCurrency]);
-
-  useEffect(() => {
-    if (activeInput === "left") {
-      if (leftValue === "") {
-        // Se o input esquerdo foi limpo, limpa o direito também
-        setRightValue("");
-      } else if (rates && rightCurrency && rates[rightCurrency]) {
-        const numValue = parseFloat(leftValue);
-        if (!isNaN(numValue)) {
-          const convertedValue = numValue * rates[rightCurrency];
-          setRightValue(convertedValue.toFixed(2));
-        }
-      }
-    }
-  }, [leftValue, rightCurrency, rates, activeInput]);
-
-  useEffect(() => {
-    if (activeInput === "right") {
-      if (rightValue === "") {
-        // Se o input direito foi limpo, limpa o esquerdo também
-        setLeftValue("");
-      } else if (rates && rates[rightCurrency]) {
-        const numValue = parseFloat(rightValue);
-        if (!isNaN(numValue)) {
-          const convertedValue = numValue / rates[rightCurrency];
-          setLeftValue(convertedValue.toFixed(2));
-        }
-      }
-    }
-  }, [rightValue, activeInput, rates, rightCurrency]);
-
-  const handleLeftValueChange = (value: string) => {
-    setLeftValue(value);
-    setActiveInput("left");
-  };
-
-  const handleRightValueChange = (value: string) => {
-    setRightValue(value);
-    setActiveInput("right");
+  const handleSwapCards = () => {
+    setIsSwapping(true);
+    setTimeout(() => {
+      swapCurrencies(state);
+      setIsSwapping(false);
+    }, 250);
   };
 
   return (
     <section className="flex flex-col items-center h-[100vh] min-h-160 -mt-25">
       <div className="flex flex-row items-center justify-center gap-30 w-full h-full relative top-4">
-        <Card
-          currency={leftCurrency}
-          value={leftValue}
-          onCurrencyChange={setLeftCurrency}
-          onValueChange={handleLeftValueChange}
-          rates={rates}
-          imagePosition="left"
-          isActive={activeInput === "left"}
-          otherCurrency={rightCurrency}
-        />
-        <div className="flex flex-col cursor-pointer">
+        {/* Card Esquerdo */}
+        <div
+          className={`transition-all ${
+            isSwapping
+              ? "translate-x-40 opacity-0"
+              : "translate-x-0 opacity-100"
+          }`}
+        >
+          <Card
+            currency={state.leftCurrency}
+            value={state.leftValue}
+            onCurrencyChange={state.setLeftCurrency}
+            onValueChange={(val) => {
+              state.setLeftValue(val);
+              state.setActiveInput("left");
+            }}
+            rates={state.rates}
+            imagePosition="left"
+            isActive={state.activeInput === "left"}
+            otherCurrency={state.rightCurrency}
+          />
+        </div>
+
+        {/* Botões */}
+        <div
+          className="flex flex-col cursor-pointer z-20 group"
+          onClick={handleSwapCards}
+        >
           <Image
-            className="shadow-2xl rounded-full"
+            className="shadow-2xl rounded-full transition-transform duration-300 group-hover:-translate-x-2"
             src={arrowLeft}
             width={50}
             height={50}
-            alt="Botão para alterar a posição das moedas selecionadas"
+            alt="Swap moedas"
           />
           <Image
-            className="shadow-2xl rounded-full"
+            className="shadow-2xl rounded-full transition-transform duration-300 group-hover:translate-x-2"
             src={arrowRight}
             width={50}
             height={50}
-            alt="Botão para alterar a posição das moedas selecionadas"
+            alt="Swap moedas"
           />
         </div>
-        <Card
-          currency={rightCurrency}
-          value={rightValue}
-          onCurrencyChange={setRightCurrency}
-          onValueChange={handleRightValueChange}
-          rates={rates}
-          imagePosition="right"
-          isActive={activeInput === "right"}
-          otherCurrency={leftCurrency}
-        />
+
+        {/* Card Direito */}
+        <div
+          className={`transition-all ${
+            isSwapping
+              ? "-translate-x-40 opacity-0"
+              : "translate-x-0 opacity-100"
+          }`}
+        >
+          <Card
+            currency={state.rightCurrency}
+            value={state.rightValue}
+            onCurrencyChange={state.setRightCurrency}
+            onValueChange={(val) => {
+              state.setRightValue(val);
+              state.setActiveInput("right");
+            }}
+            rates={state.rates}
+            imagePosition="right"
+            isActive={state.activeInput === "right"}
+            otherCurrency={state.leftCurrency}
+          />
+        </div>
       </div>
-      <span className="text-xl">
-        Atualização dos valores do câmbio comercial às 06:45 UTC-3
+      <span className="text-sm">
+        Atualização dos valores às 11:00 UTC-3 Horário de Brasília
       </span>
     </section>
   );
