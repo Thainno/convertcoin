@@ -23,7 +23,7 @@ export default function Converter() {
   };
 
   return (
-    <section className="flex flex-col items-center h-[100vh] min-h-160 -mt-25">
+    <section className="flex flex-col items-center h-screen min-h-160 -mt-25">
       <div className="flex flex-row items-center justify-center gap-30 w-full h-full relative top-4">
         {/* Card Esquerdo */}
         <div

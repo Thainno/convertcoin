@@ -1,35 +1,35 @@
 "use client";
 
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Tooltip,
-  CartesianGrid,
-  ResponsiveContainer,
-} from "recharts";
+import { LineChart, Line, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 
 interface CurrencyChartProps {
-  data: { date: string; value: number }[];
+  data: {
+    date: string;
+    valueCurrencyLeft: number;
+    valueCurrencyRight: number;
+  }[];
 }
 
 export default function CurrencyChart({ data }: CurrencyChartProps) {
   const hasData = Array.isArray(data) && data.length > 0;
 
   return (
-    <div className="w-full h-64 p-4 bg-white shadow-md rounded-xl">
-      <h3 className="text-lg font-semibold mb-4">Histórico de câmbio</h3>
+    <div className="w-300 h-64 p-4 bg-white shadow-md rounded-xl">
       {hasData ? (
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={data}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" />
-            <YAxis />
+            <YAxis stroke="#6DA67A" orientation="right" />
             <Tooltip />
             <Line
               type="monotone"
-              dataKey="value"
+              dataKey="valueCurrencyLeft"
+              stroke="#0d6759"
+              strokeWidth={2}
+              dot={false}
+            />
+            <Line
+              type="monotone"
+              dataKey="valueCurrencyRight"
               stroke="#6DA67A"
               strokeWidth={2}
               dot={false}
