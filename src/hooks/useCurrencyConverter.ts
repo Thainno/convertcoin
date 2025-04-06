@@ -21,7 +21,7 @@ export function useCurrencyConverter(): CurrencyConverterState {
   //Estados principais para as moedas e valores de entrada
   const [leftCurrency, setLeftCurrency] = useState("USD");
   const [rightCurrency, setRightCurrency] = useState("BRL");
-  const [leftValue, setLeftValue] = useState("1.00");
+  const [leftValue, setLeftValue] = useState("100.00");
   const [rightValue, setRightValue] = useState("");
   const [rates, setRates] = useState<Record<string, number> | null>(null);
   const [activeInput, setActiveInput] = useState<"left" | "right" | null>(null);
