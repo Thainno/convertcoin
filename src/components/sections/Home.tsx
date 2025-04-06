@@ -79,7 +79,6 @@ export default function Converter() {
           onCurrencyChange={setLeftCurrency}
           onValueChange={handleLeftValueChange}
           rates={rates}
-          baseCurrency={leftCurrency}
           imagePosition="left"
           isActive={activeInput === "left"}
         />
@@ -105,7 +104,6 @@ export default function Converter() {
           onCurrencyChange={setRightCurrency}
           onValueChange={handleRightValueChange}
           rates={rates}
-          baseCurrency={rightCurrency}
           imagePosition="right"
           isActive={activeInput === "right"}
         />

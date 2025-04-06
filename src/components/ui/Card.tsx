@@ -85,7 +85,10 @@ export default function Card({
           <CurrencyDropdown
             currencies={availableCurrencies} //Lista de moedas
             imagePosition={imagePosition} //Direção do elemento (esquerda ou direita)
-            onSelectCurrency={onCurrencyChange} //Alterar a moeda
+            onSelectCurrency={(selectedCurrency) => {//Alterar a moeda
+              onCurrencyChange(selectedCurrency);
+              onValueChange(value); 
+            }} 
             closeDropdown={closeDropdown} //Fecha o dropdown após selecionar alguma moeda
           />
         )}
