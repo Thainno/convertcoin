@@ -49,7 +49,7 @@ export default function CurrencyDropdown({
       >
         {/*Percorre e renderiza cada moeda na lista*/}
         {currencies.map((curr) => {
-          const currencyInfo = currencyData.currencies[curr];
+          const currencyInfo = currencyData?.currencies[curr];
 
           return (
             <div
@@ -59,19 +59,21 @@ export default function CurrencyDropdown({
                 onSelectCurrency(curr); //Chama função do pai para trocar a moeda
                 closeDropdown(); //Fecha o dropdown após seleção de alguma moeda
               }}
-              className="flex items-center px-6 hover:bg-gray-100 cursor-pointer"
+              className="flex items-center px-6 pb-2 hover:bg-gray-100 cursor-pointer"
             >
-              <Image
-                src={getCountryFlagUrl(currencyInfo?.codCountry || curr)}
-                alt={curr}
-                width={40}
-                height={30}
-                className="rounded-full mr-4"
-              />
+              <div className="w-10 h-10 rounded-full overflow-hidden mr-4">
+                <Image
+                  src={getCountryFlagUrl(curr)}
+                  alt={curr}
+                  width={40}
+                  height={40}
+                  className="w-full h-full mr-4 object-cover"
+                />
+              </div>
               <div className="flex flex-col items-start">
                 <div className="font-medium">{curr}</div>
                 <div className="text-sm text-gray-500">
-                  {currencyInfo?.name || curr}
+                  {currencyInfo?.name}
                 </div>
               </div>
             </div>
