@@ -48,16 +48,22 @@ export default function Card({
       <div
         className={`flex ${
           imagePosition === "left" ? "flex-row" : "flex-row-reverse text-right"
-        } items-center p-8 gap-4`}
+        } items-center p-8`}
       >
         {/*Bandeira da moeda*/}
-        <Image
-          src={flag}
-          width={90}
-          height={90}
-          alt={`Símbolo da moeda ${currency}`}
-          className="rounded-full cursor-pointer"
-        />
+        <div
+          className={`w-16 h-16 rounded-full overflow-hidden ${
+            imagePosition === "left" ? "mr-4" : "ml-4"
+          }`}
+        >
+          <Image
+            src={flag}
+            width={80}
+            height={80}
+            alt={`Símbolo da moeda ${currency}`}
+            className="object-cover w-full h-full cursor-pointer"
+          />
+        </div>
 
         {/*Nome da moeda*/}
         <h2 className="text-3xl w-4/5">
