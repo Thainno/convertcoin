@@ -16,6 +16,7 @@ interface CardProps {
   onValueChange: (value: string) => void; //Callback para trocar o valor
   rates: Record<string, number> | null; //Lista de moedas disponíveis (usada para montar o dropdown)
   isActive: boolean; //Define se este card está ativo para entrada de valor
+  otherCurrency: string; //Moeda do outro card
 }
 
 export default function Card({
@@ -26,6 +27,7 @@ export default function Card({
   onValueChange,
   rates,
   isActive,
+  otherCurrency,
 }: CardProps) {
   //Hook para controle do dropdown
   const { showDropdown, toggleDropdown, closeDropdown } = useDropdown();
@@ -83,12 +85,15 @@ export default function Card({
         {/* Renderizar o dropdown*/}
         {showDropdown && (
           <CurrencyDropdown
-            currencies={availableCurrencies} //Lista de moedas
+            currencies={availableCurrencies.filter(
+              (c) => c !== currency && c !== otherCurrency
+            )} //Lista de moedas
             imagePosition={imagePosition} //Direção do elemento (esquerda ou direita)
-            onSelectCurrency={(selectedCurrency) => {//Alterar a moeda
+            onSelectCurrency={(selectedCurrency) => {
+              //Alterar a moeda
               onCurrencyChange(selectedCurrency);
-              onValueChange(value); 
-            }} 
+              onValueChange(value);
+            }}
             closeDropdown={closeDropdown} //Fecha o dropdown após selecionar alguma moeda
           />
         )}

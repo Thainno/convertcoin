@@ -81,6 +81,7 @@ export default function Converter() {
           rates={rates}
           imagePosition="left"
           isActive={activeInput === "left"}
+          otherCurrency={rightCurrency}
         />
         <div className="flex flex-col cursor-pointer">
           <Image
@@ -106,6 +107,7 @@ export default function Converter() {
           rates={rates}
           imagePosition="right"
           isActive={activeInput === "right"}
+          otherCurrency={leftCurrency}
         />
       </div>
       <span className="text-xl">
