@@ -9,50 +9,36 @@ import {
   ResponsiveContainer,
   CartesianGrid,
 } from "recharts";
+import { chartFilters } from "@/lib/constants/chartFilter";
+import { useHistoricalRates } from "@/hooks/useHistoricalRates";
+import { CustomTooltip } from "./CustomTooltip";
 
-interface CurrencyChartProps {
-  data: {
-    date: string;
-    valueCurrencyLeft: number;
-    valueCurrencyRight: number;
-  }[];
+interface Props {
+  base: string;
+  target: string;
 }
 
-const filters = [
-  { label: "1 dia", value: "1d" },
-  { label: "1 semana", value: "1w" },
-  { label: "1 mês", value: "1m" },
-  { label: "1 ano", value: "1y" },
-  { label: "5 anos", value: "5y" },
-];
-
-export default function CurrencyChart({ data }: CurrencyChartProps) {
+export default function CurrencyChart({ base, target }: Props) {
   const [filter, setFilter] = useState("1w");
+  const { days } = chartFilters.find((f) => f.value === filter)!;
 
-  // Função mock de filtro (ajuste com base nas datas reais depois)
-  const filterData = (filter: string) => {
-    switch (filter) {
-      case "1d":
-        return data.slice(-1);
-      case "1w":
-        return data.slice(-7);
-      case "1m":
-        return data.slice(-30);
-      case "1y":
-        return data.slice(-365);
-      case "5y":
-        return data;
-      default:
-        return data;
-    }
-  };
+  const { data, loading } = useHistoricalRates(base, target, days);
 
-  const filteredData = filterData(filter);
+  // Calcular os ticks do YAxis com base nos dados
+  const values = data.map((item) => item.value);
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  const padding = (max - min) * 0.1 || 1;
+  const adjustedMax = max + padding;
+  const step = (adjustedMax - min) / 4;
+  const ticks = Array.from({ length: 5 }, (_, i) =>
+    Number((min + step * i).toFixed(2))
+  );
 
   return (
     <div className="w-300 h-100 relative top-32 p-4 bg-white shadow-md rounded-xl">
       <div className="flex gap-2 mb-4">
-        {filters.map((f) => (
+        {chartFilters.map((f) => (
           <button
             key={f.value}
             onClick={() => setFilter(f.value)}
@@ -67,31 +53,30 @@ export default function CurrencyChart({ data }: CurrencyChartProps) {
         ))}
       </div>
 
-      <ResponsiveContainer width="100%" height="85%">
-        <LineChart data={filteredData}>
-          <CartesianGrid strokeDasharray="3 3" horizontal vertical={false} />
-          <YAxis
-            stroke="#6DA67A"
-            tick={{ fill: "#0d6759" }}
-            orientation="right"
-          />
-          <Tooltip />
-          <Line
-            type="monotone"
-            dataKey="valueCurrencyLeft"
-            stroke="#0d6759"
-            strokeWidth={2}
-            dot={false}
-          />
-          <Line
-            type="monotone"
-            dataKey="valueCurrencyRight"
-            stroke="#6DA67A"
-            strokeWidth={2}
-            dot={false}
-          />
-        </LineChart>
-      </ResponsiveContainer>
+      {loading ? (
+        <p className="text-sm text-gray-500">Carregando dados...</p>
+      ) : (
+        <ResponsiveContainer width="100%" height="85%">
+          <LineChart data={data}>
+            <CartesianGrid strokeDasharray="3 3" horizontal vertical={false} />
+            <YAxis
+              stroke="#0d6759"
+              orientation="right"
+              tick={{ fill: "#0d6759" }}
+              ticks={ticks}
+              domain={[min, adjustedMax]}
+            />
+            <Tooltip content={<CustomTooltip base={base} target={target} />} />
+            <Line
+              type="monotone"
+              dataKey="value"
+              stroke="#6DA67A"
+              strokeWidth={2}
+              dot={false}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      )}
     </div>
   );
 }

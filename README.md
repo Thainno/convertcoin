@@ -14,3 +14,9 @@
 - Variáveis
 - Componentes
 - Arquivos
+
+
+### Bibliotecas
+
+- date-fns (para datas)
+- recharts (para gráficos)
