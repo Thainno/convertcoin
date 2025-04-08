@@ -14,24 +14,28 @@ export default function Converter() {
   const { setLeftCurrency, setRightCurrency } = useCurrency(); // sincroniza com contexto global
   const [isSwapping, setIsSwapping] = useState(false);
 
+  setLeftCurrency(localState.leftCurrency);
+  setRightCurrency(localState.rightCurrency);
+
   const handleSwapCards = () => {
     setIsSwapping(true);
     setTimeout(() => {
       swapCurrencies(localState);
-      setLeftCurrency(localState.leftCurrency); // atualiza contexto
-      setRightCurrency(localState.rightCurrency); // atualiza contexto
+      setLeftCurrency(localState.leftCurrency);
+      setRightCurrency(localState.rightCurrency);
       setIsSwapping(false);
+      console.log(localState);
     }, 250);
   };
 
   const handleLeftChange = (currency: string) => {
     localState.setLeftCurrency(currency);
-    setLeftCurrency(currency); // atualiza contexto
+    setLeftCurrency(currency);
   };
 
   const handleRightChange = (currency: string) => {
     localState.setRightCurrency(currency);
-    setRightCurrency(currency); // atualiza contexto
+    setRightCurrency(currency);
   };
 
   return (
