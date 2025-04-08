@@ -4,12 +4,15 @@ import Brokers from "@/components/sections/Brokers";
 import Content from "@/components/sections/Content";
 import Converter from "@/components/sections/Converter";
 import Values from "@/components/sections/Values";
+import { CurrencyProvider } from "@/context/CurrencyContext";
 
 export default function Home() {
   return (
     <main>
-      {/* <Converter /> */}
-      <Values />
+      <CurrencyProvider>
+        <Converter />
+        <Values />
+      </CurrencyProvider>
       <Content />
       <Banks />
       <Brokers />

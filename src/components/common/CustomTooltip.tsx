@@ -16,15 +16,15 @@ export function CustomTooltip({
   if (!active || !payload || !payload.length) return null;
 
   const value = payload[0].value;
-  const rawDate = payload[0].payload.date; // <-- Data real no formato yyyy-MM-dd
-  const parsedDate = parseISO(rawDate);    // <-- Converte corretamente para Date
+  const rawDate = payload[0].payload.date;
+  const parsedDate = parseISO(rawDate);
 
   const formattedDate = format(parsedDate, "dd 'de' MMM 'de' yyyy", {
     locale: ptBR,
   });
 
   return (
-    <div className="bg-white p-2 border rounded shadow text-sm text-gray-700">
+    <div className="bg-white p-2 rounded shadow-sm text-sm text-gray-700">
       <p>{`1 ${base} = ${value?.toFixed(2)} ${target}`}</p>
       <p className="text-gray-500">{formattedDate}</p>
     </div>

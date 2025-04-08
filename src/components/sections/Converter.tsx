@@ -2,30 +2,41 @@
 
 import { useState } from "react";
 import Image from "next/image";
-
 import Card from "../ui/Card";
 import arrowLeft from "@/assets/images/arrow-left.svg";
 import arrowRight from "@/assets/images/arrow-right.svg";
-
 import { useCurrencyConverter } from "@/hooks/useCurrencyConverter";
+import { useCurrency } from "@/context/CurrencyContext";
 import { swapCurrencies } from "@/lib/utils/swapUtils";
 
 export default function Converter() {
-  const state = useCurrencyConverter(); // Agora vem tudo agrupado!
+  const localState = useCurrencyConverter(); // lógica de conversão local
+  const { setLeftCurrency, setRightCurrency } = useCurrency(); // sincroniza com contexto global
   const [isSwapping, setIsSwapping] = useState(false);
 
   const handleSwapCards = () => {
     setIsSwapping(true);
     setTimeout(() => {
-      swapCurrencies(state);
+      swapCurrencies(localState);
+      setLeftCurrency(localState.leftCurrency); // atualiza contexto
+      setRightCurrency(localState.rightCurrency); // atualiza contexto
       setIsSwapping(false);
     }, 250);
+  };
+
+  const handleLeftChange = (currency: string) => {
+    localState.setLeftCurrency(currency);
+    setLeftCurrency(currency); // atualiza contexto
+  };
+
+  const handleRightChange = (currency: string) => {
+    localState.setRightCurrency(currency);
+    setRightCurrency(currency); // atualiza contexto
   };
 
   return (
     <section className="flex flex-col items-center h-screen min-h-160 -mt-25">
       <div className="flex flex-row items-center justify-center gap-30 w-full h-full relative top-4">
-        {/* Card Esquerdo */}
         <div
           className={`transition-all ${
             isSwapping
@@ -34,21 +45,21 @@ export default function Converter() {
           }`}
         >
           <Card
-            currency={state.leftCurrency}
-            value={state.leftValue}
-            onCurrencyChange={state.setLeftCurrency}
+            currency={localState.leftCurrency}
+            value={localState.leftValue}
+            onCurrencyChange={handleLeftChange}
             onValueChange={(val) => {
-              state.setLeftValue(val);
-              state.setActiveInput("left");
+              localState.setLeftValue(val);
+              localState.setActiveInput("left");
             }}
-            rates={state.rates}
+            rates={localState.rates}
             imagePosition="left"
-            isActive={state.activeInput === "left"}
-            otherCurrency={state.rightCurrency}
+            isActive={localState.activeInput === "left"}
+            otherCurrency={localState.rightCurrency}
           />
         </div>
 
-        {/* Botões */}
+        {/* Botão de troca */}
         <div
           className="flex flex-col cursor-pointer z-20 group"
           onClick={handleSwapCards}
@@ -69,7 +80,6 @@ export default function Converter() {
           />
         </div>
 
-        {/* Card Direito */}
         <div
           className={`transition-all ${
             isSwapping
@@ -78,17 +88,17 @@ export default function Converter() {
           }`}
         >
           <Card
-            currency={state.rightCurrency}
-            value={state.rightValue}
-            onCurrencyChange={state.setRightCurrency}
+            currency={localState.rightCurrency}
+            value={localState.rightValue}
+            onCurrencyChange={handleRightChange}
             onValueChange={(val) => {
-              state.setRightValue(val);
-              state.setActiveInput("right");
+              localState.setRightValue(val);
+              localState.setActiveInput("right");
             }}
-            rates={state.rates}
+            rates={localState.rates}
             imagePosition="right"
-            isActive={state.activeInput === "right"}
-            otherCurrency={state.leftCurrency}
+            isActive={localState.activeInput === "right"}
+            otherCurrency={localState.leftCurrency}
           />
         </div>
       </div>
