@@ -24,7 +24,6 @@ export default function CurrencyChart({ base, target }: Props) {
 
   const { data, loading } = useHistoricalRates(base, target, days);
 
-  // Calcular os ticks do YAxis com base nos dados
   const values = data.map((item) => item.value);
   const min = Math.min(...values);
   const max = Math.max(...values);

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { fetchHistoricalRates } from "@/services/API/chartData";
-import { getStartDateFromFilter, formatDate } from "@/lib/utils/chartDate";
+import { getStartDateFromFilter } from "@/lib/utils/chartDate";
 
 export function useHistoricalRates(base: string, target: string, days: number) {
   const [data, setData] = useState<{ date: string; value: number }[]>([]);
@@ -22,9 +22,10 @@ export function useHistoricalRates(base: string, target: string, days: number) {
           endDate
         );
 
+        // MANTÉM O FORMATO ORIGINAL DA DATA yyyy-MM-dd
         setData(
           rates.map((entry) => ({
-            date: formatDate(entry.date),
+            date: entry.date,
             value: entry.value,
           }))
         );

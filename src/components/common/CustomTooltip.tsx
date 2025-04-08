@@ -1,5 +1,5 @@
 import { TooltipProps } from "recharts";
-import { format } from "date-fns";
+import { format, parseISO } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
 interface CustomTooltipProps extends TooltipProps<number, string> {
@@ -16,12 +16,8 @@ export function CustomTooltip({
   if (!active || !payload || !payload.length) return null;
 
   const value = payload[0].value;
-  const rawDate = payload[0].payload?.date; // formato esperado: "dd/MM"
-
-  // Usa o ano atual
-  const [day, month] = rawDate.split("/");
-  const currentYear = new Date().getFullYear();
-  const parsedDate = new Date(`${currentYear}-${month}-${day}`);
+  const rawDate = payload[0].payload.date; // <-- Data real no formato yyyy-MM-dd
+  const parsedDate = parseISO(rawDate);    // <-- Converte corretamente para Date
 
   const formattedDate = format(parsedDate, "dd 'de' MMM 'de' yyyy", {
     locale: ptBR,
