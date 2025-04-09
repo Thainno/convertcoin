@@ -51,71 +51,68 @@ export default function Converter() {
 
   return (
     <section className="flex flex-col items-center h-screen min-h-160">
-      <div className="flex flex-row items-center justify-center gap-30 w-full h-full relative top-4">
-        <div
-          className={`transition-all ${
+      <article className="flex flex-row items-center justify-center gap-30 w-full h-full relative top-4">
+        <Card
+          className={`relative w-160 h-80 rounded-4xl bg-[#f9f9f9] shadow-xl flex flex-col justify-center transition-all ${
             isSwapping
               ? "translate-x-40 opacity-0"
               : "translate-x-0 opacity-100"
           }`}
-        >
-          <Card
-            currency={localState.leftCurrency}
-            value={localState.leftValue}
-            onCurrencyChange={handleLeftChange}
-            onValueChange={(val) => {
-              localState.setLeftValue(val);
-              localState.setActiveInput("left");
-            }}
-            rates={localState.rates}
-            imagePosition="left"
-            isActive={localState.activeInput === "left"}
-            otherCurrency={localState.rightCurrency}
-          />
-        </div>
+          currency={localState.leftCurrency}
+          value={localState.leftValue}
+          onCurrencyChange={handleLeftChange}
+          onValueChange={(val) => {
+            localState.setLeftValue(val);
+            localState.setActiveInput("left");
+          }}
+          rates={localState.rates}
+          imagePosition="left"
+          isActive={localState.activeInput === "left"}
+          otherCurrency={localState.rightCurrency}
+        />
 
-        <div
+        <button
           className="flex flex-col cursor-pointer group"
           onClick={handleSwapCards}
+          aria-label="Trocar moedas"
         >
           <Image
             className="shadow-2xl rounded-full transition-transform duration-300 group-hover:-translate-x-2"
             src={arrowLeft}
             width={50}
             height={50}
-            alt="Swap moedas"
+            alt=""
+            role="presentation"
           />
           <Image
             className="shadow-2xl rounded-full transition-transform duration-300 group-hover:translate-x-2"
             src={arrowRight}
             width={50}
             height={50}
-            alt="Swap moedas"
+            alt=""
+            role="presentation"
           />
-        </div>
+        </button>
 
-        <div
-          className={`transition-all ${
+        <Card
+          className={`relative w-160 h-80 rounded-4xl bg-[#f9f9f9] shadow-xl flex flex-col justify-center transition-all ${
             isSwapping
               ? "-translate-x-40 opacity-0"
               : "translate-x-0 opacity-100"
           }`}
-        >
-          <Card
-            currency={localState.rightCurrency}
-            value={localState.rightValue}
-            onCurrencyChange={handleRightChange}
-            onValueChange={(val) => {
-              localState.setRightValue(val);
-              localState.setActiveInput("right");
-            }}
-            rates={localState.rates}
-            imagePosition="right"
-            isActive={localState.activeInput === "right"}
-            otherCurrency={localState.leftCurrency}
-          />
-        </div>
-      </div>
+          currency={localState.rightCurrency}
+          value={localState.rightValue}
+          onCurrencyChange={handleRightChange}
+          onValueChange={(val) => {
+            localState.setRightValue(val);
+            localState.setActiveInput("right");
+          }}
+          rates={localState.rates}
+          imagePosition="right"
+          isActive={localState.activeInput === "right"}
+          otherCurrency={localState.leftCurrency}
+        />
+      </article>
 
       <span
         className={`text-sm transition-opacity duration-500 ${

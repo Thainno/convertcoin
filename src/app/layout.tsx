@@ -15,7 +15,8 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={fira.className}>
+    <html lang="pt-BR" className={fira.className}>
+      <head />
       <body>
         <Header />
         {children}

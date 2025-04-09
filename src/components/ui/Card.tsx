@@ -17,6 +17,7 @@ interface CardProps {
   rates: Record<string, number> | null; //Lista de moedas disponíveis (usada para montar o dropdown)
   isActive: boolean; //Define se este card está ativo para entrada de valor
   otherCurrency: string; //Moeda do outro card
+  className: string;
 }
 
 export default function Card({
@@ -28,6 +29,7 @@ export default function Card({
   rates,
   isActive,
   otherCurrency,
+  className,
 }: CardProps) {
   //Hook para controle do dropdown
   const { showDropdown, toggleDropdown, closeDropdown } = useDropdown();
@@ -46,14 +48,14 @@ export default function Card({
   );
 
   return (
-    <div className="relative w-160 h-80 rounded-4xl bg-[#f9f9f9] shadow-xl flex flex-col justify-center">
-      <div
+    <article className={className}>
+      <header
         className={`flex ${
           imagePosition === "left" ? "flex-row" : "flex-row-reverse text-right"
         } items-center p-8`}
       >
         {/*Bandeira da moeda*/}
-        <div
+        <figure
           className={`w-16 h-16 rounded-full overflow-hidden ${
             imagePosition === "left" ? "mr-4" : "ml-4"
           }`}
@@ -65,7 +67,7 @@ export default function Card({
             alt={`Símbolo da moeda ${currency}`}
             className="object-cover w-full h-full cursor-pointer"
           />
-        </div>
+        </figure>
 
         {/*Nome da moeda*/}
         <h2 className="text-3xl w-4/5">
@@ -73,14 +75,20 @@ export default function Card({
         </h2>
 
         {/*Ícone da seta para abrir ou fechar o dropdown*/}
-        <Image
-          src={downArrow}
-          width={30}
-          height={30}
-          alt="Selecionar moeda"
-          className="cursor-pointer"
+        <button
+          type="button"
           onClick={toggleDropdown}
-        />
+          className="cursor-pointer"
+          aria-label="Selecionar moeda"
+        >
+          <Image
+            src={downArrow}
+            width={30}
+            height={30}
+            alt="Selecionar moeda"
+            className="cursor-pointer"
+          />
+        </button>
 
         {/* Renderizar o dropdown*/}
         {showDropdown && (
@@ -97,10 +105,10 @@ export default function Card({
             closeDropdown={closeDropdown} //Fecha o dropdown após selecionar alguma moeda
           />
         )}
-      </div>
+      </header>
 
       {/*Input que recebe o valor a ser convertido */}
-      <div className="p-8 w-full h-36 relative">
+      <form className="p-8 w-full h-36 relative">
         <label className="w-24 h-16 flex items-center justify-center text-4xl absolute left-8 top-8 rounded-l-4xl bg-white">
           {currencyData.currencies[currency]?.symbol || currency}
         </label>
@@ -113,7 +121,7 @@ export default function Card({
           className="w-full h-16 text-end px-8 outline-none"
           maxLength={20}
         />
-      </div>
-    </div>
+      </form>
+    </article>
   );
 }

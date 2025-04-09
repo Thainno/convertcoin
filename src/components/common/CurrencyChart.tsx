@@ -32,8 +32,9 @@ export default function CurrencyChart({ base, target }: Props) {
   const step = (adjustedMax - min) / 4;
 
   // Gera ticks únicos para o eixo Y
-  const rawTicks = Array.from({ length: 5 }, (_, i) =>
-    Number((min + step * i).toFixed(4)) // mais precisão
+  const rawTicks = Array.from(
+    { length: 5 },
+    (_, i) => Number((min + step * i).toFixed(4)) // mais precisão
   );
 
   const ticks = Array.from(new Set(rawTicks)); // remove duplicados
