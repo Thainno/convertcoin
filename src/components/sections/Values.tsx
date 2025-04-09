@@ -7,7 +7,7 @@ export default function Values() {
   const { leftCurrency, rightCurrency } = useCurrency();
 
   return (
-    <section className="flex justify-center h-screen -mt-24">
+    <section className="flex justify-center h-screen">
       {/* Passa as moedas ativamente do context para o gráfico */}
       <CurrencyChart base={leftCurrency} target={rightCurrency} />
     </section>

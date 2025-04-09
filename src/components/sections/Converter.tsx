@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Card from "../ui/Card";
 import arrowLeft from "@/assets/images/arrow-left.svg";
@@ -14,8 +14,10 @@ export default function Converter() {
   const { setLeftCurrency, setRightCurrency } = useCurrency(); // sincroniza com contexto global
   const [isSwapping, setIsSwapping] = useState(false);
 
-  setLeftCurrency(localState.leftCurrency);
-  setRightCurrency(localState.rightCurrency);
+  useEffect(() => {
+    setLeftCurrency(localState.leftCurrency);
+    setRightCurrency(localState.rightCurrency);
+  }, [localState.leftCurrency, localState.rightCurrency]);
 
   const handleSwapCards = () => {
     setIsSwapping(true);
@@ -24,7 +26,6 @@ export default function Converter() {
       setLeftCurrency(localState.leftCurrency);
       setRightCurrency(localState.rightCurrency);
       setIsSwapping(false);
-      console.log(localState);
     }, 250);
   };
 
@@ -39,7 +40,7 @@ export default function Converter() {
   };
 
   return (
-    <section className="flex flex-col items-center h-screen min-h-160 -mt-25">
+    <section className="flex flex-col items-center h-screen min-h-160">
       <div className="flex flex-row items-center justify-center gap-30 w-full h-full relative top-4">
         <div
           className={`transition-all ${
@@ -65,7 +66,7 @@ export default function Converter() {
 
         {/* Botão de troca */}
         <div
-          className="flex flex-col cursor-pointer z-20 group"
+          className="flex flex-col cursor-pointer group"
           onClick={handleSwapCards}
         >
           <Image

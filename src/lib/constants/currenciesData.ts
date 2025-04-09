@@ -16,7 +16,7 @@ export interface CurrencyData {
 export const currencyData: CurrencyData = {
   currencies: {
     AUD: {
-      symbol: "",
+      symbol: "$",
       name: "Dólar Australiano",
       codCountry: "au",
       country: "Austrália",

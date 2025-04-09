@@ -5,7 +5,7 @@ import logo from "@/assets/images/logo.svg";
 
 export default function Header() {
   return (
-    <header className="w-full h-24 flex justify-center bg-[#6DA67A] text-white text-xl px-20 ">
+    <header className="w-full h-24 flex justify-center bg-[#6DA67A] text-white text-xl px-20 fixed top-0 z-10">
       <nav className="w-full max-w-500 min-h-20 h-24 flex flex-row justify-between items-center cursor-pointer z-10">
         <a className="relative z-20" href="###" rel="author">
           <Image src={logo} width={80} alt="Logo Convert Coin" />

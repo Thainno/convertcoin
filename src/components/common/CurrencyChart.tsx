@@ -30,9 +30,13 @@ export default function CurrencyChart({ base, target }: Props) {
   const padding = (max - min) * 0.1 || 1;
   const adjustedMax = max + padding;
   const step = (adjustedMax - min) / 4;
-  const ticks = Array.from({ length: 5 }, (_, i) =>
-    Number((min + step * i).toFixed(2))
+
+  // Gera ticks únicos para o eixo Y
+  const rawTicks = Array.from({ length: 5 }, (_, i) =>
+    Number((min + step * i).toFixed(4)) // mais precisão
   );
+
+  const ticks = Array.from(new Set(rawTicks)); // remove duplicados
 
   return (
     <div className="w-300 h-100 relative top-32 p-4 bg-white shadow-md rounded-xl">
