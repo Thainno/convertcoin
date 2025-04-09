@@ -10,14 +10,24 @@ import { useCurrency } from "@/context/CurrencyContext";
 import { swapCurrencies } from "@/lib/utils/swapUtils";
 
 export default function Converter() {
-  const localState = useCurrencyConverter(); // lógica de conversão local
-  const { setLeftCurrency, setRightCurrency } = useCurrency(); // sincroniza com contexto global
+  const localState = useCurrencyConverter();
+  const { setLeftCurrency, setRightCurrency } = useCurrency();
   const [isSwapping, setIsSwapping] = useState(false);
+  const [showInfo, setShowInfo] = useState(true);
 
   useEffect(() => {
     setLeftCurrency(localState.leftCurrency);
     setRightCurrency(localState.rightCurrency);
   }, [localState.leftCurrency, localState.rightCurrency]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowInfo(window.scrollY < 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleSwapCards = () => {
     setIsSwapping(true);
@@ -64,7 +74,6 @@ export default function Converter() {
           />
         </div>
 
-        {/* Botão de troca */}
         <div
           className="flex flex-col cursor-pointer group"
           onClick={handleSwapCards}
@@ -107,7 +116,12 @@ export default function Converter() {
           />
         </div>
       </div>
-      <span className="text-sm">
+
+      <span
+        className={`text-sm transition-opacity duration-500 ${
+          showInfo ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+      >
         Atualização dos valores às 11:00 UTC-3 Horário de Brasília
       </span>
     </section>
