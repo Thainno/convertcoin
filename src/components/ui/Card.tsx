@@ -71,7 +71,7 @@ export default function Card({
 
         {/*Nome da moeda*/}
         <h2 className="text-3xl w-4/5">
-          {currencyData.currencies[currency]?.name || currency}
+          {currencyData.currencies[currency]?.name}
         </h2>
 
         {/*Ícone da seta para abrir ou fechar o dropdown*/}

@@ -17,7 +17,7 @@ export default function Header() {
           <li>
             <a
               className="relative custon-link z-20 p-1"
-              href="###"
+              href="#test"
               title="Sobre nós"
               aria-label="Sobre nós"
             >

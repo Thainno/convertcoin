@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import {
   LineChart,
   Line,
@@ -9,6 +8,7 @@ import {
   ResponsiveContainer,
   CartesianGrid,
 } from "recharts";
+import { useState } from "react";
 import { chartFilters } from "@/lib/constants/chartFilter";
 import { useHistoricalRates } from "@/hooks/useHistoricalRates";
 import { CustomTooltip } from "./CustomTooltip";
@@ -31,16 +31,14 @@ export default function CurrencyChart({ base, target }: Props) {
   const adjustedMax = max + padding;
   const step = (adjustedMax - min) / 4;
 
-  // Gera ticks únicos para o eixo Y
-  const rawTicks = Array.from(
-    { length: 5 },
-    (_, i) => Number((min + step * i).toFixed(4)) // mais precisão
+  const rawTicks = Array.from({ length: 5 }, (_, i) =>
+    Number((min + step * i).toFixed(4))
   );
 
-  const ticks = Array.from(new Set(rawTicks)); // remove duplicados
+  const ticks = Array.from(new Set(rawTicks));
 
   return (
-    <div className="w-300 h-100 relative top-32 p-4 bg-white shadow-md rounded-xl">
+    <div className="w-300 h-100 p-4 bg-white shadow-md rounded-xl">
       <div className="flex gap-2 mb-4">
         {chartFilters.map((f) => (
           <button
