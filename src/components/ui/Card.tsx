@@ -1,9 +1,7 @@
 import { getCountryFlagUrl } from "@/services/API/currencyValue";
 import { currencyData } from "@/lib/constants/currenciesData";
-import { useDropdown } from "@/hooks/useDropdown";
 
 import Image from "next/image";
-import downArrow from "@/assets/images/down-arrow.svg";
 import Input from "../common/Input";
 import CurrencyDropdown from "../common/CurrencyDropdown";
 
@@ -30,8 +28,6 @@ export default function Card({
   otherCurrency,
   className,
 }: CardProps) {
-  const { showDropdown, toggleDropdown, closeDropdown } = useDropdown();
-
   const availableCurrencies = rates ? Object.keys(rates) : ["USD", "BRL"];
   const flag = getCountryFlagUrl(currency);
 
@@ -60,34 +56,16 @@ export default function Card({
           {currencyData.currencies[currency]?.name}
         </h2>
 
-        <button
-          type="button"
-          onClick={toggleDropdown}
-          className="cursor-pointer"
-          aria-label="Selecionar moeda"
-        >
-          <Image
-            src={downArrow}
-            width={30}
-            height={30}
-            alt="Selecionar moeda"
-            className="cursor-pointer"
-          />
-        </button>
-
-        {showDropdown && (
-          <CurrencyDropdown
-            currencies={availableCurrencies.filter(
-              (c) => c !== currency && c !== otherCurrency
-            )}
-            imagePosition={imagePosition}
-            onSelectCurrency={(selectedCurrency) => {
-              onCurrencyChange(selectedCurrency);
-              onValueChange(value);
-            }}
-            closeDropdown={closeDropdown}
-          />
-        )}
+        <CurrencyDropdown
+          currencies={availableCurrencies.filter(
+            (c) => c !== currency && c !== otherCurrency
+          )}
+          imagePosition={imagePosition}
+          onSelectCurrency={(selectedCurrency) => {
+            onCurrencyChange(selectedCurrency);
+            onValueChange(value);
+          }}
+        />
       </header>
 
       <form className="p-8 w-full h-36 relative">
