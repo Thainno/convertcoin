@@ -1,35 +1,40 @@
+"use client";
+
+import { useCurrencyInput } from "@/hooks/useCurrencyInput";
+
 interface InputProps {
-  inputRef?: React.Ref<HTMLInputElement>; //Usada para focar ou manipular o input diretamente se necessário
-  type: string;
-  inputMode?: React.HTMLAttributes<HTMLInputElement>["inputMode"]; //Define o modo de entrada no teclado (ex: "numeric", "decimal", "text")
-  autoComplete?: string;
+  inputRef?: React.Ref<HTMLInputElement>;
   value?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholder?: string;
+  onValueChange?: (value: string) => void;
+  isActive?: boolean;
   className?: string;
   maxLength?: number;
 }
 
 export default function Input({
   inputRef,
-  type,
-  inputMode,
-  autoComplete,
-  value,
-  onChange,
-  placeholder,
+  value = "",
+  onValueChange,
+  isActive = true,
   className,
   maxLength,
 }: InputProps) {
+  // Move a lógica para dentro do Input
+  const { handleValueChange, displayValue } = useCurrencyInput(
+    onValueChange ?? (() => {}),
+    isActive,
+    value
+  );
+
   return (
     <input
       ref={inputRef}
-      type={type}
-      inputMode={inputMode}
-      autoComplete={autoComplete}
-      value={value}
-      onChange={onChange}
-      placeholder={placeholder}
+      type="text"
+      inputMode="decimal"
+      autoComplete="off"
+      value={displayValue}
+      onChange={handleValueChange}
+      placeholder="0.00"
       className={`rounded-4xl text-4xl bg-[#fff] shadow-sm ${className || ""}`}
       maxLength={maxLength}
     />
