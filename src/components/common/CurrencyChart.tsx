@@ -1,3 +1,5 @@
+"use client";
+
 import {
   LineChart,
   Line,
@@ -9,18 +11,21 @@ import {
 import { useState } from "react";
 import { chartFilters } from "@/lib/constants/chartFilter";
 import { useHistoricalRates } from "@/hooks/useHistoricalRates";
-import { CustomTooltip } from "./CustomTooltip";
+import { CustomTooltip } from "./ChartTooltip";
 
-interface Props {
-  base: string;
-  target: string;
-}
+import { useCurrency } from "@/context/CurrencyContext";
 
-export default function CurrencyChart({ base, target }: Props) {
+export default function CurrencyChart() {
+  const { leftCurrency, rightCurrency } = useCurrency();
+
   const [filter, setFilter] = useState("1w");
   const { days } = chartFilters.find((f) => f.value === filter)!;
 
-  const { data, loading } = useHistoricalRates(base, target, days);
+  const { data, loading } = useHistoricalRates(
+    leftCurrency,
+    rightCurrency,
+    days
+  );
 
   const values = data.map((item) => item.value);
   const min = Math.min(...values);
@@ -66,7 +71,11 @@ export default function CurrencyChart({ base, target }: Props) {
               ticks={ticks}
               domain={[min, adjustedMax]}
             />
-            <Tooltip content={<CustomTooltip base={base} target={target} />} />
+            <Tooltip
+              content={
+                <CustomTooltip base={leftCurrency} target={rightCurrency} />
+              }
+            />
             <Line
               type="monotone"
               dataKey="value"
