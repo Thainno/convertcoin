@@ -2,8 +2,8 @@ import { getCountryFlagUrl } from "@/services/API/currencyValue";
 import { currencyData } from "@/lib/constants/currenciesData";
 
 import Image from "next/image";
-import Input from "../common/Input";
 import CurrencyDropdown from "../common/CurrencyDropdown";
+import CurrencyInput from "../common/CurrencyInput";
 
 interface CardProps {
   imagePosition: "left" | "right";
@@ -72,7 +72,7 @@ export default function Card({
         <label className="w-24 h-16 flex items-center justify-center text-4xl absolute left-8 top-8 rounded-l-4xl bg-white">
           {currencyData.currencies[currency]?.symbol || currency}
         </label>
-        <Input
+        <CurrencyInput
           value={value}
           onValueChange={onValueChange}
           isActive={isActive}
