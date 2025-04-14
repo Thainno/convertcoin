@@ -77,18 +77,14 @@ export default function Converter() {
           aria-label="Trocar moedas"
         >
           <Image
-            className="shadow-2xl rounded-full transition-transform duration-300 group-hover:-translate-x-2"
+            className="w-12 h-8 transition-transform group-hover:-translate-x-2"
             src={arrowLeft}
-            width={50}
-            height={50}
             alt=""
             role="presentation"
           />
           <Image
-            className="shadow-2xl rounded-full transition-transform duration-300 group-hover:translate-x-2"
+            className="w-12 h-8 transition-transform group-hover:translate-x-2"
             src={arrowRight}
-            width={50}
-            height={50}
             alt=""
             role="presentation"
           />
