@@ -2,8 +2,8 @@ import { getCountryFlagUrl } from "@/services/API/currencyValue";
 import { currencyData } from "@/lib/constants/currenciesData";
 
 import Image from "next/image";
-import CurrencyDropdown from "../common/CurrencyDropdown";
-import CurrencyInput from "../common/CurrencyInput";
+import CurrencyDropdown from "./CurrencyDropdown";
+import CurrencyInput from "./CurrencyInput";
 
 interface CardProps {
   imagePosition: "left" | "right";

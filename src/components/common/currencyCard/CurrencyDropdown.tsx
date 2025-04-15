@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import Image from "next/image";
 import { currencyData } from "@/lib/constants/currenciesData";
 import { getCountryFlagUrl } from "@/services/API/currencyValue";
-import Input from "./Input";
+import Input from "../Input";
 import search from "@/assets/images/search.svg";
 import downArrow from "@/assets/images/down-arrow.svg";
 
@@ -38,7 +38,7 @@ export default function CurrencyDropdown({
       <button
         type="button"
         onClick={toggleDropdown}
-        className="cursor-pointer"
+        className="cursor-pointer w-28 h-8 flex justify-center"
         aria-label="Selecionar moeda"
       >
         <Image
@@ -46,14 +46,13 @@ export default function CurrencyDropdown({
           width={30}
           height={30}
           alt="Selecionar moeda"
-          className="cursor-pointer"
         />
       </button>
 
       {isOpen && (
-        <>
-          <div
-            className={`w-80 h-18 absolute top-10 bg-white rounded-t-2xl flex flex-row p-4 shadow-xl z-10 ${
+        <div>
+          <header
+            className={`w-80 h-18 absolute top-28 bg-white rounded-t-2xl flex flex-row p-4 shadow-xl z-10 ${
               imagePosition === "left" ? "right-4" : "left-4"
             }`}
           >
@@ -74,10 +73,10 @@ export default function CurrencyDropdown({
                 className="absolute mx-4"
               />
             </div>
-          </div>
+          </header>
 
-          <div
-            className={`absolute z-10 w-80 h-80 top-28 overflow-y-scroll ${
+          <section
+            className={`absolute z-10 w-80 h-80 top-46 overflow-y-scroll ${
               imagePosition === "left" ? "right-4" : "left-4"
             } w-64 bg-white rounded-b-2xl shadow-xl`}
           >
@@ -117,8 +116,8 @@ export default function CurrencyDropdown({
                 Nenhuma moeda encontrada
               </div>
             )}
-          </div>
-        </>
+          </section>
+        </div>
       )}
     </>
   );

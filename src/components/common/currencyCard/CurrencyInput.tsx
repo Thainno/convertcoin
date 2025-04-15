@@ -1,6 +1,6 @@
 "use client";
 
-import Input from "./Input";
+import Input from "../Input";
 import { useCurrencyInput } from "@/hooks/useCurrencyInput";
 
 interface CurrencyInputProps {

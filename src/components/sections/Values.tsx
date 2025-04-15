@@ -1,4 +1,4 @@
-import CurrencyChart from "../common/CurrencyChart";
+import CurrencyChart from "../common/chart/CurrencyChart";
 
 export default function Values() {
   return (
