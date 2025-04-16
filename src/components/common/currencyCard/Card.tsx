@@ -44,11 +44,11 @@ export default function Card({
           }`}
         >
           <Image
+            className="object-cover w-full h-full"
             src={flag}
-            width={80}
-            height={80}
+            width={0}
+            height={0}
             alt={`Símbolo da moeda ${currency}`}
-            className="object-cover w-full h-full cursor-pointer"
           />
         </figure>
 

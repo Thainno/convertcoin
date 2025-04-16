@@ -38,15 +38,12 @@ export default function CurrencyDropdown({
       <button
         type="button"
         onClick={toggleDropdown}
-        className="cursor-pointer w-28 h-8 flex justify-center"
+        className={`cursor-pointer w-32 h-8 flex justify-center absolute right-0 ${
+          imagePosition === "left" ? "right-0" : "left-0"
+        }`}
         aria-label="Selecionar moeda"
       >
-        <Image
-          src={downArrow}
-          width={30}
-          height={30}
-          alt="Selecionar moeda"
-        />
+        <Image src={downArrow} alt="Selecionar moeda" />
       </button>
 
       {isOpen && (

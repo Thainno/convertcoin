@@ -15,11 +15,15 @@ const CurrencyContext = createContext<CurrencyContextType | undefined>(
 
 export const CurrencyProvider = ({
   children,
+  initialCurrencyLeft = "USD",
+  initialCurrencyRight = "BRL",
 }: {
   children: React.ReactNode;
+  initialCurrencyLeft?: string;
+  initialCurrencyRight?: string;
 }) => {
-  const [leftCurrency, setLeftCurrency] = useState("USD");
-  const [rightCurrency, setRightCurrency] = useState("BRL");
+  const [leftCurrency, setLeftCurrency] = useState(initialCurrencyLeft);
+  const [rightCurrency, setRightCurrency] = useState(initialCurrencyRight);
 
   return (
     <CurrencyContext.Provider

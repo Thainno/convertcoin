@@ -1,6 +1,6 @@
 //Buscar as taxas de câmbio mais recentes de uma moeda base utilizando a API pública Frankfurter (https://www.frankfurter.app/)
-export const fetchCurrencyRates = async (baseCurrency: string = "USD") => {
-  //Faz a requisição para a API usando fetch. A moeda base padrão é "USD" caso nenhuma seja passada.
+export const fetchCurrencyRates = async (baseCurrency: string) => {
+  //Faz a requisição para a API usando fetch
   const response = await fetch(
     `https://api.frankfurter.app/latest?from=${baseCurrency}`
   );

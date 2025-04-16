@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { useCurrencyConverter } from '@/hooks/useCurrencyConverter';
-import { useCurrency } from '@/context/CurrencyContext';
-import { swapCurrencies } from '@/lib/utils/swapUtils';
-import { useEffect, useState } from 'react';
-import Card from './currencyCard/Card';
-import Image from 'next/image';
-import arrowLeft from '@/assets/images/arrow-left.svg';
-import arrowRight from '@/assets/images/arrow-right.svg';
+import { useCurrencyConverter } from "@/hooks/useCurrencyConverter";
+import { useCurrency } from "@/context/CurrencyContext";
+import { swapCurrencies } from "@/lib/utils/swapUtils";
+import { useEffect, useState } from "react";
+import Card from "./currencyCard/Card";
+import Image from "next/image";
+import arrowLeft from "@/assets/images/arrow-left.svg";
+import arrowRight from "@/assets/images/arrow-right.svg";
 
 export default function ConverterController() {
   const localState = useCurrencyConverter();
@@ -22,8 +22,8 @@ export default function ConverterController() {
 
   useEffect(() => {
     const handleScroll = () => setShowInfo(window.scrollY < 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleSwapCards = () => {
@@ -41,7 +41,9 @@ export default function ConverterController() {
       <article className="flex flex-row items-center justify-center gap-30 w-full h-full relative top-4">
         <Card
           className={`relative w-160 h-80 rounded-4xl bg-[#f9f9f9] shadow-xl flex flex-col justify-center transition-all ${
-            isSwapping ? 'translate-x-40 opacity-0' : 'translate-x-0 opacity-100'
+            isSwapping
+              ? "translate-x-40 opacity-0"
+              : "translate-x-0 opacity-100"
           }`}
           currency={localState.leftCurrency}
           value={localState.leftValue}
@@ -78,7 +80,9 @@ export default function ConverterController() {
 
         <Card
           className={`relative w-160 h-80 rounded-4xl bg-[#f9f9f9] shadow-xl flex flex-col justify-center transition-all ${
-            isSwapping ? '-translate-x-40 opacity-0' : 'translate-x-0 opacity-100'
+            isSwapping
+              ? "-translate-x-40 opacity-0"
+              : "translate-x-0 opacity-100"
           }`}
           currency={localState.rightCurrency}
           value={localState.rightValue}
@@ -99,7 +103,7 @@ export default function ConverterController() {
 
       <span
         className={`text-sm transition-opacity duration-500 ${
-          showInfo ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          showInfo ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
       >
         Atualização dos valores às 11:00 UTC-3 Horário de Brasília

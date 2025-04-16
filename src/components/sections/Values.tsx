@@ -1,4 +1,5 @@
 import CurrencyChart from "../common/chart/CurrencyChart";
+import CurrenciesContent from "../common/CurrenciesContent";
 
 export default function Values() {
   return (
@@ -7,6 +8,7 @@ export default function Values() {
       className="flex flex-col justify-center items-center gap-12"
     >
       <CurrencyChart />
+      <CurrenciesContent />
     </section>
   );
 }
