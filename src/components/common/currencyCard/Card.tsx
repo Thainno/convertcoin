@@ -1,4 +1,4 @@
-import { getCountryFlagUrl } from "@/services/API/currencyValue";
+import { getCountryFlagUrl } from "@/services/API/currencyFlags";
 import { currencyData } from "@/lib/constants/currenciesData";
 
 import Image from "next/image";
