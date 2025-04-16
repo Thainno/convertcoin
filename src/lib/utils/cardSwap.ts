@@ -2,7 +2,7 @@
 import { CurrencyConverterState } from "@/hooks/useCurrencyConverter";
 
 //Função utilitária que inverte as moedas e os valores entre os dois lados do conversor
-export function swapCurrencies(state: CurrencyConverterState) {
+export function cardSwap(state: CurrencyConverterState) {
   //Desestrutura os valores e funções de atualização do estado
   const {
     leftCurrency, //Moeda selecionada no card da esquerda

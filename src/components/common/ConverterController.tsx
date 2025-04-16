@@ -2,7 +2,7 @@
 
 import { useCurrencyConverter } from "@/hooks/useCurrencyConverter";
 import { useCurrency } from "@/context/CurrencyContext";
-import { swapCurrencies } from "@/lib/utils/swapUtils";
+import { cardSwap } from "@/lib/utils/cardSwap";
 import { useEffect, useState } from "react";
 import Card from "./currencyCard/Card";
 import Image from "next/image";
@@ -29,7 +29,7 @@ export default function ConverterController() {
   const handleSwapCards = () => {
     setIsSwapping(true);
     setTimeout(() => {
-      swapCurrencies(localState);
+      cardSwap(localState);
       setLeftCurrency(localState.leftCurrency);
       setRightCurrency(localState.rightCurrency);
       setIsSwapping(false);
