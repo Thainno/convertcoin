@@ -10,15 +10,15 @@ import { useCurrency } from "@/context/CurrencyContext";
 import { cardSwap } from "@/lib/utils/cardSwap";
 
 export default function Converter() {
-  const localState = useCurrencyConverter();
+  const currencyState = useCurrencyConverter();
   const { setLeftCurrency, setRightCurrency } = useCurrency();
   const [isSwapping, setIsSwapping] = useState(false);
   const [showInfo, setShowInfo] = useState(true);
 
   useEffect(() => {
-    setLeftCurrency(localState.leftCurrency);
-    setRightCurrency(localState.rightCurrency);
-  }, [localState.leftCurrency, localState.rightCurrency]);
+    setLeftCurrency(currencyState.leftCurrency);
+    setRightCurrency(currencyState.rightCurrency);
+  }, [currencyState.leftCurrency, currencyState.rightCurrency]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,20 +32,20 @@ export default function Converter() {
   const handleSwapCards = () => {
     setIsSwapping(true);
     setTimeout(() => {
-      cardSwap(localState);
-      setLeftCurrency(localState.leftCurrency);
-      setRightCurrency(localState.rightCurrency);
+      cardSwap(currencyState);
+      setLeftCurrency(currencyState.leftCurrency);
+      setRightCurrency(currencyState.rightCurrency);
       setIsSwapping(false);
     }, 250);
   };
 
   const handleLeftChange = (currency: string) => {
-    localState.setLeftCurrency(currency);
+    currencyState.setLeftCurrency(currency);
     setLeftCurrency(currency);
   };
 
   const handleRightChange = (currency: string) => {
-    localState.setRightCurrency(currency);
+    currencyState.setRightCurrency(currency);
     setRightCurrency(currency);
   };
 
@@ -58,17 +58,17 @@ export default function Converter() {
               ? "translate-x-40 opacity-0"
               : "translate-x-0 opacity-100"
           }`}
-          currency={localState.leftCurrency}
-          value={localState.leftValue}
+          currency={currencyState.leftCurrency}
+          value={currencyState.leftValue}
           onCurrencyChange={handleLeftChange}
           onValueChange={(val) => {
-            localState.setLeftValue(val);
-            localState.setActiveInput("left");
+            currencyState.setLeftValue(val);
+            currencyState.setActiveInput("left");
           }}
-          rates={localState.rates}
+          rates={currencyState.rates}
           imagePosition="left"
-          isActive={localState.activeInput === "left"}
-          otherCurrency={localState.rightCurrency}
+          isActive={currencyState.activeInput === "left"}
+          otherCurrency={currencyState.rightCurrency}
         />
 
         <button
@@ -96,17 +96,17 @@ export default function Converter() {
               ? "-translate-x-40 opacity-0"
               : "translate-x-0 opacity-100"
           }`}
-          currency={localState.rightCurrency}
-          value={localState.rightValue}
+          currency={currencyState.rightCurrency}
+          value={currencyState.rightValue}
           onCurrencyChange={handleRightChange}
           onValueChange={(val) => {
-            localState.setRightValue(val);
-            localState.setActiveInput("right");
+            currencyState.setRightValue(val);
+            currencyState.setActiveInput("right");
           }}
-          rates={localState.rates}
+          rates={currencyState.rates}
           imagePosition="right"
-          isActive={localState.activeInput === "right"}
-          otherCurrency={localState.leftCurrency}
+          isActive={currencyState.activeInput === "right"}
+          otherCurrency={currencyState.leftCurrency}
         />
       </article>
 

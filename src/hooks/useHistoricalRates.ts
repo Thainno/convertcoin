@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { fetchHistoricalRates } from "@/services/API/chartData";
+import { fetchHistoricalRates } from "@/services/API/currencyHistoricalRates";
 import { getStartDateFromFilter } from "@/lib/utils/chartDate";
 
 export function useHistoricalRates(base: string, target: string, days: number) {

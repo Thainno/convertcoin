@@ -16,9 +16,16 @@ export interface CurrencyConverterState {
   setActiveInput: (val: "left" | "right" | null) => void; // Atualiza o input ativo
 }
 
+// Interface para representar o retorno da API de taxas de câmbio
+export interface CurrencyRatesResponse {
+  amount: number;
+  base: string;
+  date: string;
+  rates: Record<string, number>;
+}
+
 //Hook para gerenciar lógica do conversor de moedas
 export function useCurrencyConverter(): CurrencyConverterState {
-  //Estados principais para as moedas e valores de entrada
   const [leftCurrency, setLeftCurrency] = useState("USD");
   const [rightCurrency, setRightCurrency] = useState("BRL");
   const [leftValue, setLeftValue] = useState("100.00");
@@ -29,11 +36,13 @@ export function useCurrencyConverter(): CurrencyConverterState {
   //Atualiza as moedas ao trocar a moeda da esquerda
   useEffect(() => {
     const loadRates = async () => {
-      // Sempre usa a moeda da esquerda como base para buscar taxas
-      const data = await fetchCurrencyRates(leftCurrency);
+      //Sempre usa a moeda da esquerda como base para buscar os valores
+      const data: CurrencyRatesResponse = await fetchCurrencyRates(
+        leftCurrency
+      );
       setRates(data.rates);
 
-      // Verifica se a moeda da direita está disponível nas taxas retornadas
+      //Verifica se a moeda da direita está disponível nas taxas retornadas
       if (data.rates[rightCurrency]) {
         const converted = parseFloat(leftValue) * data.rates[rightCurrency];
         setRightValue(converted.toFixed(2));
@@ -42,19 +51,21 @@ export function useCurrencyConverter(): CurrencyConverterState {
     loadRates();
   }, [leftCurrency, rightCurrency]);
 
-  //Converte valor digitado no card da esquerda
+  //Converte valor do card da DIREITA com base no valor digitado no card da ESQUERDA
   useEffect(() => {
     if (activeInput === "left" && rates?.[rightCurrency]) {
-      const num = parseFloat(leftValue); //Converte o valor para número
+      //Converte o valor de texto para número (pois o input é do tipo text)
+      const num = parseFloat(leftValue);
       //Atualiza o valor da direita se ofr um número válido
       setRightValue(!isNaN(num) ? (num * rates[rightCurrency]).toFixed(2) : "");
     }
   }, [leftValue, rightCurrency, rates, activeInput]);
 
-  //Converte valor digitado no card dadireita
+  //Converte valor do card da ESQUERDA com base no valor digitado no card da DIREITA
   useEffect(() => {
     if (activeInput === "right" && rates?.[rightCurrency]) {
-      const num = parseFloat(rightValue); //Converte o valor para número
+      //Converte o valor de texto para número (pois o input é do tipo text)
+      const num = parseFloat(rightValue);
       //Atualiza o valor da esquerda se for um número válido
       setLeftValue(!isNaN(num) ? (num / rates[rightCurrency]).toFixed(2) : "");
     }
