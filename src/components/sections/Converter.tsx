@@ -115,7 +115,7 @@ export default function Converter() {
           showInfo ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
       >
-        Atualização dos valores às 11:00 UTC-3 Horário de Brasília
+        Atualização dos valores às 12:00 UTC-3 Horário de Brasília
       </span>
     </section>
   );

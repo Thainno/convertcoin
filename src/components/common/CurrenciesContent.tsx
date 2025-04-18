@@ -3,9 +3,8 @@ import CurrencyChart from "./chart/CurrencyChart";
 interface Props {
   leftCurrency: string;
   rightCurrency: string;
-  leftCurrencyBase: number;
   rightCurrencyBase: number;
-  leftCurrencyValuePrev: number;
+  rightCurrencyValuePrev: number;
   variation: number;
   leftCurrencyName: string;
   rightCurrencyName: string;
@@ -17,7 +16,7 @@ export default function CurrenciesContent({
   leftCurrency,
   rightCurrency,
   rightCurrencyBase,
-  leftCurrencyValuePrev,
+  rightCurrencyValuePrev,
   variation,
   leftCurrencyName,
   rightCurrencyName,
@@ -26,7 +25,7 @@ export default function CurrenciesContent({
 }: Props) {
   return (
     <section className="flex flex-col gap-8">
-      <h1 className="text-3xl text-green-700 font-extrabold">
+      <h1 className="text-3xl text-green-700 font-bold">
         Conversão de {leftCurrencyName} ({leftCurrency}) para{" "}
         {rightCurrencyName} ({rightCurrency})
       </h1>
@@ -38,9 +37,19 @@ export default function CurrenciesContent({
         Hoje, {leftCurrencySymbol}1,00 {leftCurrencyName} equivale a{" "}
         {rightCurrencySymbol}
         {rightCurrencyBase.toFixed(2)} {rightCurrencyName}. A variação em
-        relação ao valor de ontem é de {variation.toFixed(2)}%. A conversão está
-        atualizada em {"todayDate"}, garantindo precisão nas suas transações
-        internacionais.
+        relação ao valor de ontem é de{" "}
+        <span
+          className={
+            rightCurrencyValuePrev > rightCurrencyBase
+              ? "text-red-700"
+              : "text-green-700"
+          }
+        >
+          {rightCurrencyValuePrev > rightCurrencyBase ? "-" : "+"}
+          {variation.toFixed(2)}%
+        </span>
+        . A conversão está atualizada em {"todayDate"}, garantindo precisão nas
+        suas transações internacionais.
       </p>
 
       <div>
@@ -51,9 +60,21 @@ export default function CurrenciesContent({
         </p>
         <p>
           Valor ontem: {leftCurrencySymbol}1,00 = {rightCurrencySymbol}
-          {leftCurrencyValuePrev.toFixed(4)}
+          {rightCurrencyValuePrev}
         </p>
-        <p>Variação: {variation.toFixed(4)}%</p>
+        <p>
+          Variação:{" "}
+          <span
+            className={
+              rightCurrencyValuePrev > rightCurrencyBase
+                ? "text-red-700"
+                : "text-green-700"
+            }
+          >
+            {rightCurrencyValuePrev > rightCurrencyBase ? "" : "+"}
+            {variation.toFixed(2)}%
+          </span>
+        </p>
       </div>
     </section>
   );

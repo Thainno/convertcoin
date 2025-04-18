@@ -7,9 +7,8 @@ export default function CurrenciesContentWrapper() {
   const {
     leftCurrency,
     rightCurrency,
-    leftCurrencyBase,
     rightCurrencyBase,
-    leftCurrencyValuePrev,
+    rightCurrencyValuePrev,
     variation,
     leftCurrencyName,
     rightCurrencyName,
@@ -21,9 +20,8 @@ export default function CurrenciesContentWrapper() {
     <CurrenciesContent
       leftCurrency={leftCurrency}
       rightCurrency={rightCurrency}
-      leftCurrencyBase={leftCurrencyBase}
       rightCurrencyBase={rightCurrencyBase}
-      leftCurrencyValuePrev={leftCurrencyValuePrev}
+      rightCurrencyValuePrev={rightCurrencyValuePrev}
       variation={variation}
       leftCurrencyName={leftCurrencyName}
       rightCurrencyName={rightCurrencyName}

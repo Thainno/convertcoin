@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 import { currencyData } from "@/lib/constants/currenciesData";
-import { fetchCurrencyRates } from "@/services/API/currencyValue";
+import { useHistoricalRates } from "@/hooks/useHistoricalRates";
 
 interface CurrencyContextType {
   leftCurrency: string;
@@ -10,9 +10,8 @@ interface CurrencyContextType {
   setLeftCurrency: (currency: string) => void;
   setRightCurrency: (currency: string) => void;
 
-  leftCurrencyBase: number;
-  rightCurrencyBase: number; 
-  leftCurrencyValuePrev: number; 
+  rightCurrencyBase: number;
+  rightCurrencyValuePrev: number;
   variation: number;
 
   leftCurrencyName: string;
@@ -29,35 +28,38 @@ export const CurrencyProvider = ({ children }: { children: React.ReactNode }) =>
   const [leftCurrency, setLeftCurrency] = useState("USD");
   const [rightCurrency, setRightCurrency] = useState("BRL");
 
-  const [rates, setRates] = useState<Record<string, number> | null>(null);
-  const [prevRates, setPrevRates] = useState<Record<string, number> | null>(null);
+  const [rightCurrencyBase, setRightCurrencyBase] = useState(0);
+  const [rightCurrencyValuePrev, setRightCurrencyValuePrev] = useState(0);
 
-  // Fixa o valor da moeda de base como "1"
-  const leftCurrencyBase = 1;
+  const { data: historicalRates, loading } = useHistoricalRates(
+    leftCurrency,
+    rightCurrency,
+    7
+  );
 
-  // Atualiza as taxas de câmbio sempre que a moeda da esquerda muda
   useEffect(() => {
-    const loadRates = async () => {
-      const today = await fetchCurrencyRates(leftCurrency); 
-      const yesterday = await fetchCurrencyRates(leftCurrency);
+    if (!loading && historicalRates.length > 0) {
+      const sorted = [...historicalRates].sort(
+        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+      );
 
-      setRates(today.rates);
-      setPrevRates(yesterday.rates);
-    };
+      // console.log("📈 Histórico ordenado:", sorted);
 
-    loadRates();
-  }, [leftCurrency]);
+      const latest = sorted[sorted.length - 1];
+      const previous = sorted[sorted.length - 2];
 
-  // Retorna o valor convertido para a moeda da direita
-  const rightCurrencyBase = rates?.[rightCurrency] || 0;
+      // console.log("🟢 Último valor (hoje ou mais recente):", latest);
+      // console.log("🟡 Valor anterior:", previous);
 
-  // Retorna o valor anterior da moeda da direita
-  const leftCurrencyValuePrev = prevRates?.[rightCurrency] || 0;
+      setRightCurrencyBase(latest?.value ?? 0);
+      setRightCurrencyValuePrev(previous?.value ?? 0);
 
-  // Cálculo da variação
+    }
+  }, [historicalRates, loading]);
+
   const variation =
-    leftCurrencyValuePrev > 0
-      ? leftCurrencyBase / leftCurrencyValuePrev
+    rightCurrencyValuePrev > 0
+      ? ((rightCurrencyBase - rightCurrencyValuePrev) / rightCurrencyValuePrev) * 100
       : 0;
 
   const leftCurrencyName = currencyData.currencies[leftCurrency]?.name || "";
@@ -75,9 +77,8 @@ export const CurrencyProvider = ({ children }: { children: React.ReactNode }) =>
         rightCurrency,
         setLeftCurrency,
         setRightCurrency,
-        leftCurrencyBase,
         rightCurrencyBase,
-        leftCurrencyValuePrev,
+        rightCurrencyValuePrev,
         variation,
         leftCurrencyName,
         rightCurrencyName,
