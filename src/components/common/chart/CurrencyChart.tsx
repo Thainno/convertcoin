@@ -49,7 +49,7 @@ export default function CurrencyChart() {
             onClick={() => setFilter(f.value)}
             className={`px-3 py-1 rounded text-sm shadow-sm ${
               filter === f.value
-                ? "bg-green-700 text-white"
+                ? "bg-[#6DA67A] text-white"
                 : "bg-gray-100 text-gray-700"
             }`}
           >
@@ -70,9 +70,9 @@ export default function CurrencyChart() {
           <LineChart data={data}>
             <CartesianGrid strokeDasharray="3 3" horizontal vertical={false} />
             <YAxis
-              stroke="#0d6759"
+              stroke="#016630"
               orientation="right"
-              tick={{ fill: "#0d6759" }}
+              tick={{ fill: "#016630" }}
               ticks={ticks}
               domain={[min, adjustedMax]}
             />
