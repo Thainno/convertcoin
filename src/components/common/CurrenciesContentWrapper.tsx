@@ -14,6 +14,7 @@ export default function CurrenciesContentWrapper() {
     rightCurrencyName,
     leftCurrencySymbol,
     rightCurrencySymbol,
+    lastDate,
   } = useCurrency();
 
   return (
@@ -27,6 +28,7 @@ export default function CurrenciesContentWrapper() {
       rightCurrencyName={rightCurrencyName}
       leftCurrencySymbol={leftCurrencySymbol}
       rightCurrencySymbol={rightCurrencySymbol}
+      lastDate={lastDate}
     />
   );
 }

@@ -10,6 +10,7 @@ interface Props {
   rightCurrencyName: string;
   leftCurrencySymbol: string;
   rightCurrencySymbol: string;
+  lastDate: string;
 }
 
 export default function CurrenciesContent({
@@ -22,18 +23,26 @@ export default function CurrenciesContent({
   rightCurrencyName,
   leftCurrencySymbol,
   rightCurrencySymbol,
+  lastDate,
 }: Props) {
   return (
-    <section className="flex flex-col gap-8">
-      <h1 className="text-3xl text-green-700 font-bold">
-        Conversão de {leftCurrencyName} ({leftCurrency}) para{" "}
-        {rightCurrencyName} ({rightCurrency})
+    <section className="flex flex-col gap-8 text-xl">
+      <h1 className="text-6xl text-green-700 font-bold">
+        {leftCurrencyName} <br />
+        para {rightCurrencyName}
       </h1>
-      <div className="flex justify-center">
-        <CurrencyChart />
-      </div>
 
-      <p className="text-xl">
+      <div>
+        <h2 className="text-lg font-semibold">
+          Gráfico histórico de {leftCurrencyName} ({leftCurrency}) para{" "}
+          {rightCurrencyName} ({rightCurrency})
+        </h2>
+
+        <div className="flex justify-center">
+          <CurrencyChart />
+        </div>
+      </div>
+      <p>
         Hoje, {leftCurrencySymbol}1,00 {leftCurrencyName} equivale a{" "}
         {rightCurrencySymbol}
         {rightCurrencyBase.toFixed(2)} {rightCurrencyName}. A variação em
@@ -46,14 +55,16 @@ export default function CurrenciesContent({
           }
         >
           {rightCurrencyValuePrev > rightCurrencyBase ? "-" : "+"}
-          {variation.toFixed(2)}%
+          {variation.toFixed(4)}%
         </span>
-        . A conversão está atualizada em {"todayDate"}, garantindo precisão nas
+        . A conversão está atualizada em {lastDate}, garantindo precisão nas
         suas transações internacionais.
       </p>
 
-      <div>
-        <h2 className="text-2xl text-green-700 font-extrabold">Resumo</h2>
+      <div className="text-xl">
+        <h3 className="text-2xl text-green-700 font-extrabold">
+          Resumo da cotação
+        </h3>
         <p>
           Valor hoje: {leftCurrencySymbol}1,00 = {rightCurrencySymbol}
           {rightCurrencyBase}
@@ -72,7 +83,7 @@ export default function CurrenciesContent({
             }
           >
             {rightCurrencyValuePrev > rightCurrencyBase ? "" : "+"}
-            {variation.toFixed(2)}%
+            {variation.toFixed(4)}%
           </span>
         </p>
       </div>

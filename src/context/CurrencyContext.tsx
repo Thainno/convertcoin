@@ -18,18 +18,26 @@ interface CurrencyContextType {
   rightCurrencyName: string;
   leftCurrencySymbol: string;
   rightCurrencySymbol: string;
+
+  lastDate: string;
 }
 
 const CurrencyContext = createContext<CurrencyContextType | undefined>(
   undefined
 );
 
-export const CurrencyProvider = ({ children }: { children: React.ReactNode }) => {
+export const CurrencyProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const [leftCurrency, setLeftCurrency] = useState("USD");
   const [rightCurrency, setRightCurrency] = useState("BRL");
 
   const [rightCurrencyBase, setRightCurrencyBase] = useState(0);
   const [rightCurrencyValuePrev, setRightCurrencyValuePrev] = useState(0);
+
+  const [lastDate, setLastDate] = useState("00/00/000");
 
   const { data: historicalRates, loading } = useHistoricalRates(
     leftCurrency,
@@ -43,23 +51,26 @@ export const CurrencyProvider = ({ children }: { children: React.ReactNode }) =>
         (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
       );
 
-      // console.log("📈 Histórico ordenado:", sorted);
-
       const latest = sorted[sorted.length - 1];
       const previous = sorted[sorted.length - 2];
-
-      // console.log("🟢 Último valor (hoje ou mais recente):", latest);
-      // console.log("🟡 Valor anterior:", previous);
 
       setRightCurrencyBase(latest?.value ?? 0);
       setRightCurrencyValuePrev(previous?.value ?? 0);
 
+      const formatDateBR = (dateStr: string) => {
+        const [year, month, day] = dateStr.split("-");
+        return `${day}/${month}/${year}`;
+      };
+
+      setLastDate(formatDateBR(latest.date));
     }
   }, [historicalRates, loading]);
 
   const variation =
     rightCurrencyValuePrev > 0
-      ? ((rightCurrencyBase - rightCurrencyValuePrev) / rightCurrencyValuePrev) * 100
+      ? ((rightCurrencyBase - rightCurrencyValuePrev) /
+          rightCurrencyValuePrev) *
+        100
       : 0;
 
   const leftCurrencyName = currencyData.currencies[leftCurrency]?.name || "";
@@ -84,6 +95,7 @@ export const CurrencyProvider = ({ children }: { children: React.ReactNode }) =>
         rightCurrencyName,
         leftCurrencySymbol,
         rightCurrencySymbol,
+        lastDate,
       }}
     >
       {children}
