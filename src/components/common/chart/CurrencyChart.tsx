@@ -41,7 +41,7 @@ export default function CurrencyChart() {
   const ticks = Array.from(new Set(rawTicks));
 
   return (
-    <div className="w-300 h-100 p-4 bg-white shadow-md rounded-xl">
+    <div className="w-full h-100 p-4 bg-white shadow-md rounded-xl">
       <div className="flex gap-2 mb-4">
         {chartFilters.map((f) => (
           <button
