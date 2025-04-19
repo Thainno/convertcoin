@@ -43,7 +43,7 @@ export default function CurrencyDropdown({
         }`}
         aria-label="Selecionar moeda"
       >
-        <Image src={downArrow} alt="Selecionar moeda" />
+        <Image src={downArrow} alt="Selecionar moeda" className="w-full" />
       </button>
 
       {isOpen && (

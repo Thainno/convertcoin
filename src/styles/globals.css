@@ -4,7 +4,8 @@ a {
   cursor: pointer;
 }
 
-.custon-link::after {
+/* Animação de link sublinhado */
+.custom-link::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -14,7 +15,7 @@ a {
   transition: all 0.3s ease;
 }
 
-.custon-link:hover::after {
+.custom-link:hover::after {
   animation: expandBorder 0.5s forwards;
 }
 
