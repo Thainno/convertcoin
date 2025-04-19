@@ -6,12 +6,14 @@ interface Props {
   rightCurrency: string;
   rightCurrencyBase: number;
   rightCurrencyValuePrev: number;
-  variation: number;
   leftCurrencyName: string;
   rightCurrencyName: string;
   leftCurrencySymbol: string;
   rightCurrencySymbol: string;
   lastDate: string;
+  variationDaily: number;
+  variationWeekly: number;
+  variationMonthly: number;
 }
 
 export default function CurrenciesContent({
@@ -19,15 +21,17 @@ export default function CurrenciesContent({
   rightCurrency,
   rightCurrencyBase,
   rightCurrencyValuePrev,
-  variation,
   leftCurrencyName,
   rightCurrencyName,
   leftCurrencySymbol,
   rightCurrencySymbol,
   lastDate,
+  variationDaily,
+  variationWeekly,
+  variationMonthly,
 }: Props) {
   return (
-    <section className="flex flex-col gap-8 text-xl">
+    <section className="flex flex-col gap-12 text-xl">
       <h1 className="text-6xl text-[#6DA67A] font-bold">
         {leftCurrencyName} para {rightCurrencyName}
       </h1>
@@ -45,8 +49,10 @@ export default function CurrenciesContent({
       <p>
         Hoje, {leftCurrencySymbol}1,00 {leftCurrencyName} equivale a{" "}
         {rightCurrencySymbol}
-        {rightCurrencyBase.toFixed(2)} {rightCurrencyName}. A variação em
-        relação ao valor de ontem é de{" "}
+        {rightCurrencyBase.toLocaleString("pt-BR", {
+          maximumFractionDigits: 2,
+        })}{" "}
+        {rightCurrencyName}. A variação em relação ao valor de ontem é de{" "}
         <span
           className={
             rightCurrencyValuePrev > rightCurrencyBase
@@ -55,7 +61,7 @@ export default function CurrenciesContent({
           }
         >
           {rightCurrencyValuePrev > rightCurrencyBase ? "" : "+"}
-          {variation.toFixed(4)}%
+          {variationDaily.toFixed(4)}%
         </span>
         . A atualização da conversão foi realizada em {lastDate}, garantindo
         precisão nas suas transações internacionais.
@@ -68,15 +74,19 @@ export default function CurrenciesContent({
           <p className="">
             <strong>Valor hoje</strong>: {leftCurrencySymbol}1,00 ={" "}
             {rightCurrencySymbol}
-            {rightCurrencyBase}
+            {rightCurrencyBase.toLocaleString("pt-BR", {
+              minimumFractionDigits: 4,
+            })}
           </p>
           <p>
             <strong>Valor ontem:</strong> {leftCurrencySymbol}1,00 ={" "}
             {rightCurrencySymbol}
-            {rightCurrencyValuePrev}
+            {rightCurrencyValuePrev.toLocaleString("pt-BR", {
+              minimumFractionDigits: 4,
+            })}
           </p>
           <p>
-            <strong>Variação:</strong>{" "}
+            <strong>Variação diária:</strong>{" "}
             <span
               className={
                 rightCurrencyValuePrev > rightCurrencyBase
@@ -85,7 +95,33 @@ export default function CurrenciesContent({
               }
             >
               {rightCurrencyValuePrev > rightCurrencyBase ? "" : "+"}
-              {variation.toFixed(4)}%
+              {variationDaily.toFixed(4)}%
+            </span>
+          </p>{" "}
+          <p>
+            <strong>Variação semanal:</strong>{" "}
+            <span
+              className={
+                rightCurrencyValuePrev > rightCurrencyBase
+                  ? "text-red-700"
+                  : "text-green-700"
+              }
+            >
+              {rightCurrencyValuePrev > rightCurrencyBase ? "" : "+"}
+              {variationWeekly.toFixed(4)}%
+            </span>
+          </p>{" "}
+          <p>
+            <strong>Variação mensal:</strong>{" "}
+            <span
+              className={
+                rightCurrencyValuePrev > rightCurrencyBase
+                  ? "text-red-700"
+                  : "text-green-700"
+              }
+            >
+              {rightCurrencyValuePrev > rightCurrencyBase ? "" : "+"}
+              {variationMonthly.toFixed(4)}%
             </span>
           </p>
           <p>

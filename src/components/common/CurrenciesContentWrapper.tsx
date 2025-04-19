@@ -9,12 +9,14 @@ export default function CurrenciesContentWrapper() {
     rightCurrency,
     rightCurrencyBase,
     rightCurrencyValuePrev,
-    variation,
     leftCurrencyName,
     rightCurrencyName,
     leftCurrencySymbol,
     rightCurrencySymbol,
     lastDate,
+    variationDaily,
+    variationWeekly,
+    variationMonthly
   } = useCurrency();
 
   return (
@@ -23,12 +25,15 @@ export default function CurrenciesContentWrapper() {
       rightCurrency={rightCurrency}
       rightCurrencyBase={rightCurrencyBase}
       rightCurrencyValuePrev={rightCurrencyValuePrev}
-      variation={variation}
       leftCurrencyName={leftCurrencyName}
       rightCurrencyName={rightCurrencyName}
       leftCurrencySymbol={leftCurrencySymbol}
       rightCurrencySymbol={rightCurrencySymbol}
       lastDate={lastDate}
+      variationDaily={variationDaily}
+      variationWeekly={variationWeekly}
+      variationMonthly={variationMonthly}
+      
     />
   );
 }

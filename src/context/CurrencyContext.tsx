@@ -12,7 +12,9 @@ interface CurrencyContextType {
 
   rightCurrencyBase: number;
   rightCurrencyValuePrev: number;
-  variation: number;
+  variationDaily: number;
+  variationWeekly: number;
+  variationMonthly: number;
 
   leftCurrencyName: string;
   rightCurrencyName: string;
@@ -37,12 +39,16 @@ export const CurrencyProvider = ({
   const [rightCurrencyBase, setRightCurrencyBase] = useState(0);
   const [rightCurrencyValuePrev, setRightCurrencyValuePrev] = useState(0);
 
+  const [variationDaily, setVariationDaily] = useState(0);
+  const [variationWeekly, setVariationWeekly] = useState(0);
+  const [variationMonthly, setVariationMonthly] = useState(0);
+
   const [lastDate, setLastDate] = useState("00/00/000");
 
   const { data: historicalRates, loading } = useHistoricalRates(
     leftCurrency,
     rightCurrency,
-    7
+    30
   );
 
   useEffect(() => {
@@ -54,6 +60,28 @@ export const CurrencyProvider = ({
       const latest = sorted[sorted.length - 1];
       const previous = sorted[sorted.length - 2];
 
+      const oneWeekAgo = new Date(latest.date);
+      oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+
+      const oneMonthAgo = new Date(latest.date);
+      oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+
+      const getClosestValue = (targetDate: Date) => {
+        const targetTime = targetDate.getTime();
+        const closest = sorted.reduce((prev, curr) => {
+          const currTime = new Date(curr.date).getTime();
+          const prevTime = new Date(prev.date).getTime();
+          return Math.abs(currTime - targetTime) <
+            Math.abs(prevTime - targetTime)
+            ? curr
+            : prev;
+        });
+        return closest.value;
+      };
+
+      const valueWeekAgo = getClosestValue(oneWeekAgo);
+      const valueMonthAgo = getClosestValue(oneMonthAgo);
+
       setRightCurrencyBase(latest?.value ?? 0);
       setRightCurrencyValuePrev(previous?.value ?? 0);
 
@@ -63,15 +91,16 @@ export const CurrencyProvider = ({
       };
 
       setLastDate(formatDateBR(latest.date));
+
+      setVariationDaily(
+        ((latest.value - previous.value) / previous.value) * 100
+      );
+      setVariationWeekly(((latest.value - valueWeekAgo) / valueWeekAgo) * 100);
+      setVariationMonthly(
+        ((latest.value - valueMonthAgo) / valueMonthAgo) * 100
+      );
     }
   }, [historicalRates, loading]);
-
-  const variation =
-    rightCurrencyValuePrev > 0
-      ? ((rightCurrencyBase - rightCurrencyValuePrev) /
-          rightCurrencyValuePrev) *
-        100
-      : 0;
 
   const leftCurrencyName = currencyData.currencies[leftCurrency]?.name || "";
   const rightCurrencyName = currencyData.currencies[rightCurrency]?.name || "";
@@ -90,12 +119,14 @@ export const CurrencyProvider = ({
         setRightCurrency,
         rightCurrencyBase,
         rightCurrencyValuePrev,
-        variation,
         leftCurrencyName,
         rightCurrencyName,
         leftCurrencySymbol,
         rightCurrencySymbol,
         lastDate,
+        variationDaily,
+        variationWeekly,
+        variationMonthly,
       }}
     >
       {children}

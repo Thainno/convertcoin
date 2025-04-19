@@ -24,7 +24,7 @@ export default function CurrenciesTable({
 
   return (
     <table
-      className="w-full max-w-3xl shadow-lg rounded-2xl overflow-hidden"
+      className="w-full max-w-3xl shadow-md rounded-2xl overflow-hidden"
       aria-label="Tabela de conversão de moedas"
     >
       <thead className="bg-[#6DA67A] text-white">

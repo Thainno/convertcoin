@@ -53,7 +53,7 @@ export default function Converter() {
     <section className="flex flex-col items-center h-screen min-h-160">
       <article className="flex flex-row items-center justify-center gap-30 w-full h-full relative top-4">
         <Card
-          className={`relative w-160 h-80 rounded-4xl bg-[#f9f9f9] shadow-xl flex flex-col justify-center transition-all ${
+          className={`relative w-160 h-80 rounded-4xl bg-[#fcfcfc] shadow-xl flex flex-col justify-center transition-all ${
             isSwapping
               ? "translate-x-40 opacity-0"
               : "translate-x-0 opacity-100"
@@ -91,7 +91,7 @@ export default function Converter() {
         </button>
 
         <Card
-          className={`relative w-160 h-80 rounded-4xl bg-[#f9f9f9] shadow-xl flex flex-col justify-center transition-all ${
+          className={`relative w-160 h-80 rounded-4xl bg-[#fcfcfc] shadow-xl flex flex-col justify-center transition-all ${
             isSwapping
               ? "-translate-x-40 opacity-0"
               : "translate-x-0 opacity-100"

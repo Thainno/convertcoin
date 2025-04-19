@@ -22,7 +22,6 @@ export function useHistoricalRates(base: string, target: string, days: number) {
           endDate
         );
 
-        // MANTÉM O FORMATO ORIGINAL DA DATA yyyy-MM-dd
         setData(
           rates.map((entry) => ({
             date: entry.date,
