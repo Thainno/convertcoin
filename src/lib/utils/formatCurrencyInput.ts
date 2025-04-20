@@ -1,4 +1,4 @@
-export const useCurrencyInput = (
+export const formatCurrencyInput = (
   onValueChange: (value: string) => void,
   isActive: boolean,
   value: string,

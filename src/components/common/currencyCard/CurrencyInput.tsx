@@ -1,7 +1,7 @@
 "use client";
 
 import Input from "../Input";
-import { useCurrencyInput } from "@/hooks/useCurrencyInput";
+import { formatCurrencyInput } from "@/lib/utils/formatCurrencyInput";
 
 interface CurrencyInputProps {
   inputRef?: React.Ref<HTMLInputElement>;
@@ -20,7 +20,7 @@ export default function CurrencyInput({
   className = "",
   maxLength,
 }: CurrencyInputProps) {
-  const { handleValueChange, displayValue } = useCurrencyInput(
+  const { handleValueChange, displayValue } = formatCurrencyInput(
     onValueChange,
     isActive,
     value,
