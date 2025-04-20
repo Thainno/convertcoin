@@ -2,12 +2,13 @@ import Home from "../page";
 import { redirect } from "next/navigation";
 
 interface Params {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
-export default async function SlugPage({ params }: Params) {
+export default async function SlugPage(props: Params) {
+  const params = await props.params;
   const [left, right] = params.slug.toUpperCase().split("-");
 
   // Redireciona para padrão caso slug esteja inválido
