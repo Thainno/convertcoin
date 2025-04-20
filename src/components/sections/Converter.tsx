@@ -8,17 +8,31 @@ import arrowRight from "@/assets/images/arrow-right.svg";
 import { useCurrencyConverter } from "@/hooks/useCurrencyConverter";
 import { useCurrency } from "@/context/CurrencyContext";
 import { cardSwap } from "@/lib/utils/cardSwap";
+import { useCurrencyRouting } from "@/hooks/useCurrencyRouting"; // Importando o novo hook
 
-export default function Converter() {
+interface ConverterProps {
+  initialLeft: string;
+  initialRight: string;
+}
+
+export default function Converter({
+  initialLeft,
+  initialRight,
+}: ConverterProps) {
   const currencyState = useCurrencyConverter();
   const { setLeftCurrency, setRightCurrency } = useCurrency();
   const [isSwapping, setIsSwapping] = useState(false);
   const [showInfo, setShowInfo] = useState(true);
 
+  // Usando o hook externo para gerenciar a navegação
+  useCurrencyRouting(currencyState);
+
   useEffect(() => {
-    setLeftCurrency(currencyState.leftCurrency);
-    setRightCurrency(currencyState.rightCurrency);
-  }, [currencyState.leftCurrency, currencyState.rightCurrency]);
+    currencyState.setLeftCurrency(initialLeft.toUpperCase());
+    currencyState.setRightCurrency(initialRight.toUpperCase());
+    setLeftCurrency(initialLeft.toUpperCase());
+    setRightCurrency(initialRight.toUpperCase());
+  }, [initialLeft, initialRight]);
 
   useEffect(() => {
     const handleScroll = () => {
