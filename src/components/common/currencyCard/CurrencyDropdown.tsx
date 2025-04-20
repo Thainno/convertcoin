@@ -59,6 +59,7 @@ export default function CurrencyDropdown({
               inputMode="search"
               autoComplete="off"
               placeholder="Pesquisar moeda..."
+              value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
             <div className="absolute right-4 flex h-10 w-2/12 items-center justify-center rounded-r-4xl bg-[#6DA67A] shadow-sm">
