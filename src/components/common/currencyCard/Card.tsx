@@ -39,12 +39,12 @@ export default function Card({
         } items-center p-8`}
       >
         <figure
-          className={`w-16 h-16 rounded-full overflow-hidden ${
+          className={`h-16 w-16 overflow-hidden rounded-full ${
             imagePosition === "left" ? "mr-4" : "ml-4"
           }`}
         >
           <Image
-            className="object-cover w-full h-full"
+            className="h-full w-full object-cover"
             src={flag}
             width={0}
             height={0}
@@ -52,13 +52,13 @@ export default function Card({
           />
         </figure>
 
-        <h2 className="text-3xl w-4/5">
+        <h2 className="w-4/5 text-3xl">
           {currencyData.currencies[currency]?.name}
         </h2>
 
         <CurrencyDropdown
           currencies={availableCurrencies.filter(
-            (c) => c !== currency && c !== otherCurrency
+            (c) => c !== currency && c !== otherCurrency,
           )}
           imagePosition={imagePosition}
           onSelectCurrency={(selectedCurrency) => {
@@ -68,15 +68,15 @@ export default function Card({
         />
       </header>
 
-      <form className="p-8 w-full h-36 relative">
-        <label className="w-24 h-16 flex items-center justify-center text-4xl absolute left-8 top-8 rounded-l-4xl bg-white">
+      <form className="relative h-36 w-full p-8">
+        <label className="absolute top-8 left-8 flex h-16 w-24 items-center justify-center rounded-l-4xl bg-white text-4xl">
           {currencyData.currencies[currency]?.symbol || currency}
         </label>
         <CurrencyInput
           value={value}
           onValueChange={onValueChange}
           isActive={isActive}
-          className="w-full h-16 text-end px-8 outline-none"
+          className="h-16 w-full px-8 text-end outline-none"
           maxLength={20}
         />
       </form>

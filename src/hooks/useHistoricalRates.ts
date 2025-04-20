@@ -19,14 +19,14 @@ export function useHistoricalRates(base: string, target: string, days: number) {
           base,
           target,
           startDate,
-          endDate
+          endDate,
         );
 
         setData(
           rates.map((entry) => ({
             date: entry.date,
             value: entry.value,
-          }))
+          })),
         );
       } catch (e) {
         console.error(e);

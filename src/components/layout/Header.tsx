@@ -6,9 +6,9 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="w-full h-24 flex justify-center bg-[#6DA67A] text-white text-xl px-20 fixed top-0 z-10">
+    <header className="fixed top-0 z-10 flex h-24 w-full justify-center bg-[#6DA67A] px-20 text-xl text-white">
       <nav
-        className="w-full max-w-500 min-h-20 h-24 flex flex-row justify-between items-center cursor-pointer z-10"
+        className="z-10 flex h-24 min-h-20 w-full max-w-500 cursor-pointer flex-row items-center justify-between"
         aria-label="Menu principal"
       >
         <Link href={"/"} rel="author">
@@ -25,7 +25,7 @@ export default function Header() {
             <Link
               href={"/about"}
               aria-label="Sobre nós"
-              className="relative custom-link p-1"
+              className="custom-link relative p-1"
             >
               Sobre nós
             </Link>
@@ -35,7 +35,7 @@ export default function Header() {
             <Link
               href={"/suport"}
               aria-label="Suporte"
-              className="relative custom-link p-1"
+              className="custom-link relative p-1"
             >
               Suporte
             </Link>
@@ -45,24 +45,24 @@ export default function Header() {
             <Link
               href={"/helpProject"}
               aria-label="Apoie o projeto"
-              className="relative custom-link p-1"
+              className="custom-link relative p-1"
             >
               Apoie o projeto
             </Link>
           </li>
         </ul>
-        <div className="flex flex-row items-center gap-10 ">
+        <div className="flex flex-row items-center gap-10">
           <Link
             href={"/login"}
             aria-label="Entrar em sua conta"
-            className="relative custom-link p-1"
+            className="custom-link relative p-1"
           >
             Entrar
           </Link>
           <Link
             href={"/register"}
             aria-label="Registrar nova conta"
-            className="w-32 h-12 flex justify-center items-center rounded-xl bg-green-700 hover:bg-green-800"
+            className="flex h-12 w-32 items-center justify-center rounded-xl bg-green-700 hover:bg-green-800"
           >
             Registrar
           </Link>

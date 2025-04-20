@@ -23,7 +23,7 @@ export default function CurrencyInput({
   const { handleValueChange, displayValue } = useCurrencyInput(
     onValueChange,
     isActive,
-    value
+    value,
   );
 
   return (

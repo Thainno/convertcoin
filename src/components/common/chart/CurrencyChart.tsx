@@ -24,7 +24,7 @@ export default function CurrencyChart() {
   const { data, loading } = useHistoricalRates(
     leftCurrency,
     rightCurrency,
-    days
+    days,
   );
 
   const values = data.map((item) => item.value);
@@ -35,19 +35,19 @@ export default function CurrencyChart() {
   const step = (adjustedMax - min) / 4;
 
   const rawTicks = Array.from({ length: 5 }, (_, i) =>
-    Number((min + step * i).toFixed(4))
+    Number((min + step * i).toFixed(4)),
   );
 
   const ticks = Array.from(new Set(rawTicks));
 
   return (
-    <div className="w-full h-100 p-4 bg-white shadow-md rounded-xl">
-      <div className="flex gap-2 mb-4">
+    <div className="h-100 w-full rounded-xl bg-white p-4 shadow-md">
+      <div className="mb-4 flex gap-2">
         {chartFilters.map((f) => (
           <button
             key={f.value}
             onClick={() => setFilter(f.value)}
-            className={`px-3 py-1 rounded text-sm shadow-sm ${
+            className={`rounded px-3 py-1 text-sm shadow-sm ${
               filter === f.value
                 ? "bg-[#6DA67A] text-white"
                 : "bg-gray-100 text-gray-700"
@@ -59,11 +59,11 @@ export default function CurrencyChart() {
       </div>
 
       {loading ? (
-        <div className="flex space-x-2 justify-center items-center bg-white h-10/12">
+        <div className="flex h-10/12 items-center justify-center space-x-2 bg-white">
           <span className="sr-only">Loading...</span>
-          <div className="h-4 w-4 bg-[#6DA67A] rounded-full animate-bounce [animation-delay:-0.3s]"></div>
-          <div className="h-4 w-4 bg-[#6DA67A] rounded-full animate-bounce [animation-delay:-0.15s]"></div>
-          <div className="h-4 w-4 bg-[#6DA67A] rounded-full animate-bounce"></div>
+          <div className="h-4 w-4 animate-bounce rounded-full bg-[#6DA67A] [animation-delay:-0.3s]"></div>
+          <div className="h-4 w-4 animate-bounce rounded-full bg-[#6DA67A] [animation-delay:-0.15s]"></div>
+          <div className="h-4 w-4 animate-bounce rounded-full bg-[#6DA67A]"></div>
         </div>
       ) : (
         <ResponsiveContainer width="100%" height="85%">

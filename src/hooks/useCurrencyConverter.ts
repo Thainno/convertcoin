@@ -37,9 +37,8 @@ export function useCurrencyConverter(): CurrencyConverterState {
   useEffect(() => {
     const loadRates = async () => {
       //Sempre usa a moeda da esquerda como base para buscar os valores
-      const data: CurrencyRatesResponse = await fetchCurrencyRates(
-        leftCurrency
-      );
+      const data: CurrencyRatesResponse =
+        await fetchCurrencyRates(leftCurrency);
       setRates(data.rates);
 
       //Verifica se a moeda da direita está disponível nas taxas retornadas

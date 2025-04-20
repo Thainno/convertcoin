@@ -32,7 +32,7 @@ export default function CurrenciesContent({
 }: Props) {
   return (
     <section className="flex flex-col gap-12 text-xl">
-      <h1 className="text-6xl text-[#6DA67A] font-bold">
+      <h1 className="text-6xl font-bold text-[#6DA67A]">
         {leftCurrencyName} para {rightCurrencyName}
       </h1>
 
@@ -66,9 +66,9 @@ export default function CurrenciesContent({
         . A atualização da conversão foi realizada em {lastDate}, garantindo
         precisão nas suas transações internacionais.
       </p>
-      <div className="flex justify-between items-center mt-16">
+      <div className="mt-16 flex items-center justify-between">
         <div className="flex flex-col gap-4 text-xl">
-          <h3 className="text-4xl text-[#6DA67A] font-extrabold mb-4">
+          <h3 className="mb-4 text-4xl font-extrabold text-[#6DA67A]">
             Resumo da cotação
           </h3>
           <p className="">

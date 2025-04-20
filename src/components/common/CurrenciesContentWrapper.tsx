@@ -16,7 +16,7 @@ export default function CurrenciesContentWrapper() {
     lastDate,
     variationDaily,
     variationWeekly,
-    variationMonthly
+    variationMonthly,
   } = useCurrency();
 
   return (
@@ -33,7 +33,6 @@ export default function CurrenciesContentWrapper() {
       variationDaily={variationDaily}
       variationWeekly={variationWeekly}
       variationMonthly={variationMonthly}
-      
     />
   );
 }

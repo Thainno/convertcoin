@@ -50,10 +50,10 @@ export default function Converter() {
   };
 
   return (
-    <section className="flex flex-col items-center h-screen min-h-160">
-      <article className="flex flex-row items-center justify-center gap-30 w-full h-full relative top-4">
+    <section className="flex h-screen min-h-160 flex-col items-center">
+      <article className="relative top-4 flex h-full w-full flex-row items-center justify-center gap-30">
         <Card
-          className={`relative w-160 h-80 rounded-4xl bg-[#fcfcfc] shadow-xl flex flex-col justify-center transition-all ${
+          className={`relative flex h-80 w-160 flex-col justify-center rounded-4xl bg-[#fcfcfc] shadow-xl transition-all ${
             isSwapping
               ? "translate-x-40 opacity-0"
               : "translate-x-0 opacity-100"
@@ -72,18 +72,18 @@ export default function Converter() {
         />
 
         <button
-          className="flex flex-col cursor-pointer group"
+          className="group flex cursor-pointer flex-col"
           onClick={handleSwapCards}
           aria-label="Trocar moedas"
         >
           <Image
-            className="w-12 h-8 transition-transform group-hover:-translate-x-2"
+            className="h-8 w-12 transition-transform group-hover:-translate-x-2"
             src={arrowLeft}
             alt=""
             role="presentation"
           />
           <Image
-            className="w-12 h-8 transition-transform group-hover:translate-x-2"
+            className="h-8 w-12 transition-transform group-hover:translate-x-2"
             src={arrowRight}
             alt=""
             role="presentation"
@@ -91,7 +91,7 @@ export default function Converter() {
         </button>
 
         <Card
-          className={`relative w-160 h-80 rounded-4xl bg-[#fcfcfc] shadow-xl flex flex-col justify-center transition-all ${
+          className={`relative flex h-80 w-160 flex-col justify-center rounded-4xl bg-[#fcfcfc] shadow-xl transition-all ${
             isSwapping
               ? "-translate-x-40 opacity-0"
               : "translate-x-0 opacity-100"
@@ -112,7 +112,7 @@ export default function Converter() {
 
       <span
         className={`text-sm transition-opacity duration-500 ${
-          showInfo ? "opacity-100" : "opacity-0 pointer-events-none"
+          showInfo ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
         Atualização dos valores às 12:00 UTC-3 Horário de Brasília

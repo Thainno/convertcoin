@@ -2,7 +2,7 @@
 export const fetchCurrencyRates = async (baseCurrency: string) => {
   //Faz a requisição para a API usando fetch
   const response = await fetch(
-    `https://api.frankfurter.app/latest?from=${baseCurrency}`
+    `https://api.frankfurter.app/latest?from=${baseCurrency}`,
   );
 
   //Verifica se a resposta da API foi bem-sucedida.
@@ -10,5 +10,3 @@ export const fetchCurrencyRates = async (baseCurrency: string) => {
   if (!response.ok) throw new Error("Failed to fetch values!");
   return response.json();
 };
-
-

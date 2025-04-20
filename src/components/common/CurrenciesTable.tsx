@@ -24,7 +24,7 @@ export default function CurrenciesTable({
 
   return (
     <table
-      className="w-200 shadow-md rounded-2xl overflow-hidden"
+      className="w-200 overflow-hidden rounded-2xl shadow-md"
       aria-label="Tabela de conversão de moedas"
     >
       <thead className="bg-[#6DA67A] text-white">
@@ -43,10 +43,10 @@ export default function CurrenciesTable({
             key={`currency-row-${value}`}
             className={`${index % 2 === 0 ? "bg-white" : "bg-zinc-100"}`}
           >
-            <td scope="row" className="py-3 px-12">
+            <td scope="row" className="px-12 py-3">
               {leftCurrencySymbol} {format(value)} ({baseValueText[index]})
             </td>
-            <td scope="row" className="py-3 px-24 font-medium">
+            <td scope="row" className="px-24 py-3 font-medium">
               {rightCurrencySymbol} {format(value * rightCurrencyBase)}
             </td>
           </tr>

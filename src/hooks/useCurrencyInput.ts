@@ -1,7 +1,7 @@
 export const useCurrencyInput = (
   onValueChange: (value: string) => void,
   isActive: boolean,
-  value: string
+  value: string,
 ) => {
   const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
@@ -20,8 +20,8 @@ export const useCurrencyInput = (
   const displayValue = isActive
     ? value.replace(".", ",")
     : value === ""
-    ? ""
-    : parseFloat(value).toFixed(2).replace(".", ",");
+      ? ""
+      : parseFloat(value).toFixed(2).replace(".", ",");
 
   return {
     handleValueChange,

@@ -25,7 +25,7 @@ interface CurrencyContextType {
 }
 
 const CurrencyContext = createContext<CurrencyContextType | undefined>(
-  undefined
+  undefined,
 );
 
 export const CurrencyProvider = ({
@@ -48,13 +48,13 @@ export const CurrencyProvider = ({
   const { data: historicalRates, loading } = useHistoricalRates(
     leftCurrency,
     rightCurrency,
-    30
+    30,
   );
 
   useEffect(() => {
     if (!loading && historicalRates.length > 0) {
       const sorted = [...historicalRates].sort(
-        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
       );
 
       const latest = sorted[sorted.length - 1];
@@ -93,11 +93,11 @@ export const CurrencyProvider = ({
       setLastDate(formatDateBR(latest.date));
 
       setVariationDaily(
-        ((latest.value - previous.value) / previous.value) * 100
+        ((latest.value - previous.value) / previous.value) * 100,
       );
       setVariationWeekly(((latest.value - valueWeekAgo) / valueWeekAgo) * 100);
       setVariationMonthly(
-        ((latest.value - valueMonthAgo) / valueMonthAgo) * 100
+        ((latest.value - valueMonthAgo) / valueMonthAgo) * 100,
       );
     }
   }, [historicalRates, loading]);

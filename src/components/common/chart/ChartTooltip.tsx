@@ -24,7 +24,7 @@ export function CustomTooltip({
   });
 
   return (
-    <div className="bg-white p-2 rounded shadow-sm text-sm text-gray-700">
+    <div className="rounded bg-white p-2 text-sm text-gray-700 shadow-sm">
       <p>{`1 ${base} = ${value?.toFixed(2)} ${target}`}</p>
       <p className="text-gray-500">{formattedDate}</p>
     </div>

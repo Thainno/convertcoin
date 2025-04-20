@@ -38,7 +38,7 @@ export default function CurrencyDropdown({
       <button
         type="button"
         onClick={toggleDropdown}
-        className={`cursor-pointer w-32 h-8 flex justify-center absolute right-0 ${
+        className={`absolute right-0 flex h-8 w-32 cursor-pointer justify-center ${
           imagePosition === "left" ? "right-0" : "left-0"
         }`}
         aria-label="Selecionar moeda"
@@ -49,19 +49,19 @@ export default function CurrencyDropdown({
       {isOpen && (
         <div>
           <header
-            className={`w-80 h-18 absolute top-28 bg-white rounded-t-2xl flex flex-row p-4 shadow-xl z-10 ${
+            className={`absolute top-28 z-10 flex h-18 w-80 flex-row rounded-t-2xl bg-white p-4 shadow-xl ${
               imagePosition === "left" ? "right-4" : "left-4"
             }`}
           >
             <Input
-              className="w-full h-10 text-sm px-4"
+              className="h-10 w-full px-4 text-sm"
               type="text"
               inputMode="search"
               autoComplete="off"
               placeholder="Pesquisar moeda..."
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <div className="w-2/12 h-10 bg-[#6DA67A] rounded-r-4xl absolute flex items-center justify-center right-4 shadow-sm">
+            <div className="absolute right-4 flex h-10 w-2/12 items-center justify-center rounded-r-4xl bg-[#6DA67A] shadow-sm">
               <Image
                 src={search}
                 alt="Search"
@@ -73,9 +73,9 @@ export default function CurrencyDropdown({
           </header>
 
           <section
-            className={`absolute z-10 w-80 h-80 top-46 overflow-y-scroll ${
+            className={`absolute top-46 z-10 h-80 w-80 overflow-y-scroll ${
               imagePosition === "left" ? "right-4" : "left-4"
-            } w-64 bg-white rounded-b-2xl shadow-xl`}
+            } w-64 rounded-b-2xl bg-white shadow-xl`}
           >
             {filteredCurrencies.map((curr) => {
               const currencyInfo = currencyData?.currencies[curr];
@@ -88,15 +88,15 @@ export default function CurrencyDropdown({
                     onSelectCurrency(curr);
                     closeDropdown();
                   }}
-                  className="flex items-center px-6 pb-2 hover:bg-gray-100 cursor-pointer"
+                  className="flex cursor-pointer items-center px-6 pb-2 hover:bg-gray-100"
                 >
-                  <div className="w-10 h-10 rounded-full overflow-hidden mr-4">
+                  <div className="mr-4 h-10 w-10 overflow-hidden rounded-full">
                     <Image
                       src={getCountryFlagUrl(curr)}
                       alt={curr}
                       width={40}
                       height={40}
-                      className="w-full h-full mr-4 object-cover"
+                      className="mr-4 h-full w-full object-cover"
                     />
                   </div>
                   <div className="flex flex-col items-start">
@@ -109,7 +109,7 @@ export default function CurrencyDropdown({
               );
             })}
             {filteredCurrencies.length === 0 && (
-              <div className="text-center p-4 text-gray-500">
+              <div className="p-4 text-center text-gray-500">
                 Nenhuma moeda encontrada
               </div>
             )}

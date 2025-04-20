@@ -10,7 +10,7 @@ export async function fetchHistoricalRates(
   base: string,
   target: string,
   startDate: string,
-  endDate: string
+  endDate: string,
 ) {
   const url = `https://api.frankfurter.app/${startDate}..${endDate}?from=${base}&to=${target}`;
 
