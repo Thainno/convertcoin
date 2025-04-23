@@ -14,7 +14,7 @@ export default async function SlugPage(props: Params) {
 
   const validCurrencyCodes = Object.keys(currencyData.currencies);
 
-  //Redireciona para URL padrão caso slug esteja inválido
+  //Redireciona para 'not-found' caso slug esteja inválido
   if (
     !left ||
     !right ||
