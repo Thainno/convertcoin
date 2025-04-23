@@ -8,7 +8,7 @@ import arrowRight from "@/assets/images/arrow-right.svg";
 import { useCurrencyConverter } from "@/hooks/useCurrencyConverter";
 import { useCurrency } from "@/context/CurrencyContext";
 import { cardSwap } from "@/lib/utils/cardSwap";
-import { useCurrencyRouting } from "@/hooks/useCurrencyRouting"; // Importando o novo hook
+import { useCurrencyRouting } from "@/hooks/useCurrencyRouting";
 
 interface ConverterProps {
   initialLeft: string;
@@ -24,7 +24,7 @@ export default function Converter({
   const [isSwapping, setIsSwapping] = useState(false);
   const [showInfo, setShowInfo] = useState(true);
 
-  // Usando o hook externo para gerenciar a navegação
+  //hook externo para gerenciar a navegação
   useCurrencyRouting(currencyState);
 
   useEffect(() => {
@@ -129,7 +129,7 @@ export default function Converter({
           showInfo ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
-        Atualização dos valores às 12:00 UTC-3 Horário de Brasília
+        Atualização dos valores às 12:00 UTC-3 Horário de Brasília (somente dias úteis)
       </span>
     </section>
   );

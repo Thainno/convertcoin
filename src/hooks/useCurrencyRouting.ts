@@ -9,8 +9,8 @@ export const useCurrencyRouting = (currencyState: CurrencyConverterState) => {
 
   useEffect(() => {
     if (currencyState.leftCurrency && currencyState.rightCurrency) {
-      const a = `${currencyState.leftCurrency.toLowerCase()}-${currencyState.rightCurrency.toLowerCase()}`;
-      router.replace(`/${a}`);
+      const slug = `${currencyState.leftCurrency.toLowerCase()}-${currencyState.rightCurrency.toLowerCase()}`;
+      router.replace(`/${slug}`);
     }
   }, [currencyState.leftCurrency, currencyState.rightCurrency]);
 };

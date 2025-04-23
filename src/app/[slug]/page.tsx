@@ -1,5 +1,6 @@
 import Home from "../page";
-import { redirect } from "next/navigation";
+import { notFound } from "next/navigation";
+import { currencyData } from "@/lib/constants/currenciesData";
 
 interface Params {
   params: Promise<{
@@ -11,9 +12,16 @@ export default async function SlugPage(props: Params) {
   const params = await props.params;
   const [left, right] = params.slug.toUpperCase().split("-");
 
-  // Redireciona para padrão caso slug esteja inválido
-  if (!left || !right) {
-    redirect("/usd-brl");
+  const validCurrencyCodes = Object.keys(currencyData.currencies);
+
+  //Redireciona para URL padrão caso slug esteja inválido
+  if (
+    !left ||
+    !right ||
+    !validCurrencyCodes.includes(left) ||
+    !validCurrencyCodes.includes(right)
+  ) {
+    notFound();
   }
 
   return <Home initialLeft={left} initialRight={right} />;

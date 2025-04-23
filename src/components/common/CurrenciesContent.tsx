@@ -66,7 +66,7 @@ export default function CurrenciesContent({
         . A atualização da conversão foi realizada em {lastDate}, garantindo
         precisão nas suas transações internacionais.
       </p>
-      <div className="mt-16 flex items-center justify-between">
+      <div className="mt-28 flex items-center justify-between">
         <div className="flex flex-col gap-4 text-xl">
           <h3 className="mb-4 text-4xl font-extrabold text-[#6DA67A]">
             Resumo da cotação
@@ -95,7 +95,10 @@ export default function CurrenciesContent({
               }
             >
               {rightCurrencyValuePrev > rightCurrencyBase ? "" : "+"}
-              {variationDaily.toFixed(4)}%
+              {variationDaily.toLocaleString("pt-BR", {
+                minimumFractionDigits: 4,
+              })}
+              %
             </span>
           </p>{" "}
           <p>
@@ -108,7 +111,10 @@ export default function CurrenciesContent({
               }
             >
               {rightCurrencyValuePrev > rightCurrencyBase ? "" : "+"}
-              {variationWeekly.toFixed(4)}%
+              {variationWeekly.toLocaleString("pt-BR", {
+                minimumFractionDigits: 4,
+              })}
+              %
             </span>
           </p>{" "}
           <p>
@@ -121,7 +127,10 @@ export default function CurrenciesContent({
               }
             >
               {rightCurrencyValuePrev > rightCurrencyBase ? "" : "+"}
-              {variationMonthly.toFixed(4)}%
+              {variationMonthly.toLocaleString("pt-BR", {
+                minimumFractionDigits: 4,
+              })}
+              %
             </span>
           </p>
           <p>
