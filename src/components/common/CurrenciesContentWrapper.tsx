@@ -9,6 +9,8 @@ export default function CurrenciesContentWrapper() {
     rightCurrency,
     rightCurrencyBase,
     rightCurrencyValuePrev,
+    valueWeekAgo,
+    valueMonthAgo,
     leftCurrencyName,
     rightCurrencyName,
     leftCurrencySymbol,
@@ -25,6 +27,8 @@ export default function CurrenciesContentWrapper() {
       rightCurrency={rightCurrency}
       rightCurrencyBase={rightCurrencyBase}
       rightCurrencyValuePrev={rightCurrencyValuePrev}
+      valueWeekAgo={valueWeekAgo}
+      valueMonthAgo={valueMonthAgo}
       leftCurrencyName={leftCurrencyName}
       rightCurrencyName={rightCurrencyName}
       leftCurrencySymbol={leftCurrencySymbol}

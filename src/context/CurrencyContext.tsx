@@ -12,6 +12,9 @@ interface CurrencyContextType {
 
   rightCurrencyBase: number;
   rightCurrencyValuePrev: number;
+  valueWeekAgo: number;
+  valueMonthAgo: number;
+
   variationDaily: number;
   variationWeekly: number;
   variationMonthly: number;
@@ -38,6 +41,9 @@ export const CurrencyProvider = ({
 
   const [rightCurrencyBase, setRightCurrencyBase] = useState(0);
   const [rightCurrencyValuePrev, setRightCurrencyValuePrev] = useState(0);
+
+  const [valueWeekAgo, setValueWeekAgo] = useState(0);
+  const [valueMonthAgo, setValueMonthAgo] = useState(0);
 
   const [variationDaily, setVariationDaily] = useState(0);
   const [variationWeekly, setVariationWeekly] = useState(0);
@@ -82,6 +88,9 @@ export const CurrencyProvider = ({
       const valueWeekAgo = getClosestValue(oneWeekAgo);
       const valueMonthAgo = getClosestValue(oneMonthAgo);
 
+      setValueWeekAgo(valueWeekAgo);
+      setValueMonthAgo(valueMonthAgo);
+
       setRightCurrencyBase(latest?.value ?? 0);
       setRightCurrencyValuePrev(previous?.value ?? 0);
 
@@ -119,6 +128,8 @@ export const CurrencyProvider = ({
         setRightCurrency,
         rightCurrencyBase,
         rightCurrencyValuePrev,
+        valueWeekAgo,
+        valueMonthAgo,
         leftCurrencyName,
         rightCurrencyName,
         leftCurrencySymbol,

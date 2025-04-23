@@ -6,6 +6,8 @@ interface Props {
   rightCurrency: string;
   rightCurrencyBase: number;
   rightCurrencyValuePrev: number;
+  valueWeekAgo: number;
+  valueMonthAgo: number;
   leftCurrencyName: string;
   rightCurrencyName: string;
   leftCurrencySymbol: string;
@@ -21,6 +23,8 @@ export default function CurrenciesContent({
   rightCurrency,
   rightCurrencyBase,
   rightCurrencyValuePrev,
+  valueWeekAgo,
+  valueMonthAgo,
   leftCurrencyName,
   rightCurrencyName,
   leftCurrencySymbol,
@@ -105,12 +109,12 @@ export default function CurrenciesContent({
             <strong>Variação semanal:</strong>{" "}
             <span
               className={
-                rightCurrencyValuePrev > rightCurrencyBase
+                valueWeekAgo > rightCurrencyBase
                   ? "text-red-700"
                   : "text-green-700"
               }
             >
-              {rightCurrencyValuePrev > rightCurrencyBase ? "" : "+"}
+              {valueWeekAgo > rightCurrencyBase ? "" : "+"}
               {variationWeekly.toLocaleString("pt-BR", {
                 minimumFractionDigits: 4,
               })}
@@ -121,12 +125,12 @@ export default function CurrenciesContent({
             <strong>Variação mensal:</strong>{" "}
             <span
               className={
-                rightCurrencyValuePrev > rightCurrencyBase
+                valueMonthAgo > rightCurrencyBase
                   ? "text-red-700"
                   : "text-green-700"
               }
             >
-              {rightCurrencyValuePrev > rightCurrencyBase ? "" : "+"}
+              {valueMonthAgo > rightCurrencyBase ? "" : "+"}
               {variationMonthly.toLocaleString("pt-BR", {
                 minimumFractionDigits: 4,
               })}
