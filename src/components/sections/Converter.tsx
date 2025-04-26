@@ -23,6 +23,9 @@ export default function Converter({
   const { setLeftCurrency, setRightCurrency } = useCurrency();
   const [isSwapping, setIsSwapping] = useState(false);
   const [showInfo, setShowInfo] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+
+  console.log(isLoading)
 
   //hook externo para gerenciar a navegação
   useCurrencyRouting(currencyState);
@@ -32,7 +35,11 @@ export default function Converter({
     currencyState.setRightCurrency(initialRight.toUpperCase());
     setLeftCurrency(initialLeft.toUpperCase());
     setRightCurrency(initialRight.toUpperCase());
-  }, [initialLeft, initialRight]);
+
+    if (currencyState.rates) {
+      setIsLoading(false); 
+    }
+  }, [initialLeft, initialRight, currencyState.rates]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,9 +75,7 @@ export default function Converter({
       <article className="relative top-4 flex h-full w-full flex-row items-center justify-center gap-30">
         <Card
           className={`relative flex h-80 w-160 flex-col justify-center rounded-4xl bg-[#fcfcfc] shadow-xl transition-all ${
-            isSwapping
-              ? "translate-x-40 opacity-0"
-              : "translate-x-0 opacity-100"
+            isSwapping ? "translate-x-40 opacity-0" : "translate-x-0 opacity-100"
           }`}
           currency={currencyState.leftCurrency}
           value={currencyState.leftValue}
@@ -83,6 +88,7 @@ export default function Converter({
           imagePosition="left"
           isActive={currencyState.activeInput === "left"}
           otherCurrency={currencyState.rightCurrency}
+          isLoading={isLoading} 
         />
 
         <button
@@ -106,9 +112,7 @@ export default function Converter({
 
         <Card
           className={`relative flex h-80 w-160 flex-col justify-center rounded-4xl bg-[#fcfcfc] shadow-xl transition-all ${
-            isSwapping
-              ? "-translate-x-40 opacity-0"
-              : "translate-x-0 opacity-100"
+            isSwapping ? "-translate-x-40 opacity-0" : "translate-x-0 opacity-100"
           }`}
           currency={currencyState.rightCurrency}
           value={currencyState.rightValue}
@@ -121,6 +125,7 @@ export default function Converter({
           imagePosition="right"
           isActive={currencyState.activeInput === "right"}
           otherCurrency={currencyState.leftCurrency}
+          isLoading={isLoading}
         />
       </article>
 
