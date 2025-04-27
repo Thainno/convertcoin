@@ -73,20 +73,22 @@ export default function Card({
       </header>
 
       <form className="relative h-36 w-full p-8">
-        <label className="absolute top-8 left-8 flex h-16 w-24 items-center justify-center rounded-l-4xl bg-white text-4xl">
-          {currencyData.currencies[currency]?.symbol || currency}
-        </label>
-
         {isLoading ? (
           <div className="h-16 animate-pulse rounded-2xl bg-gray-100" />
         ) : (
-          <CurrencyInput
-            value={value}
-            onValueChange={onValueChange}
-            isActive={isActive}
-            className="h-16 w-full px-8 text-end outline-none"
-            maxLength={20}
-          />
+          <>
+            <label className="absolute top-8 left-8 flex h-16 w-24 items-center justify-center rounded-l-4xl bg-white text-4xl">
+              {currencyData.currencies[currency]?.symbol || currency}
+            </label>
+
+            <CurrencyInput
+              value={value}
+              onValueChange={onValueChange}
+              isActive={isActive}
+              className="h-16 w-full px-8 text-end outline-none"
+              maxLength={20}
+            />
+          </>
         )}
       </form>
     </article>

@@ -25,8 +25,6 @@ export default function Converter({
   const [showInfo, setShowInfo] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log(isLoading)
-
   //hook externo para gerenciar a navegação
   useCurrencyRouting(currencyState);
 
