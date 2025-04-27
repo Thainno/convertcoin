@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { fetchCurrencyRates } from "@/services/API/currencyValue";
+import { useCurrency } from "@/context/CurrencyContext";
 
 //Interface que define o formato do estado do conversor de moedas
 export interface CurrencyConverterState {
@@ -26,12 +27,14 @@ export interface CurrencyRatesResponse {
 
 //Hook para gerenciar lógica do conversor de moedas
 export function useCurrencyConverter(): CurrencyConverterState {
-  const [leftCurrency, setLeftCurrency] = useState("USD");
-  const [rightCurrency, setRightCurrency] = useState("BRL");
+  const { leftCurrency, rightCurrency, setLeftCurrency, setRightCurrency } =
+    useCurrency();
   const [leftValue, setLeftValue] = useState("100.00");
   const [rightValue, setRightValue] = useState("");
   const [rates, setRates] = useState<Record<string, number> | null>(null);
   const [activeInput, setActiveInput] = useState<"left" | "right" | null>(null);
+
+  console.log()
 
   //Atualiza as moedas ao trocar a moeda da esquerda
   useEffect(() => {

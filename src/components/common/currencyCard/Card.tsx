@@ -30,7 +30,9 @@ export default function Card({
   className,
   isLoading,
 }: CardProps) {
-  const availableCurrencies = rates ? Object.keys(rates) : ["USD", "BRL"];
+  const availableCurrencies = rates
+    ? Object.keys(rates).filter((c) => c !== otherCurrency)
+    : ["USD", "BRL"];
   const flag = getCountryFlagUrl(currency);
 
   return (
