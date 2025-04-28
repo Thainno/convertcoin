@@ -6,19 +6,11 @@ import Converter from "@/components/sections/Converter";
 import Values from "@/components/sections/Values";
 import { CurrencyProvider } from "@/context/CurrencyContext";
 
-interface HomeProps {
-  initialLeft?: string;
-  initialRight?: string;
-}
-
-export default function Home({
-  initialLeft = "USD",
-  initialRight = "BRL",
-}: HomeProps) {
+export default function Home() {
   return (
     <main className="flex flex-col gap-40">
       <CurrencyProvider>
-        <Converter initialLeft={initialLeft} initialRight={initialRight} />
+        <Converter />
         <Values />
       </CurrencyProvider>
       <Content />

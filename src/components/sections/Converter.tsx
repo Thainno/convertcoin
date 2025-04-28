@@ -1,56 +1,48 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Card from "../common/currencyCard/Card";
 import arrowLeft from "@/assets/images/arrow-left.svg";
 import arrowRight from "@/assets/images/arrow-right.svg";
 import { useCurrencyConverter } from "@/hooks/useCurrencyConverter";
+import { useCurrency } from "@/context/CurrencyContext";
 import { cardSwap } from "@/lib/utils/cardSwap";
-import { useCurrencyRouting } from "@/hooks/useCurrencyRouting";
 
-interface ConverterProps {
-  initialLeft: string;
-  initialRight: string;
-}
-
-export default function Converter({
-  initialLeft,
-  initialRight,
-}: ConverterProps) {
-  const currencyState = useCurrencyConverter({ initialLeft, initialRight });
+export default function Converter() {
+  const currencyState = useCurrencyConverter();
+  const { setLeftCurrency, setRightCurrency } = useCurrency();
   const [isSwapping, setIsSwapping] = useState(false);
   const [showInfo, setShowInfo] = useState(true);
 
-  //hook externo para gerenciar a navegação
-  useCurrencyRouting(currencyState);
-
+  useEffect(() => {
+    setLeftCurrency(currencyState.leftCurrency);
+    setRightCurrency(currencyState.rightCurrency);
+  }, [currencyState.leftCurrency, currencyState.rightCurrency]);
 
   useEffect(() => {
     const handleScroll = () => {
       setShowInfo(window.scrollY < 50);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  });
-
+  }, []);
   const handleSwapCards = () => {
     setIsSwapping(true);
     setTimeout(() => {
       cardSwap(currencyState);
+      setLeftCurrency(currencyState.leftCurrency);
+      setRightCurrency(currencyState.rightCurrency);
       setIsSwapping(false);
     }, 250);
   };
-
   const handleLeftChange = (currency: string) => {
     currencyState.setLeftCurrency(currency);
+    setLeftCurrency(currency);
   };
-
   const handleRightChange = (currency: string) => {
     currencyState.setRightCurrency(currency);
+    setRightCurrency(currency);
   };
-
   return (
     <section className="flex h-screen min-h-160 flex-col items-center">
       <article className="relative top-4 flex h-full w-full flex-row items-center justify-center gap-30">
@@ -72,7 +64,6 @@ export default function Converter({
           isActive={currencyState.activeInput === "left"}
           otherCurrency={currencyState.rightCurrency}
         />
-
         <button
           className="group flex cursor-pointer flex-col"
           onClick={handleSwapCards}
@@ -91,7 +82,6 @@ export default function Converter({
             role="presentation"
           />
         </button>
-
         <Card
           className={`relative flex h-80 w-160 flex-col justify-center rounded-4xl bg-[#fcfcfc] shadow-xl transition-all ${
             isSwapping
@@ -111,14 +101,12 @@ export default function Converter({
           otherCurrency={currencyState.leftCurrency}
         />
       </article>
-
       <span
         className={`text-sm transition-opacity duration-500 ${
           showInfo ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
-        Atualização dos valores às 12:00 UTC-3 Horário de Brasília (somente dias
-        úteis)
+        Atualização dos valores às 12:00 UTC-3 Horário de Brasília
       </span>
     </section>
   );

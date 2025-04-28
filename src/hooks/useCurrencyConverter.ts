@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { fetchCurrencyRates } from "@/services/API/currencyValue";
-import { useCurrency } from "@/context/CurrencyContext";
 
 export interface CurrencyConverterState {
   leftCurrency: string;
@@ -16,15 +15,9 @@ export interface CurrencyConverterState {
   setActiveInput: (val: "left" | "right" | null) => void;
 }
 
-interface UseCurrencyConverterProps {
-  initialLeft: string;
-  initialRight: string;
-}
-
-export function useCurrencyConverter({ initialLeft, initialRight }: UseCurrencyConverterProps): CurrencyConverterState {
-  const { setLeftCurrency, setRightCurrency } = useCurrency(); 
-  const [leftCurrency, _setLeftCurrency] = useState(initialLeft.toUpperCase());
-  const [rightCurrency, _setRightCurrency] = useState(initialRight.toUpperCase());
+export function useCurrencyConverter(): CurrencyConverterState {
+  const [leftCurrency, setLeftCurrency] = useState("USD");
+  const [rightCurrency, setRightCurrency] = useState("BRL");
   const [leftValue, setLeftValue] = useState("100.00");
   const [rightValue, setRightValue] = useState("");
   const [rates, setRates] = useState<Record<string, number> | null>(null);
@@ -59,13 +52,11 @@ export function useCurrencyConverter({ initialLeft, initialRight }: UseCurrencyC
 
   const handleSetLeftCurrency = (val: string) => {
     const upperVal = val.toUpperCase();
-    _setLeftCurrency(upperVal);
-    setLeftCurrency(upperVal); 
+    setLeftCurrency(upperVal);
   };
 
   const handleSetRightCurrency = (val: string) => {
     const upperVal = val.toUpperCase();
-    _setRightCurrency(upperVal);
     setRightCurrency(upperVal);
   };
 
