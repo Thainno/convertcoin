@@ -18,22 +18,13 @@ export default function Converter({
   initialLeft,
   initialRight,
 }: ConverterProps) {
-  const currencyState = useCurrencyConverter();
+  const currencyState = useCurrencyConverter({ initialLeft, initialRight });
   const [isSwapping, setIsSwapping] = useState(false);
   const [showInfo, setShowInfo] = useState(true);
-  const [isLoading, setIsLoading] = useState(true);
 
   //hook externo para gerenciar a navegação
   useCurrencyRouting(currencyState);
 
-  useEffect(() => {
-    currencyState.setLeftCurrency(initialLeft.toUpperCase());
-    currencyState.setRightCurrency(initialRight.toUpperCase());
-
-    if (currencyState.rates) {
-      setIsLoading(false);
-    }
-  }, [initialLeft, initialRight, currencyState.rates]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -80,7 +71,6 @@ export default function Converter({
           imagePosition="left"
           isActive={currencyState.activeInput === "left"}
           otherCurrency={currencyState.rightCurrency}
-          isLoading={isLoading}
         />
 
         <button
@@ -119,7 +109,6 @@ export default function Converter({
           imagePosition="right"
           isActive={currencyState.activeInput === "right"}
           otherCurrency={currencyState.leftCurrency}
-          isLoading={isLoading}
         />
       </article>
 

@@ -2,49 +2,39 @@ import { useState, useEffect } from "react";
 import { fetchCurrencyRates } from "@/services/API/currencyValue";
 import { useCurrency } from "@/context/CurrencyContext";
 
-//Interface que define o formato do estado do conversor de moedas
 export interface CurrencyConverterState {
-  leftCurrency: string; //Moeda selecionada no card da esquerda
-  rightCurrency: string; //Moeda selecionada no card da direita
-  leftValue: string; // Valor digitado no card da esquerda
-  rightValue: string; //Valor convertido (ou digitado) no card da direita
-  rates: Record<string, number> | null; //Objeto com taxas de conversão
-  activeInput: "left" | "right" | null; //Define qual input está ativo no momento
-  setLeftCurrency: (val: string) => void; //Atualiza moeda da esquerda
-  setRightCurrency: (val: string) => void; //Atualiza moeda da direita
-  setLeftValue: (val: string) => void; //Atualiza valor da esquerda
-  setRightValue: (val: string) => void; //Atualiza valor da direita
-  setActiveInput: (val: "left" | "right" | null) => void; // Atualiza o input ativo
+  leftCurrency: string;
+  rightCurrency: string;
+  leftValue: string;
+  rightValue: string;
+  rates: Record<string, number> | null;
+  activeInput: "left" | "right" | null;
+  setLeftCurrency: (val: string) => void;
+  setRightCurrency: (val: string) => void;
+  setLeftValue: (val: string) => void;
+  setRightValue: (val: string) => void;
+  setActiveInput: (val: "left" | "right" | null) => void;
 }
 
-// Interface para representar o retorno da API de taxas de câmbio
-export interface CurrencyRatesResponse {
-  amount: number;
-  base: string;
-  date: string;
-  rates: Record<string, number>;
+interface UseCurrencyConverterProps {
+  initialLeft: string;
+  initialRight: string;
 }
 
-//Hook para gerenciar lógica do conversor de moedas
-export function useCurrencyConverter(): CurrencyConverterState {
-  const { leftCurrency, rightCurrency, setLeftCurrency, setRightCurrency } =
-    useCurrency();
+export function useCurrencyConverter({ initialLeft, initialRight }: UseCurrencyConverterProps): CurrencyConverterState {
+  const { setLeftCurrency, setRightCurrency } = useCurrency(); 
+  const [leftCurrency, _setLeftCurrency] = useState(initialLeft.toUpperCase());
+  const [rightCurrency, _setRightCurrency] = useState(initialRight.toUpperCase());
   const [leftValue, setLeftValue] = useState("100.00");
   const [rightValue, setRightValue] = useState("");
   const [rates, setRates] = useState<Record<string, number> | null>(null);
   const [activeInput, setActiveInput] = useState<"left" | "right" | null>(null);
 
-  console.log()
-
-  //Atualiza as moedas ao trocar a moeda da esquerda
   useEffect(() => {
     const loadRates = async () => {
-      //Sempre usa a moeda da esquerda como base para buscar os valores
-      const data: CurrencyRatesResponse =
-        await fetchCurrencyRates(leftCurrency);
+      const data = await fetchCurrencyRates(leftCurrency);
       setRates(data.rates);
 
-      //Verifica se a moeda da direita está disponível nas taxas retornadas
       if (data.rates[rightCurrency]) {
         const converted = parseFloat(leftValue) * data.rates[rightCurrency];
         setRightValue(converted.toFixed(2));
@@ -53,27 +43,32 @@ export function useCurrencyConverter(): CurrencyConverterState {
     loadRates();
   }, [leftCurrency, rightCurrency]);
 
-  //Converte valor do card da DIREITA com base no valor digitado no card da ESQUERDA
   useEffect(() => {
     if (activeInput === "left" && rates?.[rightCurrency]) {
-      //Converte o valor de texto para número (pois o input é do tipo text)
       const num = parseFloat(leftValue);
-      //Atualiza o valor da direita se ofr um número válido
       setRightValue(!isNaN(num) ? (num * rates[rightCurrency]).toFixed(2) : "");
     }
-  }, [leftValue, rightCurrency, rates, activeInput]);
+  }, [leftValue, activeInput, rates, rightCurrency]);
 
-  //Converte valor do card da ESQUERDA com base no valor digitado no card da DIREITA
   useEffect(() => {
     if (activeInput === "right" && rates?.[rightCurrency]) {
-      //Converte o valor de texto para número (pois o input é do tipo text)
       const num = parseFloat(rightValue);
-      //Atualiza o valor da esquerda se for um número válido
       setLeftValue(!isNaN(num) ? (num / rates[rightCurrency]).toFixed(2) : "");
     }
   }, [rightValue, activeInput, rates, rightCurrency]);
 
-  //Retorna o estado completo e suas funções para uso externo
+  const handleSetLeftCurrency = (val: string) => {
+    const upperVal = val.toUpperCase();
+    _setLeftCurrency(upperVal);
+    setLeftCurrency(upperVal); 
+  };
+
+  const handleSetRightCurrency = (val: string) => {
+    const upperVal = val.toUpperCase();
+    _setRightCurrency(upperVal);
+    setRightCurrency(upperVal);
+  };
+
   return {
     leftCurrency,
     rightCurrency,
@@ -81,8 +76,8 @@ export function useCurrencyConverter(): CurrencyConverterState {
     rightValue,
     rates,
     activeInput,
-    setLeftCurrency,
-    setRightCurrency,
+    setLeftCurrency: handleSetLeftCurrency,
+    setRightCurrency: handleSetRightCurrency,
     setLeftValue,
     setRightValue,
     setActiveInput,

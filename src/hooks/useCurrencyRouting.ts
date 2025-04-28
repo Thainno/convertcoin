@@ -1,21 +1,18 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { CurrencyConverterState } from "@/hooks/useCurrencyConverter";
 
 export const useCurrencyRouting = (currencyState: CurrencyConverterState) => {
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     if (currencyState.leftCurrency && currencyState.rightCurrency) {
-      const slug: string = `${currencyState.leftCurrency.toLowerCase()}-${currencyState.rightCurrency.toLowerCase()}`;
+      const slug = `${currencyState.leftCurrency.toLowerCase()}-${currencyState.rightCurrency.toLowerCase()}`;
 
-      const currentPath: string = window.location.pathname.slice(1);
-      console.log(currentPath);
-      console.log(slug);
-
-      if (slug !== currentPath) {
+      if (slug !== pathname.slice(1)) {
         router.replace(`/${slug}`);
       }
     }

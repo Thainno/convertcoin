@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { currencyData } from "@/lib/constants/currenciesData";
 import { getCountryFlagUrl } from "@/services/API/currencyFlags";
 import Input from "../Input";
@@ -21,6 +21,7 @@ export default function CurrencyDropdown({
 }: CurrencyDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCurrency, setSelectedCurrency] = useState<string | null>(null);
 
   const toggleDropdown = () => setIsOpen((prev) => !prev);
   const closeDropdown = () => setIsOpen(false);
@@ -32,6 +33,13 @@ export default function CurrencyDropdown({
       return code.toLowerCase().includes(term) || name.includes(term);
     });
   }, [searchTerm, currencies]);
+
+  useEffect(() => {
+    if (selectedCurrency) {
+      onSelectCurrency(selectedCurrency);
+      setSelectedCurrency(null);
+    }
+  }, [selectedCurrency, onSelectCurrency]);
 
   return (
     <>
@@ -86,7 +94,7 @@ export default function CurrencyDropdown({
                   key={curr}
                   onClick={(e) => {
                     e.stopPropagation();
-                    onSelectCurrency(curr);
+                    setSelectedCurrency(curr);
                     closeDropdown();
                   }}
                   className="flex cursor-pointer items-center px-6 pb-2 hover:bg-gray-100"
