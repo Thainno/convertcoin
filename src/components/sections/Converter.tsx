@@ -7,12 +7,25 @@ import arrowRight from "@/assets/images/arrow-right.svg";
 import { useCurrencyConverter } from "@/hooks/useCurrencyConverter";
 import { useCurrency } from "@/context/CurrencyContext";
 import { cardSwap } from "@/lib/utils/cardSwap";
+import { useUrlCurrencies } from "@/hooks/useUrlCurrencies";
+
+import { useParams } from "next/navigation";
 
 export default function Converter() {
-  const currencyState = useCurrencyConverter();
   const { setLeftCurrency, setRightCurrency } = useCurrency();
   const [isSwapping, setIsSwapping] = useState(false);
   const [showInfo, setShowInfo] = useState(true);
+
+  const params = useParams();
+  const slug = typeof params?.slug === "string" ? params.slug : "";
+  const [leftCurrencyFromUrl, rightCurrencyFromUrl] = slug
+    .toUpperCase()
+    .split("-");
+
+  const currencyState = useCurrencyConverter(
+    leftCurrencyFromUrl || "USD",
+    rightCurrencyFromUrl || "BRL"
+  );
 
   useEffect(() => {
     setLeftCurrency(currencyState.leftCurrency);
@@ -43,6 +56,9 @@ export default function Converter() {
     currencyState.setRightCurrency(currency);
     setRightCurrency(currency);
   };
+
+  useUrlCurrencies(currencyState.leftCurrency, currencyState.rightCurrency);
+
   return (
     <section className="flex h-screen min-h-160 flex-col items-center">
       <article className="relative top-4 flex h-full w-full flex-row items-center justify-center gap-30">

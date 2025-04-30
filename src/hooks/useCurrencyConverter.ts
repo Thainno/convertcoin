@@ -15,9 +15,12 @@ export interface CurrencyConverterState {
   setActiveInput: (val: "left" | "right" | null) => void;
 }
 
-export function useCurrencyConverter(): CurrencyConverterState {
-  const [leftCurrency, setLeftCurrency] = useState("USD");
-  const [rightCurrency, setRightCurrency] = useState("BRL");
+export function useCurrencyConverter(
+  initialLeftCurrency: string = "USD",
+  initialRightCurrency: string = "BRL",
+): CurrencyConverterState {
+  const [leftCurrency, setLeftCurrency] = useState(initialLeftCurrency);
+  const [rightCurrency, setRightCurrency] = useState(initialRightCurrency);
   const [leftValue, setLeftValue] = useState("100.00");
   const [rightValue, setRightValue] = useState("");
   const [rates, setRates] = useState<Record<string, number> | null>(null);
