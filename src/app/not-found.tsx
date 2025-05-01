@@ -9,9 +9,8 @@ export default function NotFound() {
         <div className="flex gap-4 text-9xl font-extrabold">
           <p>4</p>
           <Image
+            className="h-auto w-30"
             src={logo}
-            width={110}
-            height={110}
             alt="Número zero estilizado com a logo"
           />
           <p>4</p>
