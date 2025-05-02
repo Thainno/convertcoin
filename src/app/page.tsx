@@ -8,7 +8,7 @@ import { CurrencyProvider } from "@/context/CurrencyContext";
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-80">
+    <main className="flex flex-col gap-20">
       <CurrencyProvider>
         <Converter />
         <Values />
