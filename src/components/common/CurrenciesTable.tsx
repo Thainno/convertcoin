@@ -48,10 +48,7 @@ export default function CurrenciesTable({
             <td scope="row" className="flex w-1/2 justify-center py-3">
               {leftCurrencySymbol} {format(value)} ({baseValueText[index]})
             </td>
-            <td
-              scope="row"
-              className="flex w-1/2 justify-center py-3 font-medium"
-            >
+            <td scope="row" className="flex w-1/2 justify-center py-3">
               {rightCurrencySymbol} {format(value * rightCurrencyBase)}
             </td>
           </tr>

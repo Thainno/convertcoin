@@ -46,20 +46,17 @@ export default function CurrenciesContent({
   return (
     <>
       <section className="flex min-h-screen w-full items-center justify-center bg-zinc-100 py-18">
-        <div className="flex w-300 flex-col gap-12">
+        <div className="relative flex w-300 flex-col gap-12">
           <h1 className="text-5xl font-extrabold text-[#6DA67A]">
             {leftCurrencyName} para {rightCurrencyName}
           </h1>
 
-          <div>
-            <h2 className="text-lg font-semibold">
+          <div className="relative h-100">
+            <h2 className="text-sm font-semibold">
               Gráfico histórico de {leftCurrencyName} ({leftCurrency}) para{" "}
               {rightCurrencyName} ({rightCurrency})
             </h2>
-
-            <div className="flex justify-center">
-              <CurrencyChart />
-            </div>
+            <CurrencyChart />
           </div>
 
           <p className="text-lg leading-relaxed">
@@ -96,7 +93,7 @@ export default function CurrenciesContent({
                     <span>
                       {rightCurrencySymbol}
                       {value.toLocaleString("pt-BR", {
-                        maximumFractionDigits: 4,
+                        minimumFractionDigits: 4,
                       })}
                     </span>{" "}
                     {rightCurrencyName}

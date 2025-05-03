@@ -41,7 +41,7 @@ export default function CurrencyChart() {
   const ticks = Array.from(new Set(rawTicks));
 
   return (
-    <div className="h-80 w-full rounded-xl bg-white p-4 shadow-md">
+    <div className="h-full w-full rounded-xl bg-white p-4 shadow-md">
       <div className="mb-4 flex gap-2">
         {chartFilters.map((f) => (
           <button
@@ -59,7 +59,7 @@ export default function CurrencyChart() {
       </div>
 
       {loading ? (
-        <div className="flex h-10/12 items-center justify-center space-x-2 bg-white">
+        <div className="flex h-3/4 items-center justify-center space-x-2 bg-white">
           <span className="sr-only">Loading...</span>
           <div className="h-4 w-4 animate-bounce rounded-full bg-[#6DA67A] [animation-delay:-0.3s]"></div>
           <div className="h-4 w-4 animate-bounce rounded-full bg-[#6DA67A] [animation-delay:-0.15s]"></div>
