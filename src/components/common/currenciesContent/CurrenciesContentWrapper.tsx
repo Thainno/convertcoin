@@ -15,6 +15,9 @@ export default function CurrenciesContentWrapper() {
     rightCurrencyName,
     leftCurrencySymbol,
     rightCurrencySymbol,
+    description,
+    curiosity,
+    usedIn,
     lastDate,
     variationDaily,
     variationWeekly,
@@ -33,6 +36,9 @@ export default function CurrenciesContentWrapper() {
       rightCurrencyName={rightCurrencyName}
       leftCurrencySymbol={leftCurrencySymbol}
       rightCurrencySymbol={rightCurrencySymbol}
+      description={description}
+      curiosity={curiosity}
+      usedIn={usedIn}
       lastDate={lastDate}
       variationDaily={variationDaily}
       variationWeekly={variationWeekly}

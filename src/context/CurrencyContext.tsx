@@ -24,6 +24,10 @@ interface CurrencyContextType {
   leftCurrencySymbol: string;
   rightCurrencySymbol: string;
 
+  description: string;
+  curiosity: string;
+  usedIn: string[];
+
   lastDate: string;
 }
 
@@ -111,13 +115,15 @@ export const CurrencyProvider = ({
     }
   }, [historicalRates, loading]);
 
-  const leftCurrencyName = currencyData.currencies[leftCurrency]?.name || "";
-  const rightCurrencyName = currencyData.currencies[rightCurrency]?.name || "";
+  const leftCurrencyName = currencyData.currencies[leftCurrency]?.name;
+  const rightCurrencyName = currencyData.currencies[rightCurrency]?.name;
 
-  const leftCurrencySymbol =
-    currencyData.currencies[leftCurrency]?.symbol || leftCurrency;
-  const rightCurrencySymbol =
-    currencyData.currencies[rightCurrency]?.symbol || rightCurrency;
+  const leftCurrencySymbol = currencyData.currencies[leftCurrency]?.symbol;
+  const rightCurrencySymbol = currencyData.currencies[rightCurrency]?.symbol;
+
+  const description = currencyData.currencies[leftCurrency]?.description;
+  const curiosity = currencyData.currencies[leftCurrency]?.curiosity;
+  const usedIn = currencyData.currencies[leftCurrency]?.usedIn;
 
   return (
     <CurrencyContext.Provider
@@ -134,6 +140,9 @@ export const CurrencyProvider = ({
         rightCurrencyName,
         leftCurrencySymbol,
         rightCurrencySymbol,
+        description,
+        curiosity,
+        usedIn,
         lastDate,
         variationDaily,
         variationWeekly,
