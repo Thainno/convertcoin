@@ -24,15 +24,15 @@ export default function CurrenciesTable({
 
   return (
     <table
-      className="w-full max-w-3xl shadow-lg rounded-2xl overflow-hidden"
+      className="min-w-xl overflow-hidden rounded-2xl shadow-lg"
       aria-label="Tabela de conversão de moedas"
     >
       <thead className="bg-[#6DA67A] text-white">
-        <tr className="flex justify-around items-center">
-          <th scope="col" className="py-4 text-xl font-semibold">
+        <tr className="flex h-18 items-center justify-around">
+          <th scope="col" className="text-xl font-semibold">
             {leftCurrencyName}
           </th>
-          <th scope="col" className="py-4 text-xl font-semibold">
+          <th scope="col" className="text-xl font-semibold">
             {rightCurrencyName}
           </th>
         </tr>
@@ -41,16 +41,16 @@ export default function CurrenciesTable({
         {baseValues.map((value, index) => (
           <tr
             key={`currency-row-${value}`}
-            className={`flex items-center ${
+            className={`flex h-16 items-center ${
               index % 2 === 0 ? "bg-white" : "bg-zinc-100"
             }`}
           >
-            <td scope="row" className="w-1/2 py-3 flex justify-center">
+            <td scope="row" className="flex w-1/2 justify-center py-3">
               {leftCurrencySymbol} {format(value)} ({baseValueText[index]})
             </td>
             <td
               scope="row"
-              className="w-1/2 py-3 font-medium  flex justify-center"
+              className="flex w-1/2 justify-center py-3 font-medium"
             >
               {rightCurrencySymbol} {format(value * rightCurrencyBase)}
             </td>
