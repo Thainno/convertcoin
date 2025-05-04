@@ -28,7 +28,7 @@ export default function CurrencyOverviewSection({
     previous > rightCurrencyBase ? "text-red-700" : "text-green-700";
 
   return (
-    <section className="flex min-h-screen w-full items-center justify-center bg-zinc-100 py-12">
+    <section className="w-vw flex h-dvh items-center justify-center bg-zinc-100 py-12">
       <div className="flex w-7xl flex-col gap-12">
         <header>
           <h1 className="text-5xl font-extrabold text-[#6DA67A]">
@@ -63,7 +63,7 @@ export default function CurrencyOverviewSection({
             ({ title, description, image, value }, index) => (
               <article
                 key={index}
-                className="flex w-1/3 flex-col items-center gap-4 text-center"
+                className="card-overview-hover flex w-1/3 flex-col items-center gap-4 p-8 text-center"
               >
                 <Image
                   src={image}

@@ -11,7 +11,7 @@ export default function CurrencyInfoSection({
   usedIn,
 }: CurrencyProps) {
   return (
-    <section className="flex min-h-screen w-full items-center justify-center gap-20 bg-[#6DA67A] py-12">
+    <section className="flex min-h-screen max-w-screen items-center justify-center gap-20 bg-[#6DA67A] py-12">
       <figure>
         <Image
           src={didYouKnow}

@@ -23,11 +23,11 @@ export default function CurrencySummarySection({
     previous > rightCurrencyBase ? "queda" : "alta";
 
   return (
-    <section className="flex min-h-screen w-full justify-center py-12">
+    <section className="flex min-h-screen max-w-screen justify-center py-12">
       <div className="flex w-full max-w-7xl items-center gap-16">
         <div className="flex flex-col gap-4 text-xl">
           <h2 className="mb-4 text-5xl font-extrabold text-[#6DA67A]">
-            Resumo da cotação
+            Resumo da cotação do {leftCurrencyName}
           </h2>
           <p>
             O {leftCurrencyName} apresentou variações relevantes em relação ao{" "}

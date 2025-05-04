@@ -50,7 +50,7 @@ export default function CurrencyChart() {
             className={`rounded px-3 py-1 text-sm shadow-sm ${
               filter === f.value
                 ? "bg-[#6DA67A] text-white"
-                : "bg-gray-100 text-gray-700"
+                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
             }`}
           >
             {f.label}

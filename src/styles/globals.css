@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
-a {
+a,
+button {
   cursor: pointer;
 }
 
@@ -28,6 +29,11 @@ a {
     left: 0;
     width: 100%;
   }
+}
+
+/* Animação dos cards do <CurrenciesOverview/> */
+.card-overview-hover {
+  @apply duration-300 ease-in-out hover:-translate-y-3 hover:rounded-2xl hover:bg-gray-50 hover:shadow-md hover:transition-transform;
 }
 
 /* Remove arrows from all number inputs */
