@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="fixed top-0 z-10 flex h-24 w-full justify-center bg-[#6DA67A] px-20 text-xl text-white">
+    <header className="fixed top-0 z-10 flex h-24 w-full justify-center bg-[#6DA67A] px-20 text-lg text-white">
       <nav
         className="z-10 flex h-24 min-h-20 w-full max-w-500 cursor-pointer flex-row items-center justify-between"
         aria-label="Menu principal"

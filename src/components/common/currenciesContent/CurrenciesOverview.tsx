@@ -3,7 +3,7 @@ import Image from "next/image";
 import { getCurrenciesContentData } from "@/lib/constants/currenciesContentData";
 import { CurrencyProps } from "@/types/currencies";
 
-export default function CurrencyOverviewSection({
+export default function CurrenciesOverview({
   leftCurrency,
   rightCurrency,
   leftCurrencyName,
@@ -44,7 +44,7 @@ export default function CurrencyOverviewSection({
           <CurrencyChart />
         </article>
 
-        <p className="text-lg leading-relaxed">
+        <p className="text-md leading-relaxed">
           Hoje, {leftCurrencySymbol}1,00 {leftCurrencyName} equivale a{" "}
           {rightCurrencySymbol}
           {rightCurrencyBase.toLocaleString("pt-BR", {

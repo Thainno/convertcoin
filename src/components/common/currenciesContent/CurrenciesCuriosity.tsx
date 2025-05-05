@@ -2,9 +2,10 @@ import Image from "next/image";
 import littleCoin from "@/assets/images/little-coin.png";
 import didYouKnow from "@/assets/images/did-you-know.svg";
 import bgCuriosity from "@/assets/images/bg-curiosity.svg";
+
 import { CurrencyProps } from "@/types/currencies";
 
-export default function CurrencyInfoSection({
+export default function CurrenciesCuriosity({
   leftCurrencyName,
   description,
   curiosity,
@@ -27,7 +28,7 @@ export default function CurrencyInfoSection({
 
       <div className="relative h-200 w-180">
         <Image src={bgCuriosity} alt="Fundo ilustrtido" fill />
-        <div className="relative z-10 flex h-full flex-col justify-center gap-12 px-24">
+        <div className="text-md relative flex h-full flex-col justify-center gap-12 px-24">
           <h2 className="-mb-12 text-3xl font-extrabold text-[#6DA67A]">
             Sobre o {leftCurrencyName}
           </h2>

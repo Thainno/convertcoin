@@ -1,7 +1,7 @@
 import CurrenciesTable from "./CurrenciesTable";
 import { CurrencyProps } from "@/types/currencies";
 
-export default function CurrencySummarySection({
+export default function CurrenciesSummary({
   leftCurrency,
   rightCurrency,
   leftCurrencyName,
@@ -25,8 +25,8 @@ export default function CurrencySummarySection({
   return (
     <section className="flex min-h-screen max-w-screen justify-center py-12">
       <div className="flex w-full max-w-7xl items-center gap-16">
-        <div className="flex flex-col gap-4 text-xl">
-          <h2 className="mb-4 text-5xl font-extrabold text-[#6DA67A]">
+        <div className="text-md flex flex-col gap-4">
+          <h2 className="mb-4 text-4xl font-extrabold text-[#6DA67A]">
             Resumo da cotação do {leftCurrencyName}
           </h2>
           <p>

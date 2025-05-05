@@ -8,13 +8,13 @@ import { CurrencyProvider } from "@/context/CurrencyContext";
 export default function Home() {
   return (
     <main className="flex flex-col">
-      {/* <CurrencyProvider>
+      <CurrencyProvider>
         <Converter />
         <Content />
-      </CurrencyProvider> */}
+      </CurrencyProvider>
       <Banks />
-      {/* <Brokers />
-      <Airlines /> */}
+      <Brokers />
+      <Airlines />
     </main>
   );
 }

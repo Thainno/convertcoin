@@ -36,7 +36,7 @@ export default function Card({
   return (
     <article className={className}>
       <header
-        className={`flex ${imagePosition === "left" ? "flex-row" : "flex-row-reverse text-right"} items-center p-8`}
+        className={`flex items-center p-8 ${imagePosition === "left" ? "flex-row" : "flex-row-reverse text-right"}`}
       >
         <figure
           className={`h-16 w-16 overflow-hidden rounded-full ${imagePosition === "left" ? "mr-4" : "ml-4"}`}

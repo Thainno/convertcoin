@@ -12,10 +12,10 @@ export default function Banks() {
     <section className="flex min-h-screen max-w-screen flex-col items-center justify-center gap-12">
       <div className="flex w-6xl gap-12">
         <div className="w-7xl">
-          <h2 className="mb-4 text-5xl font-extrabold text-[#6DA67A]">
+          <h2 className="mb-4 text-4xl font-extrabold text-[#6DA67A]">
             Melhores bancos
           </h2>
-          <p className="text-xl">
+          <p className="text-md">
             Se você realiza transações em moedas estrangeiras, seja para
             viagens, negócios ou investimentos, escolher o banco certo faz toda
             a diferença. Pensando nisso, reunimos uma seleção dos melhores
