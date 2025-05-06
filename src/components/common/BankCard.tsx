@@ -11,10 +11,10 @@ export interface BankData {
   affiliateLink: string;
   colorsBank: string[];
   indicationCode?: string;
-  showIndicationCode?: boolean;
 }
 
 export default function BankCard({
+  bankName,
   imgHeader,
   imgHeaderAlt,
   imgCheck,
@@ -25,22 +25,28 @@ export default function BankCard({
   colorsBank,
 }: BankData) {
   return (
-    <div className="flex h-125 w-80 flex-col items-center gap-5 rounded-2xl bg-zinc-50 shadow-sm">
-      <Image
-        className="rounded-t-2xl shadow-lg"
-        src={imgHeader}
-        alt={imgHeaderAlt}
-      />
+    <article className="flex h-125 w-80 flex-col items-center gap-5 rounded-2xl bg-zinc-50 shadow-sm">
+      <header>
+        <Image
+          className="rounded-t-2xl shadow-lg"
+          src={imgHeader}
+          alt={imgHeaderAlt}
+        />
+      </header>
 
-      <ul className="flex h-36 flex-col gap-2 px-6">
-        {benefits.map((benefits, index) => (
-          <li key={index} className="flex gap-2">
+      <ul
+        className="flex h-36 flex-col gap-2 px-6"
+        aria-label={`Benefícios do ${bankName}`}
+      >
+        {benefits.map((benefit, index) => (
+          <li key={index} className="flex items-start gap-2 text-xs">
             <Image
-              className="w-4"
+              className="mt-1 w-4"
               src={imgCheck}
               alt="Ilustração de marcador de lista"
+              role="presentation"
             />
-            <p className="text-xs">{benefits}</p>
+            <span>{benefit}</span>
           </li>
         ))}
       </ul>
@@ -57,11 +63,12 @@ export default function BankCard({
       <Link
         href={affiliateLink}
         target="_blank"
-        style={{ backgroundColor: colorsBank[0] }}
+        rel="noopener noreferrer"
         className={`flex h-10 w-60 items-center justify-center rounded-lg font-semibold text-white transition duration-200 ${colorsBank[0]} ${colorsBank[1]}`}
+        style={{ backgroundColor: colorsBank[0] }}
       >
         Criar conta
       </Link>
-    </div>
+    </article>
   );
 }
