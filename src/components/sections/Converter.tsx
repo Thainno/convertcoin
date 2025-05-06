@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Card from "../common/currencyCard/Card";
+import CurrencyCard from "../common/currencyCard/CurrencyCard";
 import arrowLeft from "@/assets/images/arrow-left.svg";
 import arrowRight from "@/assets/images/arrow-right.svg";
 import { useCurrencyConverter } from "@/hooks/useCurrencyConverter";
@@ -24,7 +24,7 @@ export default function Converter() {
 
   const currencyState = useCurrencyConverter(
     leftCurrencyFromUrl || "USD",
-    rightCurrencyFromUrl || "BRL"
+    rightCurrencyFromUrl || "BRL",
   );
 
   useEffect(() => {
@@ -62,7 +62,7 @@ export default function Converter() {
   return (
     <section className="flex h-screen min-h-160 flex-col items-center">
       <article className="relative top-4 flex h-full w-full flex-row items-center justify-center gap-30">
-        <Card
+        <CurrencyCard
           className={`relative flex h-80 w-160 flex-col justify-center rounded-4xl bg-[#fcfcfc] shadow-md transition-all ${
             isSwapping
               ? "translate-x-40 opacity-0"
@@ -98,7 +98,7 @@ export default function Converter() {
             role="presentation"
           />
         </button>
-        <Card
+        <CurrencyCard
           className={`relative flex h-80 w-160 flex-col justify-center rounded-4xl bg-[#fcfcfc] shadow-md transition-all ${
             isSwapping
               ? "-translate-x-40 opacity-0"

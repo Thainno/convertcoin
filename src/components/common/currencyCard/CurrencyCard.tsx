@@ -17,7 +17,7 @@ interface CardProps {
   className: string;
 }
 
-export default function Card({
+export default function CurrencyCard({
   imagePosition,
   currency,
   value,
