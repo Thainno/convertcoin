@@ -13,12 +13,17 @@ export default function CurrenciesCuriosity({
 }: CurrencyProps) {
   return (
     <section className="flex min-h-screen max-w-screen items-center justify-center gap-20 bg-[#6DA67A] py-12">
-      <figure>
-        <Image
-          src={didYouKnow}
-          width={500}
-          alt="Texto ilustrativo: Você sabia?"
-        />
+      <figure className="flex flex-col items-center">
+        <div className="relative flex h-70 w-5/6 items-center justify-center gap-4">
+          <Image src={didYouKnow} alt="Fundo ilustrtido" fill />
+          <p className="relative text-center text-5xl font-bold text-[#6DA67A]">
+            Você <br />
+            sabia
+          </p>
+          <span className="custom-interrogation relative text-[150px] font-extrabold text-green-800">
+            ?
+          </span>
+        </div>
         <Image
           src={littleCoin}
           width={500}

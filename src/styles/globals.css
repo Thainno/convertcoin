@@ -36,6 +36,32 @@ button {
   @apply duration-300 ease-in-out hover:-translate-y-3 hover:rounded-2xl hover:bg-gray-50 hover:shadow-md hover:transition-transform;
 }
 
+/* Animação da "?" em "Você sabia?"*/
+.custom-interrogation {
+  animation: rotateInterrogation 2s infinite;
+}
+
+@keyframes rotateInterrogation {
+  0% {
+    transform: rotate(8deg);
+  }
+  5% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(12deg);
+  }
+  15% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(8deg);
+  }
+  100% {
+    transform: rotate(8deg);
+  }
+}
+
 /* Remove arrows from all number inputs */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
