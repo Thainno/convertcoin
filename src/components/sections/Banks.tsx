@@ -8,7 +8,7 @@ export default function Banks() {
 
   return (
     <section className="flex min-h-screen max-w-screen flex-col items-center justify-center gap-12 py-12">
-      <div className="flex w-5xl flex-col gap-2">
+      <header className="flex w-5xl flex-col gap-2">
         <h2 className="text-center text-4xl font-extrabold text-[#6DA67A]">
           Melhores bancos para você
         </h2>
@@ -19,7 +19,7 @@ export default function Banks() {
           escolher bem o banco. Por isso, reunimos os melhores, com foco em
           segurança, taxas competitivas, agilidade e bom suporte.
         </p>
-      </div>
+      </header>
 
       <div className="flex justify-center gap-8">
         {bankInfos.map((bank, index) => (
@@ -27,22 +27,23 @@ export default function Banks() {
         ))}
       </div>
 
-      <div className="relative flex w-3xl items-center gap-4 rounded-xl bg-[#6DA67A] p-6 shadow-md">
-        <div className="flex">
-          <Image
-            className="absolute -top-10 -left-5 w-24"
-            src={lampTips}
-            alt=""
-          />
-          <h3 className="absolute top-1 left-14 px-4 text-4xl font-extrabold text-[#43764E]">
-            Dica:
-          </h3>
-        </div>
+      <aside
+        className="relative flex w-3xl items-center gap-4 rounded-xl bg-[#6DA67A] p-6 shadow-md"
+        aria-label="Dica importante"
+      >
+        <Image
+          className="absolute -top-10 -left-5 w-24"
+          src={lampTips}
+          alt="Ícone de dica"
+        />
+        <h3 className="absolute top-1 left-14 px-4 text-4xl font-extrabold text-[#43764E]">
+          Dica:
+        </h3>
         <p className="mt-4 px-8 text-lg font-semibold text-white">
           Crie uma conta em todas instituições indicadas e aproveite os
           benefícios e novidades exclusivos de cada uma!
         </p>
-      </div>
+      </aside>
     </section>
   );
 }
