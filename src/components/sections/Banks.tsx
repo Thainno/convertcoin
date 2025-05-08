@@ -7,9 +7,15 @@ export default function Banks() {
   const bankInfos = getBankInfo();
 
   return (
-    <section className="flex min-h-screen max-w-screen flex-col items-center justify-center gap-12 py-12">
+    <section
+      className="flex min-h-screen max-w-screen flex-col items-center justify-center gap-12 py-12"
+      aria-labelledby="banks-title"
+    >
       <header className="flex w-5xl flex-col gap-2">
-        <h2 className="text-center text-4xl font-extrabold text-[#6DA67A]">
+        <h2
+          id="banks-title"
+          className="text-center text-4xl font-extrabold text-[#6DA67A]"
+        >
           Melhores bancos para você
         </h2>
         <p className="text-sm">

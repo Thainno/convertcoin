@@ -22,43 +22,43 @@ export default function CurrenciesSummary({
   const getVariationStatus = (previous: number) =>
     previous > rightCurrencyBase ? "queda" : "alta";
 
+  const test = (value: number) => {
+    return value.toLocaleString("pt-BR", { maximumFractionDigits: 2 });
+  };
+
   return (
-    <section className="flex min-h-screen max-w-screen justify-center py-12">
+    <section
+      className="flex min-h-screen max-w-screen justify-center py-12"
+      aria-labelledby="summary-title"
+    >
       <div className="flex w-full max-w-7xl items-center gap-16">
         <div className="text-md flex flex-col gap-4">
-          <h2 className="mb-4 text-4xl font-extrabold text-[#6DA67A]">
-            Resumo da cotação do {leftCurrencyName}
+          <h2
+            id="summary-title"
+            className="mb-4 text-4xl font-extrabold text-[#6DA67A]"
+          >
+            {`Resumo da cotação do ${leftCurrencyName}`}
           </h2>
+
           <p>
-            O {leftCurrencyName} apresentou variações relevantes em relação ao{" "}
-            {rightCurrencyName} ao longo dos últimos dias.
-            <br />
-            <br />
-            Houve uma {getVariationStatus(rightCurrencyValuePrev)} de{" "}
-            <span className={getVariationColor(rightCurrencyValuePrev)}>
-              {variationDaily.toLocaleString("pt-BR", {
-                maximumFractionDigits: 2,
-              })}
-              %
-            </span>{" "}
-            entre ontem e hoje, uma {getVariationStatus(valueWeekAgo)} de{" "}
-            <span className={getVariationColor(valueWeekAgo)}>
-              {variationWeekly.toLocaleString("pt-BR", {
-                maximumFractionDigits: 2,
-              })}
-              %
-            </span>{" "}
-            na comparação com a semana passada e uma{" "}
-            {getVariationStatus(valueMonthAgo)} de{" "}
-            <span className={getVariationColor(valueMonthAgo)}>
-              {variationMonthly.toLocaleString("pt-BR", {
-                maximumFractionDigits: 2,
-              })}
-              %
-            </span>{" "}
-            no período de um mês.
-            <br />
-            <br />
+            {`O ${leftCurrencyName} apresentou variações relevantes em relação ao ${rightCurrencyName} ao longo dos últimos dias.`}
+          </p>
+          <p>
+            {`Houve uma ${getVariationStatus(rightCurrencyValuePrev)} de `}
+            <strong className={getVariationColor(rightCurrencyValuePrev)}>
+              {`${test(variationDaily)}%`}
+            </strong>
+            {` entre ontem e hoje, uma ${getVariationStatus(valueWeekAgo)} de `}
+            <strong className={getVariationColor(valueWeekAgo)}>
+              {`${test(variationWeekly)}%`}
+            </strong>
+            {` na comparação com a semana passada e uma ${getVariationStatus(valueMonthAgo)} de `}
+            <strong className={getVariationColor(valueMonthAgo)}>
+              {`${test(variationMonthly)}%`}
+            </strong>
+            {` no período de um mês.`}
+          </p>
+          <p>
             Confira a tabela dos valores convertidos com base na cotação atual
             de {leftCurrency} para {rightCurrency}.
           </p>
