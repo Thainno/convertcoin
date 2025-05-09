@@ -5,6 +5,18 @@ button {
   cursor: pointer;
 }
 
+/* Remove arrows from all number inputs */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 /* Animação de link sublinhado */
 .custom-link::after {
   content: "";
@@ -62,14 +74,19 @@ button {
   }
 }
 
-/* Remove arrows from all number inputs */
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+/* Animação do botão no Footer para ir ao topo da página*/
+.btn-arrow-top {
+  animation: arrow-top 1.5s infinite;
 }
 
-/* Firefox */
-input[type="number"] {
-  -moz-appearance: textfield;
+@keyframes arrow-top {
+  0%,
+  100% {
+    transform: translateY(10%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
 }

@@ -6,11 +6,11 @@ import { CurrencyProvider } from "@/context/CurrencyContext";
 export default function Home() {
   return (
     <main className="flex flex-col">
-      {/* <CurrencyProvider>
+      <CurrencyProvider>
         <Converter />
         <Content />
       </CurrencyProvider>
-      <Banks /> */}
+      <Banks />
     </main>
   );
 }

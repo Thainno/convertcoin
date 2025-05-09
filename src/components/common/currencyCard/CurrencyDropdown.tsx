@@ -5,7 +5,7 @@ import { currencyData } from "@/lib/constants/currenciesData";
 import { getCountryFlagUrl } from "@/services/API/currencyFlags";
 import Input from "../Input";
 import search from "@/assets/images/search.svg";
-import downArrow from "@/assets/images/down-arrow.svg";
+import downArrow from "@/assets/images/arrow-down.svg";
 import Image from "next/image";
 
 interface CurrencyDropdownProps {

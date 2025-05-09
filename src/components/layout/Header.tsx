@@ -23,7 +23,7 @@ export default function Header() {
         <ul className="flex flex-row gap-16">
           <li>
             <Link
-              href={"/about"}
+              href={"/sobre-nos"}
               aria-label="Sobre nós"
               className="custom-link relative p-1"
             >
@@ -33,7 +33,7 @@ export default function Header() {
 
           <li>
             <Link
-              href={"/suport"}
+              href={"/suporte"}
               aria-label="Suporte"
               className="custom-link relative p-1"
             >
@@ -43,7 +43,7 @@ export default function Header() {
 
           <li>
             <Link
-              href={"/helpProject"}
+              href={"/apoiar-projeto"}
               aria-label="Apoie o projeto"
               className="custom-link relative p-1"
             >
