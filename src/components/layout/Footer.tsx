@@ -1,86 +1,49 @@
-import BtnScrollTop from "../common/BtnScrollTop";
 import Image from "next/image";
 import Link from "next/link";
+import BtnScrollTop from "../common/BtnScrollTop";
 import logo from "@/assets/images/logo.svg";
 import icoGithub from "@/assets/images/ico-github.svg";
 import icoGmail from "@/assets/images/ico-gmail.svg";
+import { footerLinks, FooterDiv } from "@/lib/constants/footerLinks";
 
 export default function Footer() {
   return (
     <footer className="mt-6 flex h-80 flex-col items-center gap-8 bg-[#6DA67A] font-semibold text-white">
-      <header>
+      <div>
         <BtnScrollTop />
-      </header>
-      <div className="flex justify-around gap-64 border-b-1 pb-6">
-        <div>
-          <h3 className="mb-2 text-xl font-bold">Convert Coin</h3>
-          <ul>
-            <li>
-              <Link href={"/sobre-nos"} rel="">
-                Sobre nós
-              </Link>
-            </li>
-            <li>
-              <Link href={"/politica-de-privacidade"} rel="">
-                Política de Privacidade
-              </Link>
-            </li>
-            <li>
-              <Link href={"/termos-de-uso"} rel="">
-                Termos de uso
-              </Link>
-            </li>
-            <li>
-              <Link href={"/desenvolvedores"} rel="">
-                Desenvolvedores
-              </Link>
-            </li>
-            <li>
-              <Link href={"/apoiar-projeto"} rel="">
-                Apoie o projeto
-              </Link>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h3 className="mb-2 text-xl font-bold">Suporte</h3>
-          <ul>
-            <li>
-              <Link href={"/como-funciona"} rel="">
-                Como funciona
-              </Link>
-            </li>
-            <li>
-              <Link href={"/duvidas"} rel="">
-                Dúvidas
-              </Link>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h3 className="mb-2 text-xl font-bold">Fale conosco</h3>
-          <ul>
-            <li>
-              <Link href={"mailto:thainnosv@gmail.com"} rel="">
-                E-mail
-              </Link>
-            </li>
-            <li>
-              <Link
-                href={
-                  "https://wa.me/5527996131388?text=Ol%C3%A1%2C%20vim%20por%20meio%20do%20Convert%20Coin%20e%20gostaria%20de%20entrar%20em%20contato%20com%20os%20desenvolvedores."
-                }
-                target="_blank"
-                rel=""
-              >
-                WhatsApp
-              </Link>
-            </li>
-          </ul>
-        </div>
       </div>
-      <div className="flex w-5xl items-center justify-between">
-        <Image src={logo} alt="" width={30} />
+
+      <nav
+        className="flex w-full max-w-7xl justify-around gap-64 border-b border-white/40 pb-6"
+        aria-labelledby="Links institucionais, de suporte e de contato"
+      >
+        {footerLinks.map((div: FooterDiv, index: number) => (
+          <div key={index} aria-labelledby={`footer-${index}-title`}>
+            <h3
+              id={`footer-${index}-title`}
+              className="mb-3 text-lg font-bold text-white"
+            >
+              {div.title}
+            </h3>
+            <ul className="text-sm font-medium">
+              {div.links.map((link, linkIndex) => (
+                <li key={linkIndex}>
+                  <Link
+                    href={link.href}
+                    target={link.external ? "_blank" : "_self"}
+                    rel={link.external ? "noopener noreferrer" : undefined}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </nav>
+
+      <div className="flex w-full max-w-7xl items-center justify-around">
+        <Image src={logo} alt="Logo Convert Coin" width={24} />
 
         <span className="text-sm font-normal">
           © 2025 TainuDev. Convert Coin™ — Seu conversor de moedas.
@@ -90,12 +53,16 @@ export default function Footer() {
           <Link
             href={"https://github.com/Thainno/convertcoin"}
             target="_blank"
-            rel=""
+            rel="noopener noreferrer"
+            aria-label="Github do projeto"
           >
-            <Image src={icoGithub} alt="" width={30} />
+            <Image src={icoGithub} alt="Github" width={24} />
           </Link>
-          <Link href={"mailto:thainnosv@gmail.com"} rel="">
-            <Image src={icoGmail} alt="" width={30} />
+          <Link
+            href={"mailto:thainnosv@gmail.com"}
+            aria-label="Enviar e-mail para os desenvolvedores"
+          >
+            <Image src={icoGmail} alt="Gmail" width={24} />
           </Link>
         </div>
       </div>
