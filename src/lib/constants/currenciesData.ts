@@ -24,9 +24,9 @@ export const currencyData: CurrencyData = {
       codCountry: "au",
       country: "Austrália",
       description:
-        "O Dólar Australiano foi introduzido em 1966, substituindo a libra australiana. É uma moeda decimal, dividida em 100 centavos, e é amplamente utilizada na região da Oceania.",
+        "O dólar australiano é a moeda oficial da Austrália desde 14 de fevereiro de 1966, substituindo a libra australiana. A moeda é emitida pelo Reserve Bank of Australia e é dividida em 100 centavos.",
       curiosity:
-        "O Dólar Australiano é conhecido por suas notas coloridas e resistentes à água, feitas de polímero, sendo uma das primeiras moedas a adotar esse material.",
+        "O dólar australiano foi uma das primeiras moedas do mundo a adotar notas de polímero, introduzidas em 1988. Essas notas são mais duráveis e difíceis de falsificar em comparação com as de papel. Além disso, o design das moedas australianas apresenta uma variedade de animais nativos, como o canguru e o ornitorrinco, refletindo a rica fauna do país.",
       usedIn: [
         "Austrália",
         "Ilhas Christmas",
@@ -43,9 +43,9 @@ export const currencyData: CurrencyData = {
       codCountry: "bg",
       country: "Bulgária",
       description:
-        "O Lev Búlgaro é a moeda oficial da Bulgária desde 1881. Em 1999, foi introduzido o novo lev (BGN), com uma taxa de conversão de 1.000:1 em relação ao antigo lev.",
+        "O Lev Búlgaro é a moeda oficial da Bulgária desde 1881, substituindo o franco francês. A moeda é emitida pelo Banco Nacional da Bulgária e é dividida em 100 stotinki.",
       curiosity:
-        "O nome 'lev' significa 'leão' em búlgaro, simbolizando força e coragem.",
+        "O nome 'lev' significa 'leão' em búlgaro, simbolizando força e coragem. Apesar de ser membro da União Europeia desde 2007, a Bulgária ainda não adotou o euro, mas o Lev tem sua taxa de câmbio fixada ao euro dentro do Mecanismo Europeu de Taxas de Câmbio.",
       usedIn: ["Bulgária"],
     },
     BRL: {
@@ -54,9 +54,9 @@ export const currencyData: CurrencyData = {
       codCountry: "br",
       country: "Brasil",
       description:
-        "O Real foi introduzido em 1994 como parte do Plano Real, substituindo o Cruzeiro Real. É a moeda oficial do Brasil e é subdividido em 100 centavos.",
+        "O Real é a moeda oficial do Brasil desde 1º de julho de 1994, substituindo o Cruzeiro Real. A moeda é emitida pelo Banco Central do Brasil e é dividida em 100 centavos.",
       curiosity:
-        "O nome 'Real' foi escolhido para resgatar o nome da moeda usada durante o período colonial e imperial do Brasil.",
+        "As cédulas de R$1 deixaram de ser impressas em 2005, tornando-se itens de colecionador. As cédulas trazem imagens de animais da fauna brasileira, como a onça-pintada, o mico-leão-dourado, a arara-vermelha-grande e o lobo-guará. É a oitava moeda oficial do Brasil desde sua independência.",
       usedIn: ["Brasil"],
     },
     CAD: {
@@ -65,9 +65,8 @@ export const currencyData: CurrencyData = {
       codCountry: "ca",
       country: "Canadá",
       description:
-        "O Dólar Canadense é a moeda oficial do Canadá desde 1858. É subdividido em 100 centavos e é conhecido por suas notas coloridas.",
-      curiosity:
-        "As moedas canadenses são popularmente chamadas de 'loonie' (moeda de um dólar) e 'toonie' (moeda de dois dólares) devido aos animais representados nelas.",
+        "O Dólar Canadense é a moeda oficial do Canadá desde 1858, substituindo a Libra Canadense. A moeda é emitida pelo Banco do Canadá e é dividida em 100 centavos.",
+      curiosity: `As moedas canadenses são popularmente chamadas de "loonie" (moeda de C$1) e "toonie" (moeda de C$2). O "loonie" recebeu esse apelido devido à imagem de um mergulhão (loon, em inglês) em um dos lados da moeda. Quando a moeda de C$2 foi introduzida, os canadenses criaram o termo "toonie" como uma combinação de "two" (dois) e "loonie", demonstrando o senso de humor nacional.`,
       usedIn: ["Canadá"],
     },
     CHF: {
@@ -76,9 +75,9 @@ export const currencyData: CurrencyData = {
       codCountry: "ch",
       country: "Suíça",
       description:
-        "O Franco Suíço é a moeda oficial da Suíça e do Liechtenstein desde 1850. É conhecido por sua estabilidade e é uma moeda de reserva popular.",
+        "O Franco Suíço é a moeda oficial da Suíça e do Liechtenstein desde 1850, substituindo as diversas moedas cantonais. A moeda é emitida pelo Banco Nacional Suíço e é dividida em 100 centimes.",
       curiosity:
-        "O Franco Suíço é uma das poucas moedas europeias que não adotaram o euro, mantendo sua independência monetária.",
+        "As notas suíças são consideradas algumas das mais seguras e sofisticadas do mundo, com design vertical exclusivo e várias tecnologias antifalsificação.",
       usedIn: [
         "Suíça",
         "Liechtenstein",
@@ -91,9 +90,9 @@ export const currencyData: CurrencyData = {
       codCountry: "cn",
       country: "China",
       description:
-        "O Yuan, também conhecido como Renminbi, é a moeda oficial da República Popular da China. É emitido pelo Banco Popular da China.",
+        "O Yuan é a moeda oficial da China desde 1949, substituindo o fabi. A moeda é emitida pelo Banco Popular da China e é dividida em 10 jiao, cada um subdividido em 10 fen",
       curiosity:
-        "O termo 'Renminbi' significa 'moeda do povo', enquanto 'Yuan' é a unidade básica da moeda.",
+        "O Yuan digital (e-CNY), uma versão digital oficial da moeda, está em fase avançada de testes, sendo uma das primeiras tentativas de uma moeda digital por um grande banco central.",
       usedIn: ["China"],
     },
     CZK: {
@@ -102,9 +101,8 @@ export const currencyData: CurrencyData = {
       codCountry: "cz",
       country: "República Tcheca",
       description:
-        "A Coroa Tcheca é a moeda oficial da República Tcheca desde 1993, após a dissolução da Tchecoslováquia.",
-      curiosity:
-        "Apesar de ser membro da União Europeia, a República Tcheca ainda não adotou o euro como sua moeda oficial.",
+        "A Coroa Tcheca é a moeda oficial da República Tcheca desde 1993, substituindo a Coroa Tchecoslovaca após a dissolução da Tchecoslováquia. A moeda é emitida pelo Banco Nacional Tcheco e é dividida em 100 haléřů.",
+      curiosity: `O termo "koruna" significa "coroa" em tcheco, refletindo a herança monárquica da região. Curiosamente, as primeiras cédulas da Coroa Tcheca foram criadas carimbando notas antigas da Coroa Tchecoslovaca com novos valores, uma solução temporária até a emissão de uma nova série em 1993.`,
       usedIn: ["República Tcheca"],
     },
     DKK: {
@@ -113,9 +111,9 @@ export const currencyData: CurrencyData = {
       codCountry: "dk",
       country: "Dinamarca",
       description:
-        "A Coroa Dinamarquesa é a moeda oficial da Dinamarca, introduzida em 1875. Também é utilizada nas Ilhas Faroé e na Groenlândia.",
+        "A Coroa Dinamarquesa é a moeda oficial da Dinamarca desde 1º de janeiro de 1875, substituindo o rigsdaler. A moeda é emitida pelo Danmarks Nationalbank e é dividida em 100 øre.",
       curiosity:
-        "A Dinamarca optou por não adotar o euro, mantendo sua moeda nacional apesar de ser membro da União Europeia.",
+        "A Dinamarca optou por não adotar o euro, mantendo sua moeda nacional apesar de ser membro da União Europeia.Curiosamente, as moedas de coroa possuem um design único com buracos no centro em algumas denominações, o que além de economizar metal, também facilita o transporte e a identificação tátil.",
       usedIn: ["Dinamarca", "Groenlândia", "Ilhas Faroé"],
     },
     EUR: {
@@ -124,7 +122,7 @@ export const currencyData: CurrencyData = {
       codCountry: "eu",
       country: "União Europeia",
       description:
-        "O Euro é a moeda oficial de 20 dos 27 países membros da União Europeia, formando a zona do euro. Foi introduzido em 1999 para transações eletrônicas e em 2002 em forma física.",
+        "O Euro é a moeda oficial da União Europeia desde 1º de janeiro de 1999, substituindo a Unidade Monetária Europeia (ECU). A moeda é emitida pelo Banco Central Europeu e é dividida em 100 centavos.",
       curiosity:
         "O Euro é a segunda moeda mais negociada no mundo, atrás apenas do Dólar Americano.",
       usedIn: [
@@ -156,7 +154,7 @@ export const currencyData: CurrencyData = {
       codCountry: "gb",
       country: "Reino Unido",
       description:
-        "A Libra Esterlina é a moeda oficial do Reino Unido e é uma das moedas mais antigas ainda em uso, com origens que remontam ao século VIII.",
+        "A Libra Esterlina é a moeda oficial do Reino Unido desde o século VIII, sendo uma das moedas mais antigas ainda em uso. A moeda é emitida pelo Banco da Inglaterra e é dividida em 100 pence.",
       curiosity:
         "O símbolo '£' deriva da letra 'L', representando a palavra latina 'libra', uma unidade de peso romana.",
       usedIn: [
@@ -175,9 +173,9 @@ export const currencyData: CurrencyData = {
       codCountry: "hk",
       country: "Hong Kong",
       description:
-        "O Dólar de Hong Kong é a moeda oficial da Região Administrativa Especial de Hong Kong desde 1935. É emitido por três bancos comerciais sob supervisão do governo.",
+        "O Dólar de Hong Kong é a moeda oficial de Hong Kong desde 1863, substituindo diversas moedas estrangeiras em circulação na época. A moeda é emitida pela Autoridade Monetária de Hong Kong e é dividida em 100 centavos",
       curiosity:
-        "Apesar de ser uma região da China, Hong Kong mantém sua própria moeda e sistema financeiro sob o princípio de 'um país, dois sistemas'.",
+        "Apesar de ser uma região da China, Hong Kong opera sua moeda sob um sistema de câmbio fixo com o dólar americano desde 1983, onde cada dólar de Hong Kong em circulação é respaldado por reservas em dólares americanos, garantindo estabilidade cambial mesmo em períodos de turbulência financeira.",
       usedIn: ["Hong Kong"],
     },
     HRK: {
@@ -186,9 +184,8 @@ export const currencyData: CurrencyData = {
       codCountry: "hr",
       country: "Croácia",
       description:
-        "A Kuna foi a moeda oficial da Croácia de 1994 até 2022, quando o país adotou o euro como sua moeda oficial.",
-      curiosity:
-        "O nome 'Kuna' significa 'marta' em croata, um animal cuja pele era usada como unidade de troca na Idade Média.",
+        "A Kuna foi a moeda oficial da Croácia de 1994 até 31 de dezembro de 2022, substituindo o Dinar Croata. A moeda era emitida pelo Banco Nacional da Croácia e dividida em 100 lipa.",
+      curiosity: `O nome "kuna" significa "marta" em croata, referindo-se ao uso histórico das peles desse animal como unidade de troca na Idade Média. Da mesma forma, "lipa" significa "tília", uma árvore comum na Croácia, cujas folhas adornavam as moedas, conectando a moeda à herança cultural e natural do país.`,
       usedIn: ["Croácia (até 2022)"],
     },
     HUF: {
@@ -197,9 +194,8 @@ export const currencyData: CurrencyData = {
       codCountry: "hu",
       country: "Hungria",
       description:
-        "O Forint é a moeda oficial da Hungria desde 1946, introduzido após um período de hiperinflação pós-Segunda Guerra Mundial.",
-      curiosity:
-        "O nome 'Forint' deriva da cidade italiana de Florença, onde moedas de ouro chamadas 'fiorino d'oro' foram cunhadas no século XIII.",
+        "O Forint é a moeda oficial da Hungria desde 1º de agosto de 1946, substituindo o Pengő após um período de hiperinflação. A moeda é emitida pelo Banco Nacional da Hungria e é dividida em 100 fillér.",
+      curiosity: `O nome "Forint" deriva da cidade italiana de Florença, onde moedas de ouro chamadas "fiorino d'oro" foram cunhadas no século XIII. A Hungria adotou o termo para sua moeda no século XIV, refletindo a influência cultural e econômica italiana na Europa Central durante a Idade Média.`,
       usedIn: ["Hungria"],
     },
     IDR: {
@@ -208,9 +204,9 @@ export const currencyData: CurrencyData = {
       codCountry: "id",
       country: "Indonésia",
       description:
-        "A Rupia é a moeda oficial da Indonésia, introduzida em 1946 após a independência do país. É subdividida em 100 sen, embora as moedas de sen não sejam mais usadas.",
+        "O Rupia Indonésia é a moeda oficial da Indonésia desde 1946, substituindo o florim das Índias Orientais Holandesas. A moeda é emitida pelo Bank Indonesia e é dividida em 100 sen.",
       curiosity:
-        "Devido à inflação, a Indonésia possui notas de alta denominação, como a de 100.000 rupias, equivalente a cerca de 7 dólares americanos.",
+        "Devido à inflação, a Indonésia possui notas de alta denominação, como a de 100.000 rupias, equivalente a cerca de 7 dólares americanos. Uma curiosidade marcante é que algumas notas indonésias retratam figuras nacionais acompanhadas de crianças e paisagens naturais, destacando o orgulho cultural e o desejo de promover valores educativos. Além disso, em algumas ilhas indonésias mais remotas, ainda é comum o uso de escambo e moedas locais, demonstrando a diversidade cultural e econômica do país.",
       usedIn: ["Indonésia"],
     },
     ILS: {
@@ -219,9 +215,8 @@ export const currencyData: CurrencyData = {
       codCountry: "il",
       country: "Israel",
       description:
-        "O Novo Shekel é a moeda oficial de Israel desde 1985, substituindo o antigo shekel em uma taxa de 1.000 para 1.",
-      curiosity:
-        "O símbolo '₪' é uma combinação das letras hebraicas 'ש' (shin) e 'ח' (chet), iniciais de 'Shekel Hadash' (Novo Shekel).",
+        "O Novo Shekel Israelense é a moeda oficial de Israel desde 1º de janeiro de 1986, substituindo o antigo shekel. A moeda é emitida pelo Bank of Israel e é dividida em 100 agorot.",
+      curiosity: `O nome "shekel" tem origem bíblica e era uma antiga unidade de peso e moeda usada no Oriente Médio há mais de 3 mil anos. Israel foi um dos primeiros países a introduzir moedas e cédulas com inscrições em braile, refletindo seu compromisso com acessibilidade.`,
       usedIn: ["Israel", "Territórios Palestinos"],
     },
     INR: {
@@ -230,9 +225,8 @@ export const currencyData: CurrencyData = {
       codCountry: "in",
       country: "Índia",
       description:
-        "A Rupia é a moeda oficial da Índia desde o século XVI. O símbolo '₹' foi adotado oficialmente em 2010.",
-      curiosity:
-        "A palavra 'rupia' deriva do sânscrito 'rupyakam', que significa 'prata cunhada'.",
+        "A Rúpia é a moeda oficial da Índia desde 1540, mas na forma moderna é emitida pelo Reserve Bank of India desde 1935. É dividida em 100 paise.",
+      curiosity: `A palavra "rupia" deriva do sânscrito "rupyakam", que significa "prata cunhada". O símbolo moderno da rúpia "₹", adotado em 2010, combina a letra "Ra" do alfabeto devanágari com o "R" romano, simbolizando a herança cultural e a modernidade econômica da Índia.`,
       usedIn: ["Índia", "Butão (junto com o Ngultrum)"],
     },
     ISK: {
@@ -241,9 +235,9 @@ export const currencyData: CurrencyData = {
       codCountry: "is",
       country: "Islândia",
       description:
-        "A Coroa Islandesa (ISK) é a moeda oficial da Islândia desde 1874, substituindo o rigsdaler dinamarquês. Em 1981, passou por uma reavaliação monetária, onde 100 coroas antigas passaram a valer 1 coroa nova. A moeda é subdividida em 100 aurar, embora essa subdivisão não seja mais utilizada.",
+        "A Coroa Islandesa é a moeda oficial da Islândia desde 1922, substituindo a coroa dinamarquesa após a independência monetária. É emitida pelo Seðlabanki Íslands e dividida em 100 aurar (embora aurar não seja mais usado na prática).",
       curiosity:
-        "As moedas islandesas apresentam animais marinhos, como bacalhau, golfinho e caranguejo, refletindo a forte ligação do país com o mar. Além disso, a Islândia é uma das sociedades mais avançadas tecnologicamente, com grande parte das transações ocorrendo de forma eletrônica.",
+        "As moedas islandesas apresentam animais marinhos, como bacalhau, golfinho e caranguejo e em algumas moedas retratam criaturas do folclore nórdico, como o gigante do mar e o espírito guardião do oceano refletindo a forte ligação do país com o mar.",
       usedIn: ["Islândia"],
     },
     JPY: {
@@ -252,9 +246,9 @@ export const currencyData: CurrencyData = {
       codCountry: "jp",
       country: "Japão",
       description:
-        "O Iene é a moeda oficial do Japão desde 1871, introduzido como parte da modernização econômica do país durante a Era Meiji. É uma das moedas mais negociadas no mercado cambial global.",
+        "O Iene é a moeda oficial do Japão desde 1871, substituindo o sistema de mon tradicional. A moeda é emitida pelo Bank of Japan e não possui subdivisões em uso comum, embora tecnicamente seja dividida em 100 sen.",
       curiosity:
-        "O símbolo '¥' representa uma letra 'Y' com duas linhas horizontais, derivado da palavra japonesa 'en', que significa 'círculo', referindo-se às moedas redondas.",
+        "A moeda de 5 ienes é considerada de boa sorte no Japão. Isso porque sua pronúncia, “go-en”, também significa “destino” ou “laço” em japonês, sendo frequentemente oferecida como presente em santuários xintoístas durante orações. Além disso, o Japão é conhecido por ter algumas das notas mais avançadas do mundo em termos de segurança e design artístico, com novos modelos em constante desenvolvimento tecnológico.",
       usedIn: ["Japão"],
     },
     KRW: {
@@ -263,9 +257,9 @@ export const currencyData: CurrencyData = {
       codCountry: "kr",
       country: "Coreia do Sul",
       description:
-        "O Won é a moeda oficial da Coreia do Sul desde 1945, substituindo o iene coreano após a independência do país. É subdividido em 100 jeon, embora as moedas de jeon não sejam mais utilizadas.",
+        "O Won é a moeda oficial da Coreia do Sul desde 1962, substituindo o hwan. A moeda é emitida pelo Banco da Coreia e é dividida em 100 jeon, embora o jeon seja atualmente obsoleto.",
       curiosity:
-        "O símbolo '₩' é uma combinação da letra 'W' com uma linha horizontal, representando a primeira letra de 'Won'.",
+        "As cédulas sul-coreanas são um reflexo da rica herança cultural do país, apresentando figuras históricas como o rei Sejong, que criou o alfabeto hangul. Um fato curioso é que a moeda de 500 won, por ter valor relativamente alto, já foi falsificada em países vizinhos como o Japão, onde ela é parecida com a moeda de 500 ienes. Esse fato levou à atualização de ambas as moedas para dificultar a falsificação.",
       usedIn: ["Coreia do Sul"],
     },
     MXN: {
@@ -274,9 +268,8 @@ export const currencyData: CurrencyData = {
       codCountry: "mx",
       country: "México",
       description:
-        "O Peso é a moeda oficial do México desde a colonização espanhola, sendo uma das moedas mais antigas ainda em uso nas Américas. É subdividido em 100 centavos.",
-      curiosity:
-        "O símbolo '$' foi originalmente usado para o peso mexicano antes de ser adotado pelo dólar americano.",
+        "O Peso Mexicano é a moeda oficial do México desde 1821, substituindo o real colonial espanhol. A moeda é emitida pelo Banco de México e é dividida em 100 centavos.",
+      curiosity: `O símbolo "$" usado globalmente para o dólar tem origem no peso mexicano. Antigamente, o peso era representado por "Ps", e com o tempo a abreviação evoluiu para o símbolo "$". Além disso, o México foi um dos primeiros países a adotar o uso de moedas decimais modernas e suas moedas foram amplamente utilizadas em comércio internacional nos séculos XVIII e XIX, inclusive na China e nos Estados Unidos.`,
       usedIn: ["México"],
     },
     MYR: {
@@ -285,9 +278,8 @@ export const currencyData: CurrencyData = {
       codCountry: "my",
       country: "Malásia",
       description:
-        "O Ringgit é a moeda oficial da Malásia desde 1975, substituindo o dólar malaio. É subdividido em 100 sen.",
-      curiosity:
-        "O termo 'Ringgit' significa 'dentado' em malaio, referindo-se às bordas serrilhadas das moedas espanholas que circulavam na região.",
+        "O Ringgit é a moeda oficial da Malásia desde 1967, substituindo o dólar malaio. A moeda é emitida pelo Bank Negara Malaysia e é dividida em 100 sen.",
+      curiosity: `O nome “ringgit” significa “denteado” em malaio, uma referência às bordas serrilhadas das moedas espanholas de prata que circularam na região séculos atrás. A moeda também apresenta elementos de segurança avançados, como uma faixa holográfica 3D visível sob diferentes ângulos.`,
       usedIn: ["Malásia"],
     },
     NOK: {
@@ -296,9 +288,9 @@ export const currencyData: CurrencyData = {
       codCountry: "no",
       country: "Noruega",
       description:
-        "A Coroa Norueguesa é a moeda oficial da Noruega desde 1875, quando o país aderiu à União Monetária Escandinava. É subdividida em 100 øre.",
+        "A Coroa Norueguesa é a moeda oficial da Noruega desde 1875, substituindo o speciedaler. A moeda é emitida pelo Norges Bank e é dividida em 100 øre.",
       curiosity:
-        "Apesar de ser membro do Espaço Econômico Europeu, a Noruega optou por manter sua moeda nacional em vez de adotar o euro.",
+        "As moedas e cédulas norueguesas passaram por um redesenho inovador em 2017, adotando um estilo minimalista e moderno que mistura arte e abstração gráfica. A série apresenta temas marítimos, como faróis, navios e ondas pixeladas, celebrando a forte conexão da Noruega com o mar. Esse design arrojado chamou atenção internacional por sua estética única e pela ousadia em misturar tradição com design contemporâneo.",
       usedIn: ["Noruega"],
     },
     NZD: {
@@ -307,9 +299,8 @@ export const currencyData: CurrencyData = {
       codCountry: "nz",
       country: "Nova Zelândia",
       description:
-        "O Dólar Neozelandês é a moeda oficial da Nova Zelândia desde 1967, substituindo a libra neozelandesa. É subdividido em 100 centavos.",
-      curiosity:
-        "O NZD é frequentemente chamado de 'Kiwi' no mercado cambial, em referência ao pássaro símbolo nacional da Nova Zelândia.",
+        "O Dólar Neozelandês é a moeda oficial da Nova Zelândia desde 10 de julho de 1967, substituindo a libra neozelandesa. A moeda é emitida pelo Reserve Bank of New Zealand e é dividida em 100 centavos.",
+      curiosity: `O dólar da Nova Zelândia é frequentemente chamado de "kiwi" no mercado financeiro internacional, em referência ao pássaro símbolo nacional. A nota de NZ$5 foi eleita a mais bonita do mundo em 2015, com uma vibrante imagem de Sir Edmund Hillary, o primeiro homem a escalar o Everest, e belas paisagens alpinas.`,
       usedIn: [
         "Nova Zelândia",
         "Ilhas Cook",
@@ -324,9 +315,8 @@ export const currencyData: CurrencyData = {
       codCountry: "ph",
       country: "Filipinas",
       description:
-        "O Peso é a moeda oficial das Filipinas desde a colonização espanhola. É subdividido em 100 sentimos.",
-      curiosity:
-        "O símbolo '₱' foi adotado em 1967 e é uma combinação da letra 'P' com duas linhas horizontais, representando o peso.",
+        "O Peso Filipino é a moeda oficial das Filipinas desde 1852, substituindo o real espanhol. É emitido pelo Bangko Sentral ng Pilipinas e é dividido em 100 sentimos.",
+      curiosity: `As moedas e cédulas filipinas frequentemente homenageiam heróis nacionais, eventos históricos e monumentos. Um exemplo marcante é a nota de 500 pesos que retrata Benigno "Ninoy" Aquino Jr., cuja morte em 1983 foi um catalisador para a Revolução do Poder Popular que restaurou a democracia no país.`,
       usedIn: ["Filipinas"],
     },
     PLN: {
@@ -335,9 +325,9 @@ export const currencyData: CurrencyData = {
       codCountry: "pl",
       country: "Polônia",
       description:
-        "O Zloty é a moeda oficial da Polônia desde 1924, substituindo o marco polonês. É subdividido em 100 groszy.",
+        "O Złoty é a moeda oficial da Polônia desde 1995, substituindo o antigo złoty em uma reforma monetária. É emitido pelo Narodowy Bank Polski e é dividido em 100 groszy.",
       curiosity:
-        "O nome 'Zloty' significa 'dourado' em polonês, refletindo a origem da moeda como uma peça de ouro.",
+        "O nome “złoty” significa “dourado” em polonês, uma referência às antigas moedas de ouro usadas na região no século XV. Um fato curioso é que, embora a Polônia faça parte da União Europeia, ela manteve sua moeda nacional por decisão própria, e pesquisas mostram que a maioria dos poloneses prefere o złoty ao euro, vendo nele um símbolo de soberania e identidade nacional.",
       usedIn: ["Polônia"],
     },
     RON: {
@@ -346,9 +336,8 @@ export const currencyData: CurrencyData = {
       codCountry: "ro",
       country: "Romênia",
       description:
-        "O Leu é a moeda oficial da Romênia desde 1867. Em 2005, foi introduzido o novo leu (RON), com uma taxa de conversão de 10.000:1 em relação ao antigo leu.",
-      curiosity:
-        "O nome 'Leu' significa 'leão' em romeno, e as moedas antigas apresentavam a imagem de um leão.",
+        "O Leu é a moeda oficial da Romênia desde 2005, substituindo o antigo leu na razão de 10.000 para 1. É emitido pelo Banca Națională a României e é dividido em 100 bani.",
+      curiosity: `"Leu" significa "leão" em romeno, uma referência às moedas holandesas com leões que circularam na região no século XVII. Um fato curioso é que o leu moderno é uma das poucas moedas de polímero completamente plastificadas na Europa, tornando-as extremamente duráveis e à prova d'água. Além disso, as cédulas apresentam retratos de artistas e cientistas romenos, promovendo a cultura e história do país.`,
       usedIn: ["Romênia"],
     },
     RUB: {
@@ -357,9 +346,8 @@ export const currencyData: CurrencyData = {
       codCountry: "ru",
       country: "Rússia",
       description:
-        "O Rublo é a moeda oficial da Rússia desde o século XIV, sendo uma das moedas mais antigas ainda em uso. É subdividido em 100 kopeks.",
-      curiosity:
-        "O símbolo '₽' foi oficialmente adotado em 2013 após uma votação pública promovida pelo Banco Central da Rússia.",
+        "O Rublo é a moeda oficial da Rússia desde o século XIV. A moeda é emitida pelo Banco da Rússia e é dividida em 100 kopeks.",
+      curiosity: `O rublo é uma das moedas mais antigas ainda em uso contínuo, com registros desde o século XIII. Seu nome vem do verbo russo "rubit", que significa "cortar", referindo-se a pedaços de prata cortados de lingotes maiores.`,
       usedIn: ["Rússia", "Abecásia", "Ossétia do Sul"],
     },
     SEK: {
@@ -368,9 +356,9 @@ export const currencyData: CurrencyData = {
       codCountry: "se",
       country: "Suécia",
       description:
-        "A Coroa Sueca é a moeda oficial da Suécia desde 1873, quando o país aderiu à União Monetária Escandinava. É subdividida em 100 öre.",
+        "A Coroa Sueca é a moeda oficial da Suécia desde 1873, substituindo o riksdaler. É emitida pelo Sveriges Riksbank e é dividida em 100 öre.",
       curiosity:
-        "A Suécia é uma das sociedades mais avançadas em termos de pagamentos eletrônicos, com uma tendência crescente de se tornar uma sociedade sem dinheiro físico.",
+        "A Suécia é uma das sociedades mais próximas de se tornar totalmente sem dinheiro físico, com pagamentos eletrônicos dominando o dia a dia. Embora a coroa ainda exista, muitos estabelecimentos não aceitam cédulas ou moedas.",
       usedIn: ["Suécia"],
     },
     SGD: {
@@ -379,9 +367,9 @@ export const currencyData: CurrencyData = {
       codCountry: "sg",
       country: "Singapura",
       description:
-        "O Dólar de Singapura é a moeda oficial de Singapura desde 1967, substituindo o dólar malaio. É subdividido em 100 centavos.",
+        "O Dólar de Singapura é a moeda oficial de Singapura desde 1967, substituindo o dólar do Banco da Malásia e do Bornéu. É emitido pela Autoridade Monetária de Singapura e é dividido em 100 centavos.",
       curiosity:
-        "Singapura possui uma política monetária única, onde o valor do dólar é gerenciado através de uma cesta de moedas, em vez de uma taxa de juros.",
+        "Singapura possui uma política monetária única, onde o valor do dólar é gerenciado através de uma cesta de moedas, em vez de uma taxa de juros. Além disso, Singapura tem um acordo com Brunei que permite o uso mútuo de suas moedas em ambos os países, algo raro no mundo moderno.",
       usedIn: ["Singapura", "Brunei (em paridade com o dólar de Brunei)"],
     },
     THB: {
@@ -390,9 +378,9 @@ export const currencyData: CurrencyData = {
       codCountry: "th",
       country: "Tailândia",
       description:
-        "O Baht é a moeda oficial da Tailândia desde 1897, substituindo o tical. É subdividido em 100 satang.",
+        "O Baht é a moeda oficial da Tailândia desde 1897, substituindo o tical. É emitido pelo Bank of Thailand e é dividido em 100 satang.",
       curiosity:
-        "As moedas e notas tailandesas apresentam a imagem do rei, e é considerado desrespeitoso pisar ou danificar o dinheiro.",
+        "As moedas e notas tailandesas retratam membros da família real, e há uma grande reverência à imagem do rei, tanto que danificar ou pisar em uma nota de baht pode ser considerado desrespeitoso e até punível. ",
       usedIn: ["Tailândia"],
     },
     TRY: {
@@ -401,9 +389,9 @@ export const currencyData: CurrencyData = {
       codCountry: "tr",
       country: "Turquia",
       description:
-        "A Lira é a moeda oficial da Turquia desde 1923. Em 2005, foi introduzida a nova lira turca (TRY), com uma taxa de conversão de 1.000.000:1 em relação à antiga lira.",
+        "A Lira é a moeda oficial da Turquia desde 1923. Em 2005, foi introduzida a nova lira turca (TRY). É emitida pelo Türkiye Cumhuriyet Merkez Bankası e é dividida em 100 kuruş.",
       curiosity:
-        "O símbolo '₺' foi adotado em 2012 após um concurso nacional promovido pelo Banco Central da Turquia.",
+        "A antiga lira sofreu com décadas de inflação severa, levando à emissão de notas de valores como 1.000.000 de liras antes da reforma de 2005. A nova lira foi introduzida com seis zeros a menos.",
       usedIn: ["Turquia", "República Turca do Chipre do Norte"],
     },
     USD: {
@@ -412,9 +400,8 @@ export const currencyData: CurrencyData = {
       codCountry: "us",
       country: "Estados Unidos",
       description:
-        "O Dólar Americano é a moeda oficial dos Estados Unidos desde 1792. É a moeda de reserva mais utilizada no mundo e é subdividido em 100 centavos.",
-      curiosity:
-        "O termo 'buck' (gíria para dólar) originou-se do comércio de peles, onde peles de veado eram usadas como unidade de troca.",
+        "O Dólar Americano é a moeda oficial dos Estados Unidos desde 1792, substituindo diversas moedas coloniais. É emitido pelo Federal Reserve System e é dividido em 100 centavos.",
+      curiosity: `O termo "buck" (gíria para dólar) originou-se do comércio de peles, onde peles de veado eram usadas como unidade de troca.`,
       usedIn: [
         "Estados Unidos",
         "Porto Rico",
@@ -438,7 +425,7 @@ export const currencyData: CurrencyData = {
       codCountry: "za",
       country: "África do Sul",
       description:
-        "O Rand é a moeda oficial da África do Sul desde 1961, ano em que o país se tornou uma república e se desvinculou da libra sul-africana. O nome 'Rand' deriva da região de Witwatersrand, que abriga vastas jazidas de ouro e foi fundamental para o desenvolvimento econômico do país.",
+        "O Rand é a moeda oficial da África do Sul desde 1961, substituindo a libra sul-africana. É emitido pelo South African Reserve Bank e é dividido em 100 centavos.",
       curiosity:
         "As notas de Rand são conhecidas por exibirem imagens dos 'Big Five' (leão, elefante, búfalo, leopardo e rinoceronte), os cinco grandes animais selvagens africanos. Em 2012, a África do Sul lançou uma nova série de cédulas com o rosto de Nelson Mandela.",
       usedIn: [
