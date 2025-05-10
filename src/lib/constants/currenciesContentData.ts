@@ -17,10 +17,10 @@ export function getCurrenciesContentData(
 ): CurrencyDataItem[] {
   return [
     {
-      title: `${leftCurrencyName} hoje`,
-      description: `Hoje, o ${leftCurrencyName} está cotado em `,
-      image: daily,
-      value: rightCurrencyBase,
+      title: `${leftCurrencyName} há um mês`,
+      description: `No mês passado, o ${leftCurrencyName} estava cotado em `,
+      image: monthly,
+      value: valueMonthAgo,
     },
     {
       title: `${leftCurrencyName} há uma semana`,
@@ -29,10 +29,10 @@ export function getCurrenciesContentData(
       value: valueWeekAgo,
     },
     {
-      title: `${leftCurrencyName} há um mês`,
-      description: `No mês passado, o ${leftCurrencyName} estava cotado em `,
-      image: monthly,
-      value: valueMonthAgo,
+      title: `${leftCurrencyName} hoje`,
+      description: `Hoje, o ${leftCurrencyName} está cotado em `,
+      image: daily,
+      value: rightCurrencyBase,
     },
   ];
 }
