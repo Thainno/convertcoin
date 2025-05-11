@@ -7,7 +7,7 @@ export default function CurrenciesContentWrapper() {
   const {
     leftCurrency,
     rightCurrency,
-    rightCurrencyBase,
+    rightCurrencyLatestValue,
     rightCurrencyValuePrev,
     valueWeekAgo,
     valueMonthAgo,
@@ -28,7 +28,7 @@ export default function CurrenciesContentWrapper() {
     <CurrenciesContent
       leftCurrency={leftCurrency}
       rightCurrency={rightCurrency}
-      rightCurrencyBase={rightCurrencyBase}
+      rightCurrencyLatestValue={rightCurrencyLatestValue}
       rightCurrencyValuePrev={rightCurrencyValuePrev}
       valueWeekAgo={valueWeekAgo}
       valueMonthAgo={valueMonthAgo}

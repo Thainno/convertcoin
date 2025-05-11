@@ -3,7 +3,7 @@ interface CurrencyTableProps {
   rightCurrencySymbol: string;
   leftCurrencyName: string;
   rightCurrencyName: string;
-  rightCurrencyBase: number;
+  rightCurrencyLatestValue: number;
 }
 
 const baseValues = [1, 2, 5, 10, 50, 100, 1000];
@@ -12,7 +12,7 @@ const baseValueText = ["um", "dois", "cinco", "dez", "cinquenta", "cem", "mil"];
 export default function CurrenciesTable({
   leftCurrencySymbol,
   rightCurrencySymbol,
-  rightCurrencyBase,
+  rightCurrencyLatestValue,
   leftCurrencyName,
   rightCurrencyName,
 }: CurrencyTableProps) {
@@ -56,7 +56,7 @@ export default function CurrenciesTable({
               {leftCurrencySymbol} {format(value)} ({baseValueText[index]})
             </td>
             <td scope="row" className="px-4 py-3 text-center">
-              {rightCurrencySymbol} {format(value * rightCurrencyBase)}
+              {rightCurrencySymbol} {format(value * rightCurrencyLatestValue)}
             </td>
           </tr>
         ))}

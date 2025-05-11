@@ -1,7 +1,7 @@
 export interface CurrencyProps {
   leftCurrency: string;
   rightCurrency: string;
-  rightCurrencyBase: number;
+  rightCurrencyLatestValue: number;
   rightCurrencyValuePrev: number;
   valueWeekAgo: number;
   valueMonthAgo: number;

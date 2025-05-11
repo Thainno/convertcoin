@@ -10,7 +10,7 @@ export default function CurrenciesOverview({
   rightCurrencyName,
   leftCurrencySymbol,
   rightCurrencySymbol,
-  rightCurrencyBase,
+  rightCurrencyLatestValue,
   rightCurrencyValuePrev,
   valueWeekAgo,
   valueMonthAgo,
@@ -19,15 +19,15 @@ export default function CurrenciesOverview({
 }: CurrencyProps) {
   const currenciesContentData = getCurrenciesContentData(
     leftCurrencyName,
-    rightCurrencyBase,
+    rightCurrencyLatestValue,
     valueWeekAgo,
     valueMonthAgo,
   );
 
   const getVariationColor = (previous: number) =>
-    previous > rightCurrencyBase ? "text-red-700" : "text-green-700";
+    previous > rightCurrencyLatestValue ? "text-red-700" : "text-green-700";
 
-  const currentValue = `${rightCurrencySymbol}${rightCurrencyBase.toLocaleString(
+  const currentValue = `${rightCurrencySymbol}${rightCurrencyLatestValue.toLocaleString(
     "pt-BR",
     {
       minimumFractionDigits: 2,
@@ -35,7 +35,7 @@ export default function CurrenciesOverview({
     },
   )}`;
 
-  const variation = `${rightCurrencyValuePrev > rightCurrencyBase ? "" : "+"}${variationDaily.toFixed(4)}%`;
+  const variation = `${rightCurrencyValuePrev > rightCurrencyLatestValue ? "" : "+"}${variationDaily.toFixed(4)}%`;
 
   return (
     <section

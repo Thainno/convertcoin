@@ -8,7 +8,7 @@ export default function CurrenciesSummary({
   rightCurrencyName,
   leftCurrencySymbol,
   rightCurrencySymbol,
-  rightCurrencyBase,
+  rightCurrencyLatestValue,
   rightCurrencyValuePrev,
   valueWeekAgo,
   valueMonthAgo,
@@ -17,10 +17,10 @@ export default function CurrenciesSummary({
   variationMonthly,
 }: CurrencyProps) {
   const getVariationColor = (previous: number) =>
-    previous > rightCurrencyBase ? "text-red-700" : "text-green-700";
+    previous > rightCurrencyLatestValue ? "text-red-700" : "text-green-700";
 
   const getVariationStatus = (previous: number) =>
-    previous > rightCurrencyBase ? "queda" : "alta";
+    previous > rightCurrencyLatestValue ? "queda" : "alta";
 
   const test = (value: number) => {
     return value.toLocaleString("pt-BR", { maximumFractionDigits: 2 });
@@ -66,7 +66,7 @@ export default function CurrenciesSummary({
         <CurrenciesTable
           leftCurrencySymbol={leftCurrencySymbol}
           rightCurrencySymbol={rightCurrencySymbol}
-          rightCurrencyBase={rightCurrencyBase}
+          rightCurrencyLatestValue={rightCurrencyLatestValue}
           leftCurrencyName={leftCurrencyName}
           rightCurrencyName={rightCurrencyName}
         />

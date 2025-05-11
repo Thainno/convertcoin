@@ -10,7 +10,7 @@ interface CurrencyContextType {
   setLeftCurrency: (currency: string) => void;
   setRightCurrency: (currency: string) => void;
 
-  rightCurrencyBase: number;
+  rightCurrencyLatestValue: number;
   rightCurrencyValuePrev: number;
   valueWeekAgo: number;
   valueMonthAgo: number;
@@ -43,7 +43,7 @@ export const CurrencyProvider = ({
   const [leftCurrency, setLeftCurrency] = useState("USD");
   const [rightCurrency, setRightCurrency] = useState("BRL");
 
-  const [rightCurrencyBase, setRightCurrencyBase] = useState(0);
+  const [rightCurrencyLatestValue, setRightCurrencyLatestValue] = useState(0);
   const [rightCurrencyValuePrev, setRightCurrencyValuePrev] = useState(0);
 
   const [valueWeekAgo, setValueWeekAgo] = useState(0);
@@ -95,7 +95,7 @@ export const CurrencyProvider = ({
       setValueWeekAgo(valueWeekAgo);
       setValueMonthAgo(valueMonthAgo);
 
-      setRightCurrencyBase(latest?.value ?? 0);
+      setRightCurrencyLatestValue(latest?.value ?? 0);
       setRightCurrencyValuePrev(previous?.value ?? 0);
 
       const formatDateBR = (dateStr: string) => {
@@ -115,15 +115,18 @@ export const CurrencyProvider = ({
     }
   }, [historicalRates, loading]);
 
-  const leftCurrencyName = currencyData.currencies[leftCurrency]?.name;
-  const rightCurrencyName = currencyData.currencies[rightCurrency]?.name;
+  const leftCurrencyData = currencyData.currencies[leftCurrency];
+  const rightCurrencyData = currencyData.currencies[rightCurrency];
 
-  const leftCurrencySymbol = currencyData.currencies[leftCurrency]?.symbol;
-  const rightCurrencySymbol = currencyData.currencies[rightCurrency]?.symbol;
+  const leftCurrencyName = leftCurrencyData?.name;
+  const rightCurrencyName = rightCurrencyData?.name;
 
-  const description = currencyData.currencies[leftCurrency]?.description;
-  const curiosity = currencyData.currencies[leftCurrency]?.curiosity;
-  const usedIn = currencyData.currencies[leftCurrency]?.usedIn;
+  const leftCurrencySymbol = leftCurrencyData?.symbol;
+  const rightCurrencySymbol = rightCurrencyData?.symbol;
+
+  const description = leftCurrencyData?.description;
+  const curiosity = leftCurrencyData?.curiosity;
+  const usedIn = leftCurrencyData?.usedIn;
 
   return (
     <CurrencyContext.Provider
@@ -132,7 +135,7 @@ export const CurrencyProvider = ({
         rightCurrency,
         setLeftCurrency,
         setRightCurrency,
-        rightCurrencyBase,
+        rightCurrencyLatestValue,
         rightCurrencyValuePrev,
         valueWeekAgo,
         valueMonthAgo,
