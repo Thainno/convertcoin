@@ -1,10 +1,12 @@
 import Image from "next/image";
-import about from "@/assets/images/little-coin.png";
+import about from "@/assets/images/coinzinho-about.png";
+import foto from "@/assets/images/foto.jpg";
 
 export default function SobreNos() {
   return (
     <main className="mx-auto mt-50 flex min-h-screen max-w-6xl flex-col justify-center gap-50">
       <section className="flex flex-row items-center justify-between">
+        <Image src={about} alt="a" width={500} />
         <article className="w-150">
           <h1 className="mb-8 text-4xl font-bold text-[#6DA67A]">
             Sobre o Convert Coin
@@ -17,11 +19,9 @@ export default function SobreNos() {
             sobre cada moeda, tudo em um só lugar.
           </p>
         </article>
-        <Image src={about} alt="a" width={500} />
       </section>
 
-      <section className="mb-40 flex flex-row items-center justify-between">
-        <Image src={about} alt="a" width={500} />
+      <section className="mb-40 flex flex-row items-center justify-between gap-34">
         <article className="flex flex-col gap-8">
           <h2 className="text-4xl font-bold text-[#6DA67A]">
             Um pouco da nossa história
@@ -46,6 +46,12 @@ export default function SobreNos() {
             praticidade, confiabilidade e valor real para seus usuários.
           </p>
         </article>
+        <Image
+          src={foto}
+          alt="a"
+          width={450}
+          className="rounded-full border-18 border-[#6DA67A] shadow-xl"
+        />
       </section>
     </main>
   );

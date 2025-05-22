@@ -1,5 +1,5 @@
 import Image from "next/image";
-import littleCoin from "@/assets/images/little-coin.png";
+import littleCoin from "@/assets/images/coinzinho-curiosity.png";
 import didYouKnow from "@/assets/images/did-you-know.svg";
 import bgCuriosity from "@/assets/images/bg-curiosity.svg";
 
