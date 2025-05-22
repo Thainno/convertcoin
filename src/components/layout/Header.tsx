@@ -43,11 +43,11 @@ export default function Header() {
 
           <li>
             <Link
-              href={"/apoiar-projeto"}
+              href={"/seja-parceiro"}
               aria-label="Apoie o projeto"
               className="custom-link relative p-1"
             >
-              Apoie o projeto
+              Seja parceiro
             </Link>
           </li>
         </ul>
