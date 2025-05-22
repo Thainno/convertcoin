@@ -1,4 +1,4 @@
-import Home from "../page";
+import Home from "../../../page";
 import { currencyData } from "@/lib/constants/currenciesData";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";

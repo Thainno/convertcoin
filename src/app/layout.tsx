@@ -2,9 +2,6 @@ import type { Metadata } from "next";
 import { fira } from "@/assets/fonts/fonts";
 import "@/styles/globals.css";
 
-import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
-
 export const metadata: Metadata = {
   title: "Convert Coin",
   description:
@@ -18,9 +15,7 @@ export default function RootLayout({
     <html lang="pt-BR" className={fira.className}>
       <head />
       <body>
-        <Header />
         {children}
-        <Footer />
       </body>
     </html>
   );
