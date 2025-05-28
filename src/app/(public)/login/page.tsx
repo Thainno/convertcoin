@@ -2,10 +2,10 @@ import "@/styles/globals.css";
 
 import Link from "next/link";
 import Image from "next/image";
-import Input from "@/components/common/Input";
 import logo from "@/assets/images/logo.svg";
 import icoGoogle from "@/assets/images/ico-google.svg";
 import icoFacebook from "@/assets/images/ico-facebook.svg";
+import FormField from "@/components/common/FormField";
 
 export default function Login() {
   return (
@@ -42,33 +42,8 @@ export default function Login() {
         </header>
 
         <form className="flex flex-col gap-6">
-          <div>
-            <label
-              htmlFor="email"
-              className="block font-semibold text-[#6DA67A]"
-            >
-              E-mail
-            </label>
-            <Input
-              id="email"
-              type="email"
-              className="text-md w-full rounded-md p-2 focus:outline-green-800/35"
-            />
-          </div>
-
-          <div>
-            <label
-              htmlFor="password"
-              className="block font-semibold text-[#6DA67A]"
-            >
-              Senha
-            </label>
-            <Input
-              id="password"
-              type="password"
-              className="text-md w-full rounded-md p-2 focus:outline-green-800/35"
-            />
-          </div>
+          <FormField info="email" type="email" label="E-mail" />
+          <FormField info="password" type="password" label="Senha" />
 
           <div className="flex justify-between text-sm text-gray-600">
             <label className="flex items-center">
