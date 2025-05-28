@@ -64,7 +64,7 @@ export default function BankCard({
         href={affiliateLink}
         target="_blank"
         rel="noopener noreferrer"
-        className={`flex h-10 w-60 items-center justify-center rounded-lg font-semibold text-white transition duration-200 ${colorsBank[0]} ${colorsBank[1]}`}
+        className={`flex h-10 w-60 items-center justify-center rounded-full font-semibold text-white transition duration-200 ${colorsBank[0]} ${colorsBank[1]}`}
         style={{ backgroundColor: colorsBank[0] }}
       >
         Criar conta

@@ -6,6 +6,7 @@ import logo from "@/assets/images/logo.svg";
 import icoGoogle from "@/assets/images/ico-google.svg";
 import icoFacebook from "@/assets/images/ico-facebook.svg";
 import FormField from "@/components/common/FormField";
+import DefaultButton from "@/components/common/DefaultButton";
 
 export default function Login() {
   return (
@@ -42,8 +43,12 @@ export default function Login() {
         </header>
 
         <form className="flex flex-col gap-6">
-          <FormField info="email" type="email" label="E-mail" />
-          <FormField info="password" type="password" label="Senha" />
+          <FormField fieldId="email" inputType="email" textLabel="E-mail" />
+          <FormField
+            fieldId="password"
+            inputType="password"
+            textLabel="Senha"
+          />
 
           <div className="flex justify-between text-sm text-gray-600">
             <label className="flex items-center">
@@ -58,12 +63,9 @@ export default function Login() {
             </Link>
           </div>
 
-          <button
-            type="submit"
-            className="mt-6 h-10 w-full rounded-full bg-[#6DA67A] font-semibold text-white shadow-md transition hover:bg-[#5c926a]"
-          >
+          <DefaultButton type="submit" className="w-full">
             Entrar
-          </button>
+          </DefaultButton>
         </form>
 
         <div className="flex items-center gap-4">

@@ -62,7 +62,7 @@ export default function Header() {
           <Link
             href={"/register"}
             aria-label="Registrar nova conta"
-            className="flex h-12 w-32 items-center justify-center rounded-xl bg-green-700 hover:bg-green-800"
+            className="flex h-12 w-32 items-center justify-center rounded-xl bg-green-700/30 font-semibold transition-all ease-in-out hover:bg-white hover:text-[#6DA67A]"
           >
             Registrar
           </Link>
