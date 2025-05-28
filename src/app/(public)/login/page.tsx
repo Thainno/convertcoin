@@ -1,3 +1,5 @@
+import "@/styles/globals.css";
+
 import Link from "next/link";
 import Image from "next/image";
 import Input from "@/components/common/Input";
@@ -8,13 +10,13 @@ import icoFacebook from "@/assets/images/ico-facebook.svg";
 export default function Login() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-gradient-to-t from-[#6DA67A] to-[#a4fbb8]">
-      <aside className="relative flex h-150 w-150 flex-col rounded-l-4xl bg-[#6DA67A] px-28 py-24 shadow-2xl">
+      <aside className="relative flex h-150 w-120 flex-col rounded-l-4xl bg-[#6DA67A] px-20 py-24 shadow-2xl">
         <Link href={"/"}>
           <Image
             src={logo}
-            alt="Logo Convert Coin"
             width={30}
-            className="absolute top-6 left-6"
+            alt="Logo Convert Coin"
+            className="increase-scale absolute top-6 left-6"
           />
         </Link>
 
@@ -47,7 +49,11 @@ export default function Login() {
             >
               E-mail
             </label>
-            <Input id="email" type="email" className="w-full rounded-md" />
+            <Input
+              id="email"
+              type="email"
+              className="text-md w-full rounded-md p-2 focus:outline-green-800/35"
+            />
           </div>
 
           <div>
@@ -60,7 +66,7 @@ export default function Login() {
             <Input
               id="password"
               type="password"
-              className="w-full rounded-md"
+              className="text-md w-full rounded-md p-2 focus:outline-green-800/35"
             />
           </div>
 
@@ -92,20 +98,24 @@ export default function Login() {
         </div>
 
         <div className="flex justify-center gap-8">
-          <Image
-            src={icoGoogle}
-            width={40}
-            height={40}
-            alt="Login com Google"
-            className="transition-transform duration-200 ease-in-out hover:scale-125"
-          />
-          <Image
-            src={icoFacebook}
-            width={40}
-            height={40}
-            alt="Login com Facebook"
-            className="transition-transform duration-200 ease-in-out hover:scale-125"
-          />
+          <Link href={"/"} target="_blank">
+            <Image
+              src={icoGoogle}
+              width={40}
+              height={40}
+              alt="Login com Google"
+              className="increase-scale"
+            />
+          </Link>
+          <Link href={"/"} target="_blank">
+            <Image
+              src={icoFacebook}
+              width={40}
+              height={40}
+              alt="Login com Facebook"
+              className="increase-scale"
+            />
+          </Link>
         </div>
       </article>
     </main>

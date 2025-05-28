@@ -75,7 +75,7 @@ export default function CurrencyCard({
           value={value}
           onValueChange={onValueChange}
           isActive={isActive}
-          className="h-16 w-full px-8 text-end outline-none"
+          className="h-16 w-full px-8 text-end text-4xl outline-none"
           maxLength={20}
         />
       </form>

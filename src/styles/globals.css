@@ -32,6 +32,11 @@ input[type="number"] {
   animation: expandBorder 0.5s forwards;
 }
 
+/* Animação para aumentar escala */
+.increase-scale {
+  @apply transition-transform duration-200 ease-in-out hover:scale-125;
+}
+
 @keyframes expandBorder {
   0% {
     left: 50%;
