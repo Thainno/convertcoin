@@ -25,7 +25,7 @@ export default function BankCard({
   colorsBank,
 }: BankData) {
   return (
-    <article className="flex h-125 w-80 flex-col items-center gap-5 rounded-2xl bg-zinc-50 shadow-sm">
+    <article className="flex h-118 w-80 flex-col items-center gap-5 rounded-2xl bg-zinc-50 shadow-sm">
       <header>
         <Image
           className="rounded-t-2xl shadow-lg"
