@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useState, useCallback } from "react";
 
@@ -12,8 +12,7 @@ export function useRegisterPassword() {
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [errors, setErrors] = useState<PasswordValidationErrors>({});
 
-  const PASSWORD_REGEX =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()[\]{};:'",.<>/?\\|`~_\-=+]).{8,}$/;
+  const PASSWORD_REGEX = /^.{8,}$/;
 
   //Valida a força da senha
   const validatePasswordStrength = useCallback((password: string): boolean => {
@@ -28,7 +27,7 @@ export function useRegisterPassword() {
     //Validação da força da primeira senha
     if (!validatePasswordStrength(password)) {
       currentErrors.password =
-        "A senha deve ter no mínimo 8 caracteres, incluindo número, letra maiúscula, minúscula e caractere especial.";
+        "A senha deve ter no mínimo 8 caracteres.";
       isValid = false;
     }
 
