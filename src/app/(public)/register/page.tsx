@@ -1,5 +1,8 @@
+'use client'
+
 import "@/styles/globals.css";
 
+import { FormEvent } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "@/assets/images/logo.svg";
@@ -7,8 +10,22 @@ import icoGoogle from "@/assets/images/ico-google.svg";
 import icoFacebook from "@/assets/images/ico-facebook.svg";
 import FormField from "@/components/common/FormField";
 import DefaultButton from "@/components/common/DefaultButton";
+import { useRegisterPassword } from "@/hooks/useRegisterPassword";
 
 export default function Register() {
+  const {
+    password,
+    setPassword,
+    confirmPassword,
+    setConfirmPassword,
+    errors,
+    validatePasswords,
+  } = useRegisterPassword();
+
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
+  };
+
   return (
     <main className="flex min-h-screen items-center justify-center bg-gradient-to-t from-[#6DA67A] to-[#a4fbb8]">
       <article className="flex h-[600px] w-[480px] flex-col justify-center gap-6 rounded-l-4xl bg-white px-10 py-12 shadow-2xl">
@@ -18,7 +35,7 @@ export default function Register() {
           </h1>
         </header>
 
-        <form className="flex flex-col gap-4">
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
           <FormField fieldId="email" inputType="email" textLabel="E-mail" />
           <FormField
             fieldId="userName"
@@ -29,11 +46,19 @@ export default function Register() {
             fieldId="password"
             inputType="password"
             textLabel="Senha"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            onBlur={validatePasswords}
+            error={errors.password}
           />
           <FormField
             fieldId="confirmPassword"
             inputType="password"
             textLabel="Confirmar senha"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            onBlur={validatePasswords}
+            error={errors.confirmPassword}
           />
 
           <div className="text-sm text-gray-600">
