@@ -7,19 +7,31 @@ interface FormFieldProps {
   fieldId: string;
   inputType: string;
   textLabel?: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  error: string;
 }
 
 export default function FormField({
   fieldId,
   inputType,
   textLabel,
+  value,
+  onChange,
+  onBlur,
+  error,
 }: FormFieldProps) {
-  const [value, setValue] = useState("");
+  //const [value, setValue] = useState("");
   const [isFocused, setIsFocused] = useState(false);
 
   const handleFocus = () => setIsFocused(true);
+
   const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
     if (!e.target.value) setIsFocused(false);
+    if (onBlur) {
+      onBlur(e);
+    }
   };
 
   return (
@@ -34,12 +46,13 @@ export default function FormField({
         id={fieldId}
         type={inputType}
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={onChange}
         onFocus={handleFocus}
         onBlur={handleBlur}
         className="w-full rounded-md border-2 border-green-800/20 p-3 text-sm outline-green-800/35"
         required
       />
+      {error && <p className="mt-1 text-xs text-red-500">{error}</p>}
     </div>
   );
 }
