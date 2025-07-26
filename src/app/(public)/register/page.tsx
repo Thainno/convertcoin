@@ -8,7 +8,7 @@ import icoFacebook from "@/assets/images/ico-facebook.svg";
 import FormField from "@/components/common/FormField";
 import DefaultButton from "@/components/common/DefaultButton";
 
-export default function Login() {
+export default function Register() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-gradient-to-t from-[#6DA67A] to-[#a4fbb8]">
       <article className="flex h-[600px] w-[480px] flex-col justify-center gap-6 rounded-l-4xl bg-white px-10 py-12 shadow-2xl">
@@ -31,7 +31,7 @@ export default function Login() {
             textLabel="Senha"
           />
           <FormField
-            fieldId="password"
+            fieldId="confirmPassword"
             inputType="password"
             textLabel="Confirmar senha"
           />
@@ -40,8 +40,8 @@ export default function Login() {
             <label>
               <input
                 type="checkbox"
-                required
                 className="mr-1 accent-green-700"
+                required
               />
               Li e concordo com os{" "}
               <Link

@@ -38,6 +38,7 @@ export default function FormField({
         onFocus={handleFocus}
         onBlur={handleBlur}
         className="w-full rounded-md border-2 border-green-800/20 p-3 text-sm outline-green-800/35"
+        required
       />
     </div>
   );
